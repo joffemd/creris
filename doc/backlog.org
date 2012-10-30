@@ -1,0 +1,20 @@
+#+title: Backlog
+#+options: date:nil toc:nil author:nil num:nil
+#+tags: story(s) epic(e) task(t) note(n) spike(p)
+
+* Backlog
+
+This file contains all stories that haven't been assigned to a sprint.
+
+** Development Stories
+
+Stories that we intend to look at, at some point.
+
+*** DONE Stub story
+    CLOSED: [2012-10-25 Thu 09:57]
+
+Body text goes here.
+
+** Won't fix
+
+Stories which we do not think we are going to work on.

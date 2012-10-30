@@ -1,0 +1,26 @@
+;; -*- mode: emacs-lisp; tab-width: 4; indent-tabs-mode: nil -*-
+(ede-cpp-root-project
+ "Creris"
+ :name "Creris Project"
+ :version "0.0.1"
+ :file "creris.ede"
+ :include-path
+ '(
+   "/projects/config/include"
+   "/projects/driver/include"
+   "/projects/daemon/include"
+   "/projects/protocol/include"
+   "/projects/utility/include"
+   "/projects/credit_risk/include"
+   )
+ :system-include-path
+ '("/usr/local/pfh/include"
+   "/usr/include/gtkmm-2.4"
+   "/usr/include/glibmm-2.4"
+   "/usr/include/libxml2"
+   )
+ :spp-table
+ '(("isUnix" . "")
+   ("BOOST_TEST_DYN_LINK" . "")
+   ("_MSC_VER" . ""))
+ )

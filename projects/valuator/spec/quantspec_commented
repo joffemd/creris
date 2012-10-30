@@ -1,0 +1,39 @@
+Binomial - the model.
+[Ln117] Vanilla option - any option that is not exotic.
+Cox, Ross, Rubinstein (1979) - creators of a Binomial Model type.
+Garman, Kohlagen (1983) - creator of another Binomial Model type.
+
+[Ln66] Garman Kohlagen Process - is a Generalized Black-Scholes Process; a stochastic process that applies only to european options. Extended version of Black–Scholes model to cope with the presence of two interest rates: the risk-free interest rate and the foreign currency risk-free interest rate.
+Stochastic process - a process that represents the evolution of a random system over time (a collection of random variables indexed in time order).
+
+[Ln72] Binomial Vanilla Engine - evaluates a vanilla option through the binomial method CRR.
+	Binomial (Tree) Model - provides a generalizable numerical method for the valuation of options. Traces the evolution of the option's key underlying variables in discrete time.
+	Binomial Engine Cox-Ross-Rubinstein (CRR) - a Binomial Tree model.
+This model assumes that the [value of the actualization of the] up move (u) and down move (d) are inverse, i.e., ud=1.
+
+Other Models: Lattice (based) Model - a model that involves the construction of a binomial (or trinomial) tree to show the different paths that the underlying asset may take over the option's life. It takes into account expected changes in various parameters providing more accurate estimates of option prices than the Black-Scholes model. [In QuantLib] It includes the Tree and Finite Difference method.
+	Binomial Tree - graphical representation of possible intrinsic values that an option may take at different nodes or time periods.
+	Black-Scholes Model - a model of price variation over time of financial instruments that can be used to determine the price of European options. By the making of some assumptions it can be applied to a stock option.
+	French Black-Scholes Model - an adjusted Black-Scholes model where the calendar days and trading days until expiration differ. Can be used on European and American options that have a continuous dividend, a constant dividend yield, and discrete dividends.
+	Eurodollar Model - model used to price Eurodollar options. There are no dividends to evaluate with this model.
+	Jump Diffusion Model - it is used to price European options and assumes that the underlying asset follows a jump-diffusion process.The valuation of the option follows a stochastic process other than a lognormally distributed model (such as the Black-Scholes model). These options can have a continuous dividend, a constant dividend yield, and discrete dividends.
+	
+Associated Numerical Methods:
+	Binomial Method - above.
+	Finite Difference Method - is a numerical method for approximating the solutions to differential equations using finite difference equations to approximate (mathematical) derivatives.
+	Monte Carlo Method - generalized numerical method of stochastic simulation
+	Bjerksund-Stensland Model - is an alternative closed-form solution for pricing American style options. These options can have a continuous dividend, a constant dividend yield, and discrete dividends. [AproximationEngine - QuantLib]
+	Whaley Model (Quadratic Approximation) - an alternative to numerical methods for pricing American options that have a continuous dividend, a constant dividend yield, and discrete dividends. The Quadratic Approximation method is accurate and less computer intensive than Binomial, Compound-option or Finite-difference pricing methods. [AproximationEngine - QuantLib]
+
+[Ln117] American option - (vanilla) option that may be exercised at any time before the expiry date (maturity), at early dates. With one early date, an american option pricing may be easely valuated. With more early dates, requires little further analysis.
+
+[Lns94/98] YieldTermStructure - Interest-rate term structure: variation of interest-rates with time. The term structure, especially when depicted as a graph, is also called the yield curve.
+
+[Ln103] BlackVolTermStructure - Black volatility term structure; implied volatility structures of Black-Scholes model
+volatility term structure - concept which refers to how implied volatility differs for related options with different maturities.
+	BlackConstantVol - Black Constante Volatility; constant volatility of Black-Scholes model
+Constant volatility - volatility with no time-strike dependence
+
+[Ln130] StrikedTypePayoff - payoffs based on a fixed strike (or exercise) price
+
+[Ln131] PlainVanillaPayoff - plain vanilla (or simply vanilla) payoff test

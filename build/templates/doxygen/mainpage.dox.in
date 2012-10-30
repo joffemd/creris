@@ -1,0 +1,11 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+
+/**
+ *
+ * @mainpage About
+ *
+ * @b Creris is the credit risk evaluator
+ *
+ * @e commit: ${CURRENT_GIT_COMMIT}
+ *
+ */

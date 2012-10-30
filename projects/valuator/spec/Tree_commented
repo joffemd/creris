@@ -1,0 +1,44 @@
+process - assotiated with the generation of random numbers.
+Engine - related to coding struture which makes use of a set of parameters input to output a set of values 
+Method - related to one of the pricing methods
+
+rfdc - Risk Free rate Day Counter 
+divdc - DIVidend Day Counter
+voldc - VOLatility Day Counter
+volcal - VOLatility CALendar
+
+p - probability; theoretically, it is assumed that is the probability of a price rise, and so the probability of a price fall is the complementary probability, 1 - p. In the context of a Binomial Tree there is always two probabilities:
+	pu - probability of moving up in a binomial tree (the probability of a price rise);
+	pd - probability of moving down in a binomial tree (The probability of a price fall).
+u - up factor in a binomial tree (the factor by which the price rises)
+d - down factor in a binomial tree (the factor by which the price falls)
+These four definitions above are parameters needed when applyind the Binomial model.
+
+dx - standard deviation
+
+StochasticProcess1D - one-dimensional (one random variable) stochastic process.
+
+GeneralizedBlackScholesProcess - generalized Black-Scholes process; extention of Black-Scholes model used to price both American and European options on dividend and non-dividend securities. Includes Black-Scholes, Modified Black-Scholes, Black, Garman-Kohlhagen, and Pseudo-American model.
+
+BlackScholesLattice - simple binomial lattice approximating the Black-Scholes model.
+
+DiscretizedVanillaOption - from QuantLib's DiscretizedOption Class; it's a discretized option on a given asset.
+DiscretizedAsset Class - Discretized asset class used by numerical methods.
+
+"// Calculate partial derivatives" - computation of delta at times t=0 (no step and 1 node on the tree) and t=1 (1st step and 2 nodes on the tree) by applying the finite difference method.
+
+Binomial Tree:	Tree - numerically [in QuantLib] approximating a single-factor diffusion.
+		EqualProbabilitiesBinomialTree - base class in which moving a step up or down on a tree branch has the same probability, i.e., pu = pd = 1/2.
+		EqualJumpsBinomialTree - base class in which moving a step (jumping) up has the same value as moving a step (jumping) down, i.e., u = d.
+There is also the extended version of the above models.
+		ExtendedAdditiveEQPBinomialTree - additive equal probabilities binomial tree.
+		ExtendedBinomialTree - extended version of the Binomial Tree.
+
+Different versions of the binomial model:
+	JarrowRudd - commonly called the equal-probability model. This model proposes that p = 1/2.
+	CoxRoxRubinstein - this model proposes that u = 1/d.
+	Tian - commonly called the moment matching model. This model exactly matches the first three moments of the binomial model to the first three moments of a lognormal distribution.
+	Trigeorgis
+	LeisenReimer - uses a completely different approach to all the other methods, relying on approximating the normal distribution used in the Black-Scholes model.
+Each of these models differs essentially in the way p, u and d are computed.
+For each of these models there is also an extended version.

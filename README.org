@@ -1,0 +1,8 @@
+* Overview
+
+** What is Creris
+
+Creris - the credit risk evaluator - is designed to calculate the
+probability of default of an entity over time.
+
+** Why do we need Creris
