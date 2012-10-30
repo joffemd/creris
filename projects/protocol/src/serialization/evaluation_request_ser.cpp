@@ -27,7 +27,7 @@
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
-#include <boost/serialization/string.hpp>
+#include "creris/credit_risk/serialization/credit_rating_evaluation_ser.hpp"
 #include "creris/protocol/serialization/evaluation_request_ser.hpp"
 #include "creris/protocol/serialization/versioned_key_ser.hpp"
 

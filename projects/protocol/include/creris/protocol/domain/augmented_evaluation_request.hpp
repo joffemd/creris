@@ -42,7 +42,7 @@ public:
 
 public:
     augmented_evaluation_request(
-        const std::string& credit_rating_evaluation,
+        const creris::credit_risk::credit_rating_evaluation& credit_rating_evaluation,
         const creris::protocol::versioned_key& versioned_key,
         const std::string& augmenting_attribute);
 

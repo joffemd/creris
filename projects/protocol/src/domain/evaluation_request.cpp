@@ -19,6 +19,7 @@
  *
  */
 #include <ostream>
+#include "creris/credit_risk/io/credit_rating_evaluation_io.hpp"
 #include "creris/protocol/domain/evaluation_request.hpp"
 #include "creris/protocol/io/versioned_key_io.hpp"
 
@@ -26,7 +27,7 @@ namespace creris {
 namespace protocol {
 
 evaluation_request::evaluation_request(
-    const std::string& credit_rating_evaluation,
+    const creris::credit_risk::credit_rating_evaluation& credit_rating_evaluation,
     const creris::protocol::versioned_key& versioned_key)
     : credit_rating_evaluation_(credit_rating_evaluation),
       versioned_key_(versioned_key) { }
@@ -34,7 +35,7 @@ evaluation_request::evaluation_request(
 void evaluation_request::to_stream(std::ostream& s) const {
     s << " { "
       << "\"__type__\": " << "\"evaluation_request\"" << ", "
-      << "\"credit_rating_evaluation\": " << "\"" << credit_rating_evaluation_ << "\"" << ", "
+      << "\"credit_rating_evaluation\": " << credit_rating_evaluation_ << ", "
       << "\"versioned_key\": " << versioned_key_
       << " }";
 }

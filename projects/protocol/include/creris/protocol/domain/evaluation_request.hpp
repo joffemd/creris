@@ -27,7 +27,7 @@
 
 #include <algorithm>
 #include <iosfwd>
-#include <string>
+#include "creris/credit_risk/domain/credit_rating_evaluation.hpp"
 #include "creris/protocol/domain/versioned_key.hpp"
 #include "creris/protocol/serialization/evaluation_request_fwd_ser.hpp"
 
@@ -44,7 +44,7 @@ public:
 
 public:
     evaluation_request(
-        const std::string& credit_rating_evaluation,
+        const creris::credit_risk::credit_rating_evaluation& credit_rating_evaluation,
         const creris::protocol::versioned_key& versioned_key);
 
 private:
@@ -58,18 +58,13 @@ public:
     virtual void to_stream(std::ostream& s) const;
 
 public:
-    /*
-     * @brief credit_risk::credit_rating_evaluation
-     */
-    /**@{*/
-    std::string credit_rating_evaluation() const {
+    creris::credit_risk::credit_rating_evaluation credit_rating_evaluation() const {
         return credit_rating_evaluation_;
     }
 
-    void credit_rating_evaluation(const std::string& v) {
+    void credit_rating_evaluation(const creris::credit_risk::credit_rating_evaluation& v) {
         credit_rating_evaluation_ = v;
     }
-    /**@}*/
 
     creris::protocol::versioned_key versioned_key() const {
         return versioned_key_;
@@ -89,7 +84,7 @@ protected:
     void swap(evaluation_request& other) noexcept;
 
 private:
-    std::string credit_rating_evaluation_;
+    creris::credit_risk::credit_rating_evaluation credit_rating_evaluation_;
     creris::protocol::versioned_key versioned_key_;
 };
 

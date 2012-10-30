@@ -19,6 +19,7 @@
  *
  */
 #include <ostream>
+#include "creris/credit_risk/io/credit_rating_evaluation_io.hpp"
 #include "creris/protocol/io/evaluation_request_io.hpp"
 #include "creris/protocol/io/versioned_key_io.hpp"
 

@@ -18,17 +18,15 @@
  * MA 02110-1301, USA.
  *
  */
-#include <sstream>
+#include "creris/credit_risk/test_data/credit_rating_evaluation_td.hpp"
 #include "creris/protocol/test_data/evaluation_request_td.hpp"
 #include "creris/protocol/test_data/versioned_key_td.hpp"
 
 namespace {
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
-    std::ostringstream s;
-    s << prefix << "_" << position;
-
-    return s.str();
+creris::credit_risk::credit_rating_evaluation
+create_creris_credit_risk_credit_rating_evaluation(const unsigned int position) {
+    return creris::credit_risk::credit_rating_evaluation_generator::create(position);
 }
 
 creris::protocol::versioned_key
@@ -44,7 +42,7 @@ namespace protocol {
 
 void evaluation_request_generator::
 populate(const unsigned int position, result_type& v) {
-    v.credit_rating_evaluation(create_std_string("credit_rating_evaluation", position + 0));
+    v.credit_rating_evaluation(create_creris_credit_risk_credit_rating_evaluation(position + 0));
     v.versioned_key(create_creris_protocol_versioned_key(position + 0));
 }
 

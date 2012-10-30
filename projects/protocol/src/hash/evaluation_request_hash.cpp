@@ -18,6 +18,7 @@
  * MA 02110-1301, USA.
  *
  */
+#include "creris/credit_risk/hash/credit_rating_evaluation_hash.hpp"
 #include "creris/protocol/hash/evaluation_request_hash.hpp"
 #include "creris/protocol/hash/versioned_key_hash.hpp"
 

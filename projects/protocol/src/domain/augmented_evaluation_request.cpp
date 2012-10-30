@@ -26,7 +26,7 @@ namespace creris {
 namespace protocol {
 
 augmented_evaluation_request::augmented_evaluation_request(
-    const std::string& credit_rating_evaluation,
+    const creris::credit_risk::credit_rating_evaluation& credit_rating_evaluation,
     const creris::protocol::versioned_key& versioned_key,
     const std::string& augmenting_attribute)
     : creris::protocol::evaluation_request(credit_rating_evaluation,
