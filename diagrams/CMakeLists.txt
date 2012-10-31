@@ -41,8 +41,5 @@ add_custom_target(generate_protocol
      -v -d -p creris
     )
 
-add_dependencies(protocol generate_credit_risk)
-
 add_custom_target(codegen)
-
-add_dependencies(codegen generate_credit_risk protocol)
+add_dependencies(codegen generate_credit_risk generate_protocol)
