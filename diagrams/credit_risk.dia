@@ -104,7 +104,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -238,7 +238,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -402,13 +402,13 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O2">
       <dia:attribute name="obj_pos">
-        <dia:point val="48,18"/>
+        <dia:point val="48,19.3333"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="47.975,17.975;64.695,21.625"/>
+        <dia:rectangle val="47.975,19.3083;64.695,22.9583"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="48,18"/>
+        <dia:point val="48,19.3333"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="16.669999999999998"/>
@@ -441,7 +441,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -598,7 +598,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -801,7 +801,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -981,7 +981,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -1161,7 +1161,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -1271,7 +1271,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -1389,19 +1389,19 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O8">
       <dia:attribute name="obj_pos">
-        <dia:point val="5.26044,22.9256"/>
+        <dia:point val="3.92711,18.9923"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="5.23544,22.9006;16.7479,25.7506"/>
+        <dia:rectangle val="3.90211,18.9673;19.5721,25.3173"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="5.26044,22.9256"/>
+        <dia:point val="3.92711,18.9923"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="11.4625"/>
+        <dia:real val="15.619999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="2.7999999999999998"/>
+        <dia:real val="6.3000000000000007"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#generator_configuration#</dia:string>
@@ -1428,7 +1428,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -1437,7 +1437,7 @@
         <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_line_length">
-        <dia:int val="17"/>
+        <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_tagging">
         <dia:boolean val="false"/>
@@ -1470,7 +1470,7 @@
         <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
-        <dia:font family="sans" style="8" name="Helvetica-Oblique"/>
+        <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="normal_font_height">
         <dia:real val="0.80000000000000004"/>
@@ -1488,7 +1488,7 @@
         <dia:real val="1"/>
       </dia:attribute>
       <dia:attribute name="comment_font_height">
-        <dia:real val="0.69999999999999996"/>
+        <dia:real val="0.99999999999999989"/>
       </dia:attribute>
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
@@ -1502,7 +1502,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: Value should be a generator_types, further analysiss required	#</dia:string>
+            <dia:string>#FIXME: Value should be a generator_types, further analysis required	#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -1523,18 +1523,18 @@
     </dia:object>
     <dia:object type="UML - Generalization" version="1" id="O9">
       <dia:attribute name="obj_pos">
-        <dia:point val="10.9917,25.7509"/>
+        <dia:point val="11.7371,25.3177"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="10.1417,25.7009;28.7425,29.05"/>
+        <dia:rectangle val="10.8871,25.2677;28.7425,29.05"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="10.9917,25.7509"/>
-        <dia:point val="10.9917,27.7755"/>
-        <dia:point val="28.6925,27.7755"/>
+        <dia:point val="11.7371,25.3177"/>
+        <dia:point val="11.7371,27.5588"/>
+        <dia:point val="28.6925,27.5588"/>
         <dia:point val="28.6925,29"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
@@ -1564,18 +1564,18 @@
     </dia:object>
     <dia:object type="UML - Generalization" version="1" id="O10">
       <dia:attribute name="obj_pos">
-        <dia:point val="10.9917,25.7509"/>
+        <dia:point val="11.7371,25.3177"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="10.1417,25.7009;11.8417,29.05"/>
+        <dia:rectangle val="10.8871,25.2677;12.5871,29.05"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="10.9917,25.7509"/>
-        <dia:point val="10.9917,27.7755"/>
-        <dia:point val="11.6862,27.7755"/>
+        <dia:point val="11.7371,25.3177"/>
+        <dia:point val="11.7371,27.5588"/>
+        <dia:point val="11.6862,27.5588"/>
         <dia:point val="11.6862,29"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
@@ -1605,18 +1605,18 @@
     </dia:object>
     <dia:object type="UML - Generalization" version="1" id="O11">
       <dia:attribute name="obj_pos">
-        <dia:point val="10.9917,25.7509"/>
+        <dia:point val="11.7371,25.3177"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-6.3625,25.7009;11.8417,29.05"/>
+        <dia:rectangle val="-6.3625,25.2677;12.5871,29.05"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="10.9917,25.7509"/>
-        <dia:point val="10.9917,27.7755"/>
-        <dia:point val="-6.3125,27.7755"/>
+        <dia:point val="11.7371,25.3177"/>
+        <dia:point val="11.7371,27.5588"/>
+        <dia:point val="-6.3125,27.5588"/>
         <dia:point val="-6.3125,29"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
@@ -1646,13 +1646,13 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O12">
       <dia:attribute name="obj_pos">
-        <dia:point val="19,51"/>
+        <dia:point val="24.3333,59"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="18.975,50.975;35.1975,53.225"/>
+        <dia:rectangle val="24.3083,58.975;40.5308,61.225"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="19,51"/>
+        <dia:point val="24.3333,59"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="16.172499999999999"/>
@@ -1685,7 +1685,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -1756,19 +1756,19 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O13">
       <dia:attribute name="obj_pos">
-        <dia:point val="-8,51"/>
+        <dia:point val="-13.2667,59"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-8.025,50.975;6.7875,54.625"/>
+        <dia:rectangle val="-13.2917,58.975;1.67833,64.125"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="-8,51"/>
+        <dia:point val="-13.2667,59"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="14.762499999999999"/>
+        <dia:real val="14.919999999999998"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="3.6000000000000001"/>
+        <dia:real val="5.0999999999999996"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#fixed_time_series_configuration#</dia:string>
@@ -1795,7 +1795,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -1804,7 +1804,7 @@
         <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_line_length">
-        <dia:int val="17"/>
+        <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_tagging">
         <dia:boolean val="false"/>
@@ -1837,7 +1837,7 @@
         <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
-        <dia:font family="sans" style="8" name="Helvetica-Oblique"/>
+        <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="normal_font_height">
         <dia:real val="0.80000000000000004"/>
@@ -1855,7 +1855,7 @@
         <dia:real val="1"/>
       </dia:attribute>
       <dia:attribute name="comment_font_height">
-        <dia:real val="0.69999999999999996"/>
+        <dia:real val="0.99999999999999989"/>
       </dia:attribute>
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
@@ -1892,7 +1892,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: replace this with std::vector&lt;std::string&gt; - at this time dogen doesn't support vectors#</dia:string>
+            <dia:string>#FIXME: std::vector&lt;std::string&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -1916,7 +1916,7 @@
         <dia:point val="4,41"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="3.975,40.975;20.695,47.825"/>
+        <dia:rectangle val="3.975,40.975;20.695,51.325"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="4,41"/>
@@ -1925,7 +1925,7 @@
         <dia:real val="16.669999999999998"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="6.8000000000000007"/>
+        <dia:real val="10.300000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#time_series_configuration#</dia:string>
@@ -1952,7 +1952,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -1961,7 +1961,7 @@
         <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_line_length">
-        <dia:int val="17"/>
+        <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_tagging">
         <dia:boolean val="false"/>
@@ -1994,7 +1994,7 @@
         <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
-        <dia:font family="sans" style="8" name="Helvetica-Oblique"/>
+        <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="normal_font_height">
         <dia:real val="0.80000000000000004"/>
@@ -2012,7 +2012,7 @@
         <dia:real val="1"/>
       </dia:attribute>
       <dia:attribute name="comment_font_height">
-        <dia:real val="0.69999999999999996"/>
+        <dia:real val="0.99999999999999989"/>
       </dia:attribute>
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
@@ -2162,19 +2162,19 @@
     </dia:object>
     <dia:object type="UML - Generalization" version="1" id="O15">
       <dia:attribute name="obj_pos">
-        <dia:point val="12.335,47.8"/>
+        <dia:point val="12.335,51.3"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-0.66875,47.75;13.185,51.05"/>
+        <dia:rectangle val="-5.85667,51.25;13.185,59.05"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="12.335,47.8"/>
-        <dia:point val="12.335,49.8"/>
-        <dia:point val="-0.61875,49.8"/>
-        <dia:point val="-0.61875,51"/>
+        <dia:point val="12.335,51.3"/>
+        <dia:point val="12.335,55.55"/>
+        <dia:point val="-5.80667,55.55"/>
+        <dia:point val="-5.80667,59"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="1"/>
@@ -2203,19 +2203,19 @@
     </dia:object>
     <dia:object type="UML - Generalization" version="1" id="O16">
       <dia:attribute name="obj_pos">
-        <dia:point val="12.335,47.8254"/>
+        <dia:point val="12.335,51.3253"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="11.485,47.7754;27.1363,51.05"/>
+        <dia:rectangle val="11.485,51.2753;32.4696,59.05"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="12.335,47.8254"/>
-        <dia:point val="12.335,49.8127"/>
-        <dia:point val="27.0862,49.8127"/>
-        <dia:point val="27.0862,51"/>
+        <dia:point val="12.335,51.3253"/>
+        <dia:point val="12.335,55.5627"/>
+        <dia:point val="32.4196,55.5627"/>
+        <dia:point val="32.4196,59"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="1"/>
@@ -2247,16 +2247,16 @@
         <dia:point val="52,11"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="51.975,10.975;59.84,15.425"/>
+        <dia:rectangle val="51.975,10.975;60.485,18.925"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="52,11"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="7.8150000000000004"/>
+        <dia:real val="8.4599999999999991"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="4.4000000000000004"/>
+        <dia:real val="7.9000000000000004"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#time_series#</dia:string>
@@ -2283,7 +2283,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -2325,7 +2325,7 @@
         <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
-        <dia:font family="sans" style="8" name="Helvetica-Oblique"/>
+        <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="normal_font_height">
         <dia:real val="0.80000000000000004"/>
@@ -2343,7 +2343,7 @@
         <dia:real val="1"/>
       </dia:attribute>
       <dia:attribute name="comment_font_height">
-        <dia:real val="0.69999999999999996"/>
+        <dia:real val="0.99999999999999989"/>
       </dia:attribute>
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
@@ -2403,7 +2403,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: should be of type boost::dense_series&lt;double&gt;, fix when dogen supports it#</dia:string>
+            <dia:string>#FIXME: boost::dense_series&lt;double&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -2424,19 +2424,19 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O18">
       <dia:attribute name="obj_pos">
-        <dia:point val="52,6"/>
+        <dia:point val="52,0.666667"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="51.975,5.975;60.225,8.825"/>
+        <dia:rectangle val="51.975,0.641667;70.7675,5.99167"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="52,6"/>
+        <dia:point val="52,0.666667"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="8.1999999999999993"/>
+        <dia:real val="18.7425"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="2.7999999999999998"/>
+        <dia:real val="5.2999999999999998"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#time_series_set#</dia:string>
@@ -2463,7 +2463,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -2472,7 +2472,7 @@
         <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_line_length">
-        <dia:int val="17"/>
+        <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_tagging">
         <dia:boolean val="false"/>
@@ -2505,7 +2505,7 @@
         <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
-        <dia:font family="sans" style="8" name="Helvetica-Oblique"/>
+        <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="normal_font_height">
         <dia:real val="0.80000000000000004"/>
@@ -2523,7 +2523,7 @@
         <dia:real val="1"/>
       </dia:attribute>
       <dia:attribute name="comment_font_height">
-        <dia:real val="0.69999999999999996"/>
+        <dia:real val="0.99999999999999989"/>
       </dia:attribute>
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
@@ -2537,7 +2537,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: should be of type std::unordered_map&lt;std::string, time_series_id&gt;, should be implemented when dogen supports it#</dia:string>
+            <dia:string>#FIXME: std::unordered_map&lt;std::string, time_series_id&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -2561,13 +2561,13 @@
         <dia:point val="71,11"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="70.975,10.975;79.225,13.825"/>
+        <dia:rectangle val="70.975,10.975;85.385,13.825"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="71,11"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="8.1999999999999993"/>
+        <dia:real val="14.359999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="2.7999999999999998"/>
@@ -2597,7 +2597,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -2665,13 +2665,13 @@
             <dia:string>#series#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::string#</dia:string>
+            <dia:string>#std::vector&lt;time_series_id&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: type should be std::vector&lt;time_series_id&gt;, should be fixed when dogen supports it#</dia:string>
+            <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -2695,13 +2695,13 @@
         <dia:point val="49.1512,26.2593"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="49.1262,26.2343;63.1512,35.4843"/>
+        <dia:rectangle val="49.1262,26.2343;67.3862,35.4843"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="49.1512,26.2593"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="13.975"/>
+        <dia:real val="18.210000000000001"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="9.1999999999999993"/>
@@ -2731,7 +2731,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -2914,13 +2914,13 @@
             <dia:string>#related_series#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::string#</dia:string>
+            <dia:string>#std::vector&lt;time_series_id&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: should be of type std::vector&lt;time_series_id&gt;, should be fixed when dogen supports it#</dia:string>
+            <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -2983,13 +2983,13 @@
             <dia:string>#dependent_series#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::string#</dia:string>
+            <dia:string>#std::vector&lt;time_series_id&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: should be of type std::vector&lt;time_series_id&gt;, should be fixed when dogen supports it#</dia:string>
+            <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -3013,16 +3013,16 @@
         <dia:point val="-39.6654,4.24237"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-39.6904,4.21737;-23.7404,13.4674"/>
+        <dia:rectangle val="-39.6904,4.21737;-21.2529,15.9674"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="-39.6654,4.24237"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="15.9"/>
+        <dia:real val="18.387499999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="9.1999999999999993"/>
+        <dia:real val="11.700000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#configuration#</dia:string>
@@ -3049,7 +3049,7 @@
         <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
+        <dia:boolean val="true"/>
       </dia:attribute>
       <dia:attribute name="wrap_operations">
         <dia:boolean val="true"/>
@@ -3058,7 +3058,7 @@
         <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_line_length">
-        <dia:int val="17"/>
+        <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_tagging">
         <dia:boolean val="false"/>
@@ -3091,7 +3091,7 @@
         <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
-        <dia:font family="sans" style="8" name="Helvetica-Oblique"/>
+        <dia:font family="sans" style="88" name="Helvetica-BoldOblique"/>
       </dia:attribute>
       <dia:attribute name="normal_font_height">
         <dia:real val="0.80000000000000004"/>
@@ -3109,7 +3109,7 @@
         <dia:real val="1"/>
       </dia:attribute>
       <dia:attribute name="comment_font_height">
-        <dia:real val="0.69999999999999996"/>
+        <dia:real val="0.99999999999999989"/>
       </dia:attribute>
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
@@ -3255,13 +3255,13 @@
             <dia:string>#metrics#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::string#</dia:string>
+            <dia:string>#std::vector&lt;metric&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: should be of type std::vector&lt;metric&gt;, should get fixed when dogen supports it#</dia:string>
+            <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -3284,7 +3284,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: should be of type std::vector&lt;time_series_configuration&gt;, should be fixed when dogen supports it#</dia:string>
+            <dia:string>#FIXME: std::vector&lt;time_series_configuration&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -3301,13 +3301,13 @@
             <dia:string>#adjustments#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::string#</dia:string>
+            <dia:string>#std::vector&lt;adjustment&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: should be of type std::vector&lt;adjustment&gt;, should be fixed when dogen supports it#</dia:string>
+            <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>

@@ -51,7 +51,7 @@ populate(const unsigned int position, result_type& v) {
     v.projection_years(create_unsigned_int(position + 1));
     v.number_of_trials(create_unsigned_int(position + 2));
     v.configuration_id(create_creris_credit_risk_configuration_id(position + 3));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 3));
+    v.versioned_key(create_creris_credit_risk_versioned_key(position + 4));
 }
 
 credit_rating_evaluation_generator::result_type

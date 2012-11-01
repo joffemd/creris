@@ -26,7 +26,8 @@
 #endif
 
 #include <algorithm>
-#include <string>
+#include <vector>
+#include "creris/credit_risk/domain/time_series_id.hpp"
 #include "creris/credit_risk/domain/versioned_key.hpp"
 #include "creris/credit_risk/serialization/ratings_map_fwd_ser.hpp"
 
@@ -42,7 +43,7 @@ public:
 
 public:
     ratings_map(
-        const std::string& series,
+        const std::vector<creris::credit_risk::time_series_id>& series,
         const creris::credit_risk::versioned_key& versioned_key);
 
 private:
@@ -53,18 +54,13 @@ private:
     friend void boost::serialization::load(Archive& ar, ratings_map& v, unsigned int version);
 
 public:
-    /*
-     * @brief FIXME: type should be std::vector<time_series_id>, should be fixed when dogen supports it
-     */
-    /**@{*/
-    std::string series() const {
+    std::vector<creris::credit_risk::time_series_id> series() const {
         return series_;
     }
 
-    void series(const std::string& v) {
+    void series(const std::vector<creris::credit_risk::time_series_id>& v) {
         series_ = v;
     }
-    /**@}*/
 
     creris::credit_risk::versioned_key versioned_key() const {
         return versioned_key_;
@@ -85,7 +81,7 @@ public:
     ratings_map& operator=(ratings_map other);
 
 private:
-    std::string series_;
+    std::vector<creris::credit_risk::time_series_id> series_;
     creris::credit_risk::versioned_key versioned_key_;
 };
 

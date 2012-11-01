@@ -25,10 +25,9 @@
 
 namespace {
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
+std::string create_std_string(const unsigned int position) {
     std::ostringstream s;
-    s << prefix << "_" << position;
-
+    s << "a_string_" << position;
     return s.str();
 }
 
@@ -55,11 +54,11 @@ metric_generator::metric_generator() : position_(0) { }
 
 void metric_generator::
 populate(const unsigned int position, result_type& v) {
-    v.name(create_std_string("name", position + 0));
-    v.time_series_id(create_creris_credit_risk_time_series_id(position + 0));
-    v.threshold_level(create_double(position + 0));
-    v.relation_to_threshold(create_std_string("relation_to_threshold", position + 1));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 1));
+    v.name(create_std_string(position + 0));
+    v.time_series_id(create_creris_credit_risk_time_series_id(position + 1));
+    v.threshold_level(create_double(position + 2));
+    v.relation_to_threshold(create_std_string(position + 3));
+    v.versioned_key(create_creris_credit_risk_versioned_key(position + 4));
 }
 
 metric_generator::result_type

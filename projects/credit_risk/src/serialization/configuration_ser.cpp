@@ -28,8 +28,11 @@
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/string.hpp>
+#include <boost/serialization/vector.hpp>
+#include "creris/credit_risk/serialization/adjustment_ser.hpp"
 #include "creris/credit_risk/serialization/configuration_id_ser.hpp"
 #include "creris/credit_risk/serialization/configuration_ser.hpp"
+#include "creris/credit_risk/serialization/metric_ser.hpp"
 #include "creris/credit_risk/serialization/versioned_key_ser.hpp"
 
 #ifdef __linux__

@@ -27,6 +27,7 @@
 
 #include <algorithm>
 #include <string>
+#include <vector>
 #include "creris/credit_risk/domain/time_series_id.hpp"
 #include "creris/credit_risk/domain/versioned_key.hpp"
 #include "creris/credit_risk/serialization/adjustment_fwd_ser.hpp"
@@ -50,10 +51,10 @@ public:
         const std::string& relation_to_threshold,
         const double threshold,
         const creris::credit_risk::time_series_id& series_to_adjust,
-        const std::string& related_series,
+        const std::vector<creris::credit_risk::time_series_id>& related_series,
         const std::string& constraint_operator,
         const double constrain_amount,
-        const std::string& dependent_series,
+        const std::vector<creris::credit_risk::time_series_id>& dependent_series,
         const creris::credit_risk::versioned_key& versioned_key);
 
 private:
@@ -104,18 +105,13 @@ public:
         series_to_adjust_ = v;
     }
 
-    /*
-     * @brief FIXME: should be of type std::vector<time_series_id>, should be fixed when dogen supports it
-     */
-    /**@{*/
-    std::string related_series() const {
+    std::vector<creris::credit_risk::time_series_id> related_series() const {
         return related_series_;
     }
 
-    void related_series(const std::string& v) {
+    void related_series(const std::vector<creris::credit_risk::time_series_id>& v) {
         related_series_ = v;
     }
-    /**@}*/
 
     std::string constraint_operator() const {
         return constraint_operator_;
@@ -133,18 +129,13 @@ public:
         constrain_amount_ = v;
     }
 
-    /*
-     * @brief FIXME: should be of type std::vector<time_series_id>, should be fixed when dogen supports it
-     */
-    /**@{*/
-    std::string dependent_series() const {
+    std::vector<creris::credit_risk::time_series_id> dependent_series() const {
         return dependent_series_;
     }
 
-    void dependent_series(const std::string& v) {
+    void dependent_series(const std::vector<creris::credit_risk::time_series_id>& v) {
         dependent_series_ = v;
     }
-    /**@}*/
 
     creris::credit_risk::versioned_key versioned_key() const {
         return versioned_key_;
@@ -170,10 +161,10 @@ private:
     std::string relation_to_threshold_;
     double threshold_;
     creris::credit_risk::time_series_id series_to_adjust_;
-    std::string related_series_;
+    std::vector<creris::credit_risk::time_series_id> related_series_;
     std::string constraint_operator_;
     double constrain_amount_;
-    std::string dependent_series_;
+    std::vector<creris::credit_risk::time_series_id> dependent_series_;
     creris::credit_risk::versioned_key versioned_key_;
 };
 

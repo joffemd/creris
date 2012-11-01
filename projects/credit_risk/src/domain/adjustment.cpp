@@ -33,10 +33,10 @@ adjustment::adjustment(
     const std::string& relation_to_threshold,
     const double threshold,
     const creris::credit_risk::time_series_id& series_to_adjust,
-    const std::string& related_series,
+    const std::vector<creris::credit_risk::time_series_id>& related_series,
     const std::string& constraint_operator,
     const double constrain_amount,
-    const std::string& dependent_series,
+    const std::vector<creris::credit_risk::time_series_id>& dependent_series,
     const creris::credit_risk::versioned_key& versioned_key)
     : name_(name),
       expression_(expression),

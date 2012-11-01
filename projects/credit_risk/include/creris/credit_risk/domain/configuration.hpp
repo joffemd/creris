@@ -27,7 +27,10 @@
 
 #include <algorithm>
 #include <string>
+#include <vector>
+#include "creris/credit_risk/domain/adjustment.hpp"
 #include "creris/credit_risk/domain/configuration_id.hpp"
+#include "creris/credit_risk/domain/metric.hpp"
 #include "creris/credit_risk/domain/versioned_key.hpp"
 #include "creris/credit_risk/serialization/configuration_fwd_ser.hpp"
 
@@ -51,9 +54,9 @@ public:
         const std::string& entity_description,
         const std::string& currency,
         const unsigned int default_number_of_trials,
-        const std::string& metrics,
+        const std::vector<creris::credit_risk::metric>& metrics,
         const std::string& time_series_configurations,
-        const std::string& adjustments,
+        const std::vector<creris::credit_risk::adjustment>& adjustments,
         const creris::credit_risk::versioned_key& versioned_key);
 
 private:
@@ -112,21 +115,16 @@ public:
         default_number_of_trials_ = v;
     }
 
-    /*
-     * @brief FIXME: should be of type std::vector<metric>, should get fixed when dogen supports it
-     */
-    /**@{*/
-    std::string metrics() const {
+    std::vector<creris::credit_risk::metric> metrics() const {
         return metrics_;
     }
 
-    void metrics(const std::string& v) {
+    void metrics(const std::vector<creris::credit_risk::metric>& v) {
         metrics_ = v;
     }
-    /**@}*/
 
     /*
-     * @brief FIXME: should be of type std::vector<time_series_configuration>, should be fixed when dogen supports it
+     * @brief FIXME: std::vector<time_series_configuration>
      */
     /**@{*/
     std::string time_series_configurations() const {
@@ -138,18 +136,13 @@ public:
     }
     /**@}*/
 
-    /*
-     * @brief FIXME: should be of type std::vector<adjustment>, should be fixed when dogen supports it
-     */
-    /**@{*/
-    std::string adjustments() const {
+    std::vector<creris::credit_risk::adjustment> adjustments() const {
         return adjustments_;
     }
 
-    void adjustments(const std::string& v) {
+    void adjustments(const std::vector<creris::credit_risk::adjustment>& v) {
         adjustments_ = v;
     }
-    /**@}*/
 
     creris::credit_risk::versioned_key versioned_key() const {
         return versioned_key_;
@@ -176,9 +169,9 @@ private:
     std::string entity_description_;
     std::string currency_;
     unsigned int default_number_of_trials_;
-    std::string metrics_;
+    std::vector<creris::credit_risk::metric> metrics_;
     std::string time_series_configurations_;
-    std::string adjustments_;
+    std::vector<creris::credit_risk::adjustment> adjustments_;
     creris::credit_risk::versioned_key versioned_key_;
 };
 

@@ -23,6 +23,20 @@
 #include "creris/credit_risk/io/time_series_id_io.hpp"
 #include "creris/credit_risk/io/versioned_key_io.hpp"
 
+namespace std {
+
+inline std::ostream& operator<<(std::ostream& s, const std::vector<creris::credit_risk::time_series_id>& v) {
+    s << "[ ";
+    for (auto i(v.begin()); i != v.end(); ++i) {
+        if (i != v.begin()) s << ", ";
+        s << *i;
+    }
+    s << "] ";
+    return s;
+}
+
+}
+
 namespace creris {
 namespace credit_risk {
 
@@ -34,10 +48,10 @@ std::ostream& operator<<(std::ostream& s, const adjustment& v) {
       << "\"relation_to_threshold\": " << "\"" << v.relation_to_threshold() << "\"" << ", "
       << "\"threshold\": " << v.threshold() << ", "
       << "\"series_to_adjust\": " << v.series_to_adjust() << ", "
-      << "\"related_series\": " << "\"" << v.related_series() << "\"" << ", "
+      << "\"related_series\": " << v.related_series() << ", "
       << "\"constraint_operator\": " << "\"" << v.constraint_operator() << "\"" << ", "
       << "\"constrain_amount\": " << v.constrain_amount() << ", "
-      << "\"dependent_series\": " << "\"" << v.dependent_series() << "\"" << ", "
+      << "\"dependent_series\": " << v.dependent_series() << ", "
       << "\"versioned_key\": " << v.versioned_key()
       << " }";
     return(s);

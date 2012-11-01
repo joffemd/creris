@@ -18,17 +18,23 @@
  * MA 02110-1301, USA.
  *
  */
-#include <sstream>
 #include "creris/credit_risk/test_data/ratings_map_td.hpp"
+#include "creris/credit_risk/test_data/time_series_id_td.hpp"
 #include "creris/credit_risk/test_data/versioned_key_td.hpp"
 
 namespace {
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
-    std::ostringstream s;
-    s << prefix << "_" << position;
+creris::credit_risk::time_series_id
+create_creris_credit_risk_time_series_id(const unsigned int position) {
+    return creris::credit_risk::time_series_id_generator::create(position);
+}
 
-    return s.str();
+std::vector<creris::credit_risk::time_series_id> create_std_vector_creris_credit_risk_time_series_id(unsigned int position) {
+    std::vector<creris::credit_risk::time_series_id> r;
+    for (unsigned int i(0); i < 10; ++i) {
+        r.push_back(create_creris_credit_risk_time_series_id(position + i));
+    }
+    return r;
 }
 
 creris::credit_risk::versioned_key
@@ -45,8 +51,8 @@ ratings_map_generator::ratings_map_generator() : position_(0) { }
 
 void ratings_map_generator::
 populate(const unsigned int position, result_type& v) {
-    v.series(create_std_string("series", position + 0));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 0));
+    v.series(create_std_vector_creris_credit_risk_time_series_id(position + 0));
+    v.versioned_key(create_creris_credit_risk_versioned_key(position + 1));
 }
 
 ratings_map_generator::result_type

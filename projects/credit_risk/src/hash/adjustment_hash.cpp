@@ -31,6 +31,14 @@ inline void combine(std::size_t& seed, const HashableType& value)
     seed ^= hasher(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 }
 
+inline std::size_t hash_std_vector_creris_credit_risk_time_series_id(const std::vector<creris::credit_risk::time_series_id>& v){
+    std::size_t seed(0);
+    for (const auto i : v) {
+        combine(seed, i);
+    }
+    return seed;
+}
+
 }
 
 namespace creris {
@@ -44,10 +52,10 @@ std::size_t adjustment_hasher::hash(const adjustment& v) {
     combine(seed, v.relation_to_threshold());
     combine(seed, v.threshold());
     combine(seed, v.series_to_adjust());
-    combine(seed, v.related_series());
+    combine(seed, hash_std_vector_creris_credit_risk_time_series_id(v.related_series()));
     combine(seed, v.constraint_operator());
     combine(seed, v.constrain_amount());
-    combine(seed, v.dependent_series());
+    combine(seed, hash_std_vector_creris_credit_risk_time_series_id(v.dependent_series()));
     combine(seed, v.versioned_key());
 
     return seed;

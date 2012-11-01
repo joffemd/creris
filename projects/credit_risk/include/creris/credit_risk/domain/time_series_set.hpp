@@ -54,7 +54,7 @@ private:
 
 public:
     /*
-     * @brief FIXME: should be of type std::unordered_map<std::string, time_series_id>, should be implemented when dogen supports it
+     * @brief FIXME: std::unordered_map<std::string, time_series_id>
      */
     /**@{*/
     std::string series() const {

@@ -24,10 +24,9 @@
 
 namespace {
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
+std::string create_std_string(const unsigned int position) {
     std::ostringstream s;
-    s << prefix << "_" << position;
-
+    s << "a_string_" << position;
     return s.str();
 }
 
@@ -44,13 +43,13 @@ namespace credit_risk {
 
 void time_series_configuration_generator::
 populate(const unsigned int position, result_type& v) {
-    v.time_series_configuration_id(create_std_string("time_series_configuration_id", position + 0));
-    v.name(create_std_string("name", position + 0));
-    v.description(create_std_string("description", position + 0));
-    v.time_axis_label(create_std_string("time_axis_label", position + 0));
-    v.value_axis_label(create_std_string("value_axis_label", position + 0));
-    v.generator_configuration(create_std_string("generator_configuration", position + 0));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 0));
+    v.time_series_configuration_id(create_std_string(position + 0));
+    v.name(create_std_string(position + 1));
+    v.description(create_std_string(position + 2));
+    v.time_axis_label(create_std_string(position + 3));
+    v.value_axis_label(create_std_string(position + 4));
+    v.generator_configuration(create_std_string(position + 5));
+    v.versioned_key(create_creris_credit_risk_versioned_key(position + 6));
 }
 
 

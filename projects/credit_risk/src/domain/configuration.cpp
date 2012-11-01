@@ -33,9 +33,9 @@ configuration::configuration(
     const std::string& entity_description,
     const std::string& currency,
     const unsigned int default_number_of_trials,
-    const std::string& metrics,
+    const std::vector<creris::credit_risk::metric>& metrics,
     const std::string& time_series_configurations,
-    const std::string& adjustments,
+    const std::vector<creris::credit_risk::adjustment>& adjustments,
     const creris::credit_risk::versioned_key& versioned_key)
     : name_(name),
       configuration_id_(configuration_id),

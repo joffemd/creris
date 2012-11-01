@@ -24,10 +24,9 @@
 
 namespace {
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
+std::string create_std_string(const unsigned int position) {
     std::ostringstream s;
-    s << prefix << "_" << position;
-
+    s << "a_string_" << position;
     return s.str();
 }
 
@@ -44,8 +43,8 @@ formula_generator_configuration_generator::formula_generator_configuration_gener
 
 void formula_generator_configuration_generator::
 populate(const unsigned int position, result_type& v) {
-    v.formula(create_std_string("formula", position + 0));
-    v.initial_value(create_double(position + 0));
+    v.formula(create_std_string(position + 0));
+    v.initial_value(create_double(position + 1));
 }
 
 formula_generator_configuration_generator::result_type

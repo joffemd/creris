@@ -28,10 +28,9 @@ unsigned int create_unsigned_int(const unsigned int position) {
     return static_cast<unsigned int>(position);
 }
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
+std::string create_std_string(const unsigned int position) {
     std::ostringstream s;
-    s << prefix << "_" << position;
-
+    s << "a_string_" << position;
     return s.str();
 }
 
@@ -45,7 +44,7 @@ fixed_time_series_configuration_generator::fixed_time_series_configuration_gener
 void fixed_time_series_configuration_generator::
 populate(const unsigned int position, result_type& v) {
     v.length(create_unsigned_int(position + 0));
-    v.points_configuration(create_std_string("points_configuration", position + 1));
+    v.points_configuration(create_std_string(position + 1));
 }
 
 fixed_time_series_configuration_generator::result_type

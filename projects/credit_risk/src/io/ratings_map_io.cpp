@@ -20,7 +20,22 @@
  */
 #include <ostream>
 #include "creris/credit_risk/io/ratings_map_io.hpp"
+#include "creris/credit_risk/io/time_series_id_io.hpp"
 #include "creris/credit_risk/io/versioned_key_io.hpp"
+
+namespace std {
+
+inline std::ostream& operator<<(std::ostream& s, const std::vector<creris::credit_risk::time_series_id>& v) {
+    s << "[ ";
+    for (auto i(v.begin()); i != v.end(); ++i) {
+        if (i != v.begin()) s << ", ";
+        s << *i;
+    }
+    s << "] ";
+    return s;
+}
+
+}
 
 namespace creris {
 namespace credit_risk {
@@ -28,7 +43,7 @@ namespace credit_risk {
 std::ostream& operator<<(std::ostream& s, const ratings_map& v) {
     s << " { "
       << "\"__type__\": " << "\"ratings_map\"" << ", "
-      << "\"series\": " << "\"" << v.series() << "\"" << ", "
+      << "\"series\": " << v.series() << ", "
       << "\"versioned_key\": " << v.versioned_key()
       << " }";
     return(s);

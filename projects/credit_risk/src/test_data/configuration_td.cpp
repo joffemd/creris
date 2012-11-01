@@ -19,16 +19,17 @@
  *
  */
 #include <sstream>
+#include "creris/credit_risk/test_data/adjustment_td.hpp"
 #include "creris/credit_risk/test_data/configuration_id_td.hpp"
 #include "creris/credit_risk/test_data/configuration_td.hpp"
+#include "creris/credit_risk/test_data/metric_td.hpp"
 #include "creris/credit_risk/test_data/versioned_key_td.hpp"
 
 namespace {
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
+std::string create_std_string(const unsigned int position) {
     std::ostringstream s;
-    s << prefix << "_" << position;
-
+    s << "a_string_" << position;
     return s.str();
 }
 
@@ -39,6 +40,32 @@ create_creris_credit_risk_configuration_id(const unsigned int position) {
 
 unsigned int create_unsigned_int(const unsigned int position) {
     return static_cast<unsigned int>(position);
+}
+
+creris::credit_risk::metric
+create_creris_credit_risk_metric(const unsigned int position) {
+    return creris::credit_risk::metric_generator::create(position);
+}
+
+std::vector<creris::credit_risk::metric> create_std_vector_creris_credit_risk_metric(unsigned int position) {
+    std::vector<creris::credit_risk::metric> r;
+    for (unsigned int i(0); i < 10; ++i) {
+        r.push_back(create_creris_credit_risk_metric(position + i));
+    }
+    return r;
+}
+
+creris::credit_risk::adjustment
+create_creris_credit_risk_adjustment(const unsigned int position) {
+    return creris::credit_risk::adjustment_generator::create(position);
+}
+
+std::vector<creris::credit_risk::adjustment> create_std_vector_creris_credit_risk_adjustment(unsigned int position) {
+    std::vector<creris::credit_risk::adjustment> r;
+    for (unsigned int i(0); i < 10; ++i) {
+        r.push_back(create_creris_credit_risk_adjustment(position + i));
+    }
+    return r;
 }
 
 creris::credit_risk::versioned_key
@@ -55,16 +82,16 @@ configuration_generator::configuration_generator() : position_(0) { }
 
 void configuration_generator::
 populate(const unsigned int position, result_type& v) {
-    v.name(create_std_string("name", position + 0));
-    v.configuration_id(create_creris_credit_risk_configuration_id(position + 0));
-    v.entity_name(create_std_string("entity_name", position + 0));
-    v.entity_description(create_std_string("entity_description", position + 0));
-    v.currency(create_std_string("currency", position + 0));
-    v.default_number_of_trials(create_unsigned_int(position + 0));
-    v.metrics(create_std_string("metrics", position + 1));
-    v.time_series_configurations(create_std_string("time_series_configurations", position + 1));
-    v.adjustments(create_std_string("adjustments", position + 1));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 1));
+    v.name(create_std_string(position + 0));
+    v.configuration_id(create_creris_credit_risk_configuration_id(position + 1));
+    v.entity_name(create_std_string(position + 2));
+    v.entity_description(create_std_string(position + 3));
+    v.currency(create_std_string(position + 4));
+    v.default_number_of_trials(create_unsigned_int(position + 5));
+    v.metrics(create_std_vector_creris_credit_risk_metric(position + 6));
+    v.time_series_configurations(create_std_string(position + 7));
+    v.adjustments(create_std_vector_creris_credit_risk_adjustment(position + 8));
+    v.versioned_key(create_creris_credit_risk_versioned_key(position + 9));
 }
 
 configuration_generator::result_type

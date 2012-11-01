@@ -74,7 +74,7 @@ public:
     }
 
     /*
-     * @brief FIXME: replace this with std::vector<std::string> - at this time dogen doesn't support vectors
+     * @brief FIXME: std::vector<std::string>
      */
     /**@{*/
     std::string points_configuration() const {

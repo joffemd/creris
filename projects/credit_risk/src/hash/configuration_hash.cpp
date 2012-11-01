@@ -18,8 +18,10 @@
  * MA 02110-1301, USA.
  *
  */
+#include "creris/credit_risk/hash/adjustment_hash.hpp"
 #include "creris/credit_risk/hash/configuration_hash.hpp"
 #include "creris/credit_risk/hash/configuration_id_hash.hpp"
+#include "creris/credit_risk/hash/metric_hash.hpp"
 #include "creris/credit_risk/hash/versioned_key_hash.hpp"
 
 namespace {
@@ -29,6 +31,22 @@ inline void combine(std::size_t& seed, const HashableType& value)
 {
     std::hash<HashableType> hasher;
     seed ^= hasher(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+}
+
+inline std::size_t hash_std_vector_creris_credit_risk_metric(const std::vector<creris::credit_risk::metric>& v){
+    std::size_t seed(0);
+    for (const auto i : v) {
+        combine(seed, i);
+    }
+    return seed;
+}
+
+inline std::size_t hash_std_vector_creris_credit_risk_adjustment(const std::vector<creris::credit_risk::adjustment>& v){
+    std::size_t seed(0);
+    for (const auto i : v) {
+        combine(seed, i);
+    }
+    return seed;
 }
 
 }
@@ -45,9 +63,9 @@ std::size_t configuration_hasher::hash(const configuration& v) {
     combine(seed, v.entity_description());
     combine(seed, v.currency());
     combine(seed, v.default_number_of_trials());
-    combine(seed, v.metrics());
+    combine(seed, hash_std_vector_creris_credit_risk_metric(v.metrics()));
     combine(seed, v.time_series_configurations());
-    combine(seed, v.adjustments());
+    combine(seed, hash_std_vector_creris_credit_risk_adjustment(v.adjustments()));
     combine(seed, v.versioned_key());
 
     return seed;

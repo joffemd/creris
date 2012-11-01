@@ -59,7 +59,7 @@ public:
 
 public:
     /*
-     * @brief FIXME: Value should be a generator_types, further analysiss required
+     * @brief FIXME: Value should be a generator_types, further analysis required
      */
     /**@{*/
     std::string generator_type() const {

@@ -73,7 +73,7 @@ public:
     }
 
     /*
-     * @brief FIXME: should be of type boost::dense_series<double>, fix when dogen supports it
+     * @brief FIXME: boost::dense_series<double>
      */
     /**@{*/
     std::string data() const {

@@ -19,9 +19,39 @@
  *
  */
 #include <ostream>
+#include "creris/credit_risk/io/adjustment_io.hpp"
 #include "creris/credit_risk/io/configuration_id_io.hpp"
 #include "creris/credit_risk/io/configuration_io.hpp"
+#include "creris/credit_risk/io/metric_io.hpp"
 #include "creris/credit_risk/io/versioned_key_io.hpp"
+
+namespace std {
+
+inline std::ostream& operator<<(std::ostream& s, const std::vector<creris::credit_risk::metric>& v) {
+    s << "[ ";
+    for (auto i(v.begin()); i != v.end(); ++i) {
+        if (i != v.begin()) s << ", ";
+        s << *i;
+    }
+    s << "] ";
+    return s;
+}
+
+}
+
+namespace std {
+
+inline std::ostream& operator<<(std::ostream& s, const std::vector<creris::credit_risk::adjustment>& v) {
+    s << "[ ";
+    for (auto i(v.begin()); i != v.end(); ++i) {
+        if (i != v.begin()) s << ", ";
+        s << *i;
+    }
+    s << "] ";
+    return s;
+}
+
+}
 
 namespace creris {
 namespace credit_risk {
@@ -35,9 +65,9 @@ std::ostream& operator<<(std::ostream& s, const configuration& v) {
       << "\"entity_description\": " << "\"" << v.entity_description() << "\"" << ", "
       << "\"currency\": " << "\"" << v.currency() << "\"" << ", "
       << "\"default_number_of_trials\": " << v.default_number_of_trials() << ", "
-      << "\"metrics\": " << "\"" << v.metrics() << "\"" << ", "
+      << "\"metrics\": " << v.metrics() << ", "
       << "\"time_series_configurations\": " << "\"" << v.time_series_configurations() << "\"" << ", "
-      << "\"adjustments\": " << "\"" << v.adjustments() << "\"" << ", "
+      << "\"adjustments\": " << v.adjustments() << ", "
       << "\"versioned_key\": " << v.versioned_key()
       << " }";
     return(s);
