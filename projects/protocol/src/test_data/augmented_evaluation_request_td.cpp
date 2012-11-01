@@ -24,10 +24,9 @@
 
 namespace {
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
+std::string create_std_string(const unsigned int position) {
     std::ostringstream s;
-    s << prefix << "_" << position;
-
+    s << "a_string_" << position;
     return s.str();
 }
 
@@ -40,7 +39,7 @@ augmented_evaluation_request_generator::augmented_evaluation_request_generator()
 
 void augmented_evaluation_request_generator::
 populate(const unsigned int position, result_type& v) {
-    v.augmenting_attribute(create_std_string("augmenting_attribute", position + 0));
+    v.augmenting_attribute(create_std_string(position + 0));
 }
 
 augmented_evaluation_request_generator::result_type

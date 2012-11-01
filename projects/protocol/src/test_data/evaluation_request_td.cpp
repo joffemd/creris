@@ -43,7 +43,7 @@ namespace protocol {
 void evaluation_request_generator::
 populate(const unsigned int position, result_type& v) {
     v.credit_rating_evaluation(create_creris_credit_risk_credit_rating_evaluation(position + 0));
-    v.versioned_key(create_creris_protocol_versioned_key(position + 0));
+    v.versioned_key(create_creris_protocol_versioned_key(position + 1));
 }
 
 

@@ -24,10 +24,9 @@
 
 namespace {
 
-std::string create_std_string(const std::string& prefix, const unsigned int position) {
+std::string create_std_string(const unsigned int position) {
     std::ostringstream s;
-    s << prefix << "_" << position;
-
+    s << "a_string_" << position;
     return s.str();
 }
 
@@ -45,8 +44,8 @@ evaluation_response_generator::evaluation_response_generator() : position_(0) { 
 
 void evaluation_response_generator::
 populate(const unsigned int position, result_type& v) {
-    v.time_series_set(create_std_string("time_series_set", position + 0));
-    v.versioned_key(create_creris_protocol_versioned_key(position + 0));
+    v.time_series_set(create_std_string(position + 0));
+    v.versioned_key(create_creris_protocol_versioned_key(position + 1));
 }
 
 evaluation_response_generator::result_type
