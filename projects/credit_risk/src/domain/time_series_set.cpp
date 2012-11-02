@@ -24,7 +24,7 @@ namespace creris {
 namespace credit_risk {
 
 time_series_set::time_series_set(
-    const std::string& series,
+    const std::unordered_map<std::string, creris::credit_risk::time_series_id>& series,
     const creris::credit_risk::versioned_key& versioned_key)
     : series_(series),
       versioned_key_(versioned_key) { }

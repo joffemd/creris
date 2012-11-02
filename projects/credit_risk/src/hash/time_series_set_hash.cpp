@@ -18,6 +18,7 @@
  * MA 02110-1301, USA.
  *
  */
+#include "creris/credit_risk/hash/time_series_id_hash.hpp"
 #include "creris/credit_risk/hash/time_series_set_hash.hpp"
 #include "creris/credit_risk/hash/versioned_key_hash.hpp"
 
@@ -30,6 +31,15 @@ inline void combine(std::size_t& seed, const HashableType& value)
     seed ^= hasher(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 }
 
+inline std::size_t hash_std_unordered_map_std_string_creris_credit_risk_time_series_id(const std::unordered_map<std::string, creris::credit_risk::time_series_id>& v){
+    std::size_t seed(0);
+    for (const auto i : v) {
+        combine(seed, i.first);
+        combine(seed, i.second);
+    }
+    return seed;
+}
+
 }
 
 namespace creris {
@@ -38,7 +48,7 @@ namespace credit_risk {
 std::size_t time_series_set_hasher::hash(const time_series_set& v) {
     std::size_t seed(0);
 
-    combine(seed, v.series());
+    combine(seed, hash_std_unordered_map_std_string_creris_credit_risk_time_series_id(v.series()));
     combine(seed, v.versioned_key());
 
     return seed;

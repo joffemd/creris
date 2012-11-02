@@ -27,6 +27,8 @@
 
 #include <algorithm>
 #include <string>
+#include <unordered_map>
+#include "creris/credit_risk/domain/time_series_id.hpp"
 #include "creris/credit_risk/domain/versioned_key.hpp"
 #include "creris/credit_risk/serialization/time_series_set_fwd_ser.hpp"
 
@@ -42,7 +44,7 @@ public:
 
 public:
     time_series_set(
-        const std::string& series,
+        const std::unordered_map<std::string, creris::credit_risk::time_series_id>& series,
         const creris::credit_risk::versioned_key& versioned_key);
 
 private:
@@ -53,18 +55,13 @@ private:
     friend void boost::serialization::load(Archive& ar, time_series_set& v, unsigned int version);
 
 public:
-    /*
-     * @brief FIXME: std::unordered_map<std::string, time_series_id>
-     */
-    /**@{*/
-    std::string series() const {
+    std::unordered_map<std::string, creris::credit_risk::time_series_id> series() const {
         return series_;
     }
 
-    void series(const std::string& v) {
+    void series(const std::unordered_map<std::string, creris::credit_risk::time_series_id>& v) {
         series_ = v;
     }
-    /**@}*/
 
     creris::credit_risk::versioned_key versioned_key() const {
         return versioned_key_;
@@ -85,7 +82,7 @@ public:
     time_series_set& operator=(time_series_set other);
 
 private:
-    std::string series_;
+    std::unordered_map<std::string, creris::credit_risk::time_series_id> series_;
     creris::credit_risk::versioned_key versioned_key_;
 };
 

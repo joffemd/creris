@@ -28,8 +28,10 @@
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/string.hpp>
+#include "creris/credit_risk/serialization/time_series_id_ser.hpp"
 #include "creris/credit_risk/serialization/time_series_set_ser.hpp"
 #include "creris/credit_risk/serialization/versioned_key_ser.hpp"
+#include "creris/utility/serialization/unordered_map.hpp"
 
 #ifdef __linux__
 #include "eos/portable_iarchive.hpp"

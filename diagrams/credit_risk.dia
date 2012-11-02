@@ -1759,7 +1759,7 @@
         <dia:point val="-13.2667,59"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-13.2917,58.975;1.67833,64.125"/>
+        <dia:rectangle val="-13.2917,58.975;1.6783,64.125"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="-13.2667,59"/>
@@ -2165,7 +2165,7 @@
         <dia:point val="12.335,51.3"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-5.85667,51.25;13.185,59.05"/>
+        <dia:rectangle val="-5.8567,51.25;13.185,59.05"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -2173,8 +2173,8 @@
       <dia:attribute name="orth_points">
         <dia:point val="12.335,51.3"/>
         <dia:point val="12.335,55.55"/>
-        <dia:point val="-5.80667,55.55"/>
-        <dia:point val="-5.80667,59"/>
+        <dia:point val="-5.8067,55.55"/>
+        <dia:point val="-5.8067,59"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="1"/>
@@ -2424,19 +2424,19 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O18">
       <dia:attribute name="obj_pos">
-        <dia:point val="52,0.666667"/>
+        <dia:point val="45.2534,4.65331"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="51.975,0.641667;70.7675,5.99167"/>
+        <dia:rectangle val="45.2284,4.62831;66.9534,7.47831"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="52,0.666667"/>
+        <dia:point val="45.2534,4.65331"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="18.7425"/>
+        <dia:real val="21.675000000000001"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="5.2999999999999998"/>
+        <dia:real val="2.7999999999999998"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#time_series_set#</dia:string>
@@ -2531,13 +2531,13 @@
             <dia:string>#series#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::string#</dia:string>
+            <dia:string>#std::unordered_map&lt;std::string,time_series_id&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: std::unordered_map&lt;std::string, time_series_id&gt;#</dia:string>
+            <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
