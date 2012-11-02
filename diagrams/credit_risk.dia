@@ -2141,7 +2141,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: this should be of type generator_configuration, Dogen currently doesn't support it#</dia:string>
+            <dia:string>#FIXME: this should be of type generator_configuration, we can't instantiate abstract classes#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -2244,13 +2244,13 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O17">
       <dia:attribute name="obj_pos">
-        <dia:point val="52,11"/>
+        <dia:point val="52.0767,9.54334"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="51.975,10.975;60.485,18.925"/>
+        <dia:rectangle val="52.0517,9.51834;60.5617,17.4683"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="52,11"/>
+        <dia:point val="52.0767,9.54334"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="8.4599999999999991"/>
@@ -3013,16 +3013,16 @@
         <dia:point val="-39.6654,4.24237"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-39.6904,4.21737;-21.2529,15.9674"/>
+        <dia:rectangle val="-39.6904,4.21737;-20.9479,16.9674"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="-39.6654,4.24237"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="18.387499999999999"/>
+        <dia:real val="18.692500000000003"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="11.700000000000001"/>
+        <dia:real val="12.700000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#configuration#</dia:string>
@@ -3284,7 +3284,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: std::vector&lt;time_series_configuration&gt;#</dia:string>
+            <dia:string>#FIXME: std::vector&lt;time_series_configuration&gt;, we can't instantiate abstract classes#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>

@@ -124,7 +124,7 @@ public:
     }
 
     /*
-     * @brief FIXME: std::vector<time_series_configuration>
+     * @brief FIXME: std::vector<time_series_configuration>, we can't instantiate abstract classes
      */
     /**@{*/
     std::string time_series_configurations() const {

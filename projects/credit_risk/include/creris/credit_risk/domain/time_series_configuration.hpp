@@ -104,7 +104,7 @@ public:
     }
 
     /*
-     * @brief FIXME: this should be of type generator_configuration, Dogen currently doesn't support it
+     * @brief FIXME: this should be of type generator_configuration, we can't instantiate abstract classes
      */
     /**@{*/
     std::string generator_configuration() const {
