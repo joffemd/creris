@@ -229,8 +229,9 @@ program generation.
 - =$currency-units-in$= - Currency units text label. Field "Currency"
   in the workbook;
 - =$declarations$= - variable declaration. This contains *all* the
-  variables defined in the sections [[*Normally%20distributed%20random%20series][Normally distributed random series]],
-[[*Observables][ Observables]] and [[*By%20formulas%20tied%20to%20the%20random%20distribution][By formulas tied to the random distribution]], declared
+  variables defined in the sections
+  [[*Normally%20distributed%20random%20series][Normally distributed random series]],[[*Observables][ Observables]] and
+  [[*By%20formulas%20tied%20to%20the%20random%20distribution][By formulas tied to the random distribution]], declared
   in a C syntax. They're an array of doubles with size yr+1;
 - =$default-probability-code$= - expression to be executed as user
   supplied code, must be valid C code. Should supply a value to the
