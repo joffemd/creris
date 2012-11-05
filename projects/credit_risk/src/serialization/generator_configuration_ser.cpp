@@ -28,7 +28,10 @@
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/string.hpp>
+#include "creris/credit_risk/serialization/formula_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/generator_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/identity_generator_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/monte_carlo_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/versioned_key_ser.hpp"
 
 #ifdef __linux__
@@ -47,6 +50,9 @@ template<typename Archive>
 void save(Archive& ar,
     const creris::credit_risk::generator_configuration& v,
     const unsigned int /*version*/) {
+    ar.template register_type<creris::credit_risk::identity_generator_configuration>();
+    ar.template register_type<creris::credit_risk::formula_generator_configuration>();
+    ar.template register_type<creris::credit_risk::monte_carlo_generator_configuration>();
     ar << make_nvp("generator_type", v.generator_type_);
     ar << make_nvp("versioned_key", v.versioned_key_);
 }
@@ -55,6 +61,9 @@ template<typename Archive>
 void load(Archive& ar,
     creris::credit_risk::generator_configuration& v,
     const unsigned int /*version*/) {
+    ar.template register_type<creris::credit_risk::identity_generator_configuration>();
+    ar.template register_type<creris::credit_risk::formula_generator_configuration>();
+    ar.template register_type<creris::credit_risk::monte_carlo_generator_configuration>();
     ar >> make_nvp("generator_type", v.generator_type_);
     ar >> make_nvp("versioned_key", v.versioned_key_);
 }

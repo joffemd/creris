@@ -57,8 +57,14 @@ void formula_generator_configuration::swap(formula_generator_configuration& othe
     swap(initial_value_, other.initial_value_);
 }
 
+bool formula_generator_configuration::equals(const creris::credit_risk::generator_configuration& other) const {
+    const formula_generator_configuration* const p(dynamic_cast<const formula_generator_configuration* const>(&other));
+    if (!p) return false;
+    return *this == *p;
+}
+
 bool formula_generator_configuration::operator==(const formula_generator_configuration& rhs) const {
-    return generator_configuration::operator==(rhs) &&
+    return generator_configuration::compare(rhs) &&
         formula_ == rhs.formula_ &&
         initial_value_ == rhs.initial_value_;
 }

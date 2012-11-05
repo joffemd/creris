@@ -28,12 +28,21 @@ namespace credit_risk {
 
 variable_time_series_configuration_generator::variable_time_series_configuration_generator() : position_(0) { }
 
+void variable_time_series_configuration_generator::
+populate(const unsigned int /*position*/, result_type& /*v*/) {
+}
 
 variable_time_series_configuration_generator::result_type
 variable_time_series_configuration_generator::create(const unsigned int position) {
     variable_time_series_configuration r;
     creris::credit_risk::time_series_configuration_generator::populate(position, r);
     return r;
+}
+variable_time_series_configuration_generator::result_type*
+variable_time_series_configuration_generator::create_ptr(const unsigned int position) {
+    variable_time_series_configuration* p = new variable_time_series_configuration();
+    variable_time_series_configuration_generator::populate(position, *p);
+    return p;
 }
 
 variable_time_series_configuration_generator::result_type

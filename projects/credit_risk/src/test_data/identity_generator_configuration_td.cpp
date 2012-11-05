@@ -28,12 +28,21 @@ namespace credit_risk {
 
 identity_generator_configuration_generator::identity_generator_configuration_generator() : position_(0) { }
 
+void identity_generator_configuration_generator::
+populate(const unsigned int /*position*/, result_type& /*v*/) {
+}
 
 identity_generator_configuration_generator::result_type
 identity_generator_configuration_generator::create(const unsigned int position) {
     identity_generator_configuration r;
     creris::credit_risk::generator_configuration_generator::populate(position, r);
     return r;
+}
+identity_generator_configuration_generator::result_type*
+identity_generator_configuration_generator::create_ptr(const unsigned int position) {
+    identity_generator_configuration* p = new identity_generator_configuration();
+    identity_generator_configuration_generator::populate(position, *p);
+    return p;
 }
 
 identity_generator_configuration_generator::result_type

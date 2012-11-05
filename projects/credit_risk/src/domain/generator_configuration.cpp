@@ -45,7 +45,7 @@ void generator_configuration::swap(generator_configuration& other) noexcept {
     swap(versioned_key_, other.versioned_key_);
 }
 
-bool generator_configuration::operator==(const generator_configuration& rhs) const {
+bool generator_configuration::compare(const generator_configuration& rhs) const {
     return generator_type_ == rhs.generator_type_ &&
         versioned_key_ == rhs.versioned_key_;
 }

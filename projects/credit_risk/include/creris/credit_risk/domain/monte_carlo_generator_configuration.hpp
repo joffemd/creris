@@ -92,6 +92,9 @@ public:
     }
 
 public:
+    bool equals(const creris::credit_risk::generator_configuration& other) const override;
+
+public:
     void swap(monte_carlo_generator_configuration& other) noexcept;
     monte_carlo_generator_configuration& operator=(monte_carlo_generator_configuration other);
 

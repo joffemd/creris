@@ -1759,16 +1759,16 @@
         <dia:point val="-13.2667,59"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-13.2917,58.975;1.6783,64.125"/>
+        <dia:rectangle val="-13.2917,58.975;5.3533,62.625"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="-13.2667,59"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="14.919999999999998"/>
+        <dia:real val="18.594999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="5.0999999999999996"/>
+        <dia:real val="3.6000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#fixed_time_series_configuration#</dia:string>
@@ -1886,13 +1886,13 @@
             <dia:string>#points_configuration#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::string#</dia:string>
+            <dia:string>#std::vector&lt;std::string&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: std::vector&lt;std::string&gt;#</dia:string>
+            <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -2165,7 +2165,7 @@
         <dia:point val="12.335,51.3"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-5.8567,51.25;13.185,59.05"/>
+        <dia:rectangle val="-4.0192,51.25;13.185,59.05"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -2173,8 +2173,8 @@
       <dia:attribute name="orth_points">
         <dia:point val="12.335,51.3"/>
         <dia:point val="12.335,55.55"/>
-        <dia:point val="-5.8067,55.55"/>
-        <dia:point val="-5.8067,59"/>
+        <dia:point val="-3.9692,55.55"/>
+        <dia:point val="-3.9692,59"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="1"/>
@@ -2244,16 +2244,16 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O17">
       <dia:attribute name="obj_pos">
-        <dia:point val="52.0767,9.54334"/>
+        <dia:point val="47.5192,9.54334"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="52.0517,9.51834;60.5617,17.4683"/>
+        <dia:rectangle val="47.4942,9.51834;65.1517,17.4683"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="52.0767,9.54334"/>
+        <dia:point val="47.5192,9.54334"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="8.4599999999999991"/>
+        <dia:real val="17.607499999999998"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="7.9000000000000004"/>
@@ -2292,7 +2292,7 @@
         <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_line_length">
-        <dia:int val="17"/>
+        <dia:int val="40"/>
       </dia:attribute>
       <dia:attribute name="comment_tagging">
         <dia:boolean val="false"/>
@@ -2403,7 +2403,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="comment">
-            <dia:string>#FIXME: boost::dense_series&lt;double&gt;#</dia:string>
+            <dia:string>#FIXME: boost::dense_series&lt;double&gt;, still not supported by Dogen at this point#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -2692,13 +2692,13 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O20">
       <dia:attribute name="obj_pos">
-        <dia:point val="49.1512,26.2593"/>
+        <dia:point val="46.8725,26.2593"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="49.1262,26.2343;67.3862,35.4843"/>
+        <dia:rectangle val="46.8475,26.2343;65.1075,35.4843"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="49.1512,26.2593"/>
+        <dia:point val="46.8725,26.2593"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="18.210000000000001"/>

@@ -19,7 +19,9 @@
  *
  */
 #include <sstream>
+#include "creris/credit_risk/test_data/fixed_time_series_configuration_td.hpp"
 #include "creris/credit_risk/test_data/time_series_configuration_td.hpp"
+#include "creris/credit_risk/test_data/variable_time_series_configuration_td.hpp"
 #include "creris/credit_risk/test_data/versioned_key_td.hpp"
 
 namespace {
@@ -52,6 +54,12 @@ populate(const unsigned int position, result_type& v) {
     v.versioned_key(create_creris_credit_risk_versioned_key(position + 6));
 }
 
+time_series_configuration_generator::result_type*
+time_series_configuration_generator::create_ptr(const unsigned int position) {
+    if ((position % 1) == 0)
+        return creris::credit_risk::variable_time_series_configuration_generator::create_ptr(position);
+    return creris::credit_risk::fixed_time_series_configuration_generator::create_ptr(position);
+}
 
 
 } }

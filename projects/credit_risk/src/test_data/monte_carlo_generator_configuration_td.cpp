@@ -54,6 +54,12 @@ monte_carlo_generator_configuration_generator::create(const unsigned int positio
     monte_carlo_generator_configuration_generator::populate(position, r);
     return r;
 }
+monte_carlo_generator_configuration_generator::result_type*
+monte_carlo_generator_configuration_generator::create_ptr(const unsigned int position) {
+    monte_carlo_generator_configuration* p = new monte_carlo_generator_configuration();
+    monte_carlo_generator_configuration_generator::populate(position, *p);
+    return p;
+}
 
 monte_carlo_generator_configuration_generator::result_type
 monte_carlo_generator_configuration_generator::operator()() {

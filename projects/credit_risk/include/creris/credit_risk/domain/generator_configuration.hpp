@@ -80,10 +80,9 @@ public:
     }
 
 protected:
-    bool operator==(const generator_configuration& rhs) const;
-    bool operator!=(const generator_configuration& rhs) const {
-        return !this->operator==(rhs);
-    }
+    bool compare(const generator_configuration& rhs) const;
+public:
+    virtual bool equals(const generator_configuration& other) const = 0;
 
 protected:
     void swap(generator_configuration& other) noexcept;
@@ -93,8 +92,11 @@ private:
     creris::credit_risk::versioned_key versioned_key_;
 };
 
-
 inline generator_configuration::~generator_configuration() noexcept { }
+
+inline bool operator==(const generator_configuration& lhs, const generator_configuration& rhs) {
+    return lhs.equals(rhs);
+}
 
 } }
 

@@ -30,6 +30,14 @@ inline void combine(std::size_t& seed, const HashableType& value)
     seed ^= hasher(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 }
 
+inline std::size_t hash_std_vector_std_string(const std::vector<std::string>& v){
+    std::size_t seed(0);
+    for (const auto i : v) {
+        combine(seed, i);
+    }
+    return seed;
+}
+
 }
 
 namespace creris {
@@ -41,7 +49,7 @@ std::size_t fixed_time_series_configuration_hasher::hash(const fixed_time_series
     combine(seed, dynamic_cast<const creris::credit_risk::time_series_configuration&>(v));
 
     combine(seed, v.length());
-    combine(seed, v.points_configuration());
+    combine(seed, hash_std_vector_std_string(v.points_configuration()));
 
     return seed;
 }

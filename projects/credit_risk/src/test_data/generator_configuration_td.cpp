@@ -19,7 +19,10 @@
  *
  */
 #include <sstream>
+#include "creris/credit_risk/test_data/formula_generator_configuration_td.hpp"
 #include "creris/credit_risk/test_data/generator_configuration_td.hpp"
+#include "creris/credit_risk/test_data/identity_generator_configuration_td.hpp"
+#include "creris/credit_risk/test_data/monte_carlo_generator_configuration_td.hpp"
 #include "creris/credit_risk/test_data/versioned_key_td.hpp"
 
 namespace {
@@ -47,6 +50,14 @@ populate(const unsigned int position, result_type& v) {
     v.versioned_key(create_creris_credit_risk_versioned_key(position + 1));
 }
 
+generator_configuration_generator::result_type*
+generator_configuration_generator::create_ptr(const unsigned int position) {
+    if ((position % 2) == 0)
+        return creris::credit_risk::formula_generator_configuration_generator::create_ptr(position);
+    if ((position % 2) == 1)
+        return creris::credit_risk::monte_carlo_generator_configuration_generator::create_ptr(position);
+    return creris::credit_risk::identity_generator_configuration_generator::create_ptr(position);
+}
 
 
 } }

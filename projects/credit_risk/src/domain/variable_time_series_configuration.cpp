@@ -54,8 +54,14 @@ void variable_time_series_configuration::swap(variable_time_series_configuration
 
 }
 
+bool variable_time_series_configuration::equals(const creris::credit_risk::time_series_configuration& other) const {
+    const variable_time_series_configuration* const p(dynamic_cast<const variable_time_series_configuration* const>(&other));
+    if (!p) return false;
+    return *this == *p;
+}
+
 bool variable_time_series_configuration::operator==(const variable_time_series_configuration& rhs) const {
-    return time_series_configuration::operator==(rhs);
+    return time_series_configuration::compare(rhs);
 }
 
 variable_time_series_configuration& variable_time_series_configuration::operator=(variable_time_series_configuration other) {

@@ -34,6 +34,14 @@ std::string create_std_string(const unsigned int position) {
     return s.str();
 }
 
+std::vector<std::string> create_std_vector_std_string(unsigned int position) {
+    std::vector<std::string> r;
+    for (unsigned int i(0); i < 10; ++i) {
+        r.push_back(create_std_string(position + i));
+    }
+    return r;
+}
+
 }
 
 namespace creris {
@@ -44,7 +52,7 @@ fixed_time_series_configuration_generator::fixed_time_series_configuration_gener
 void fixed_time_series_configuration_generator::
 populate(const unsigned int position, result_type& v) {
     v.length(create_unsigned_int(position + 0));
-    v.points_configuration(create_std_string(position + 1));
+    v.points_configuration(create_std_vector_std_string(position + 1));
 }
 
 fixed_time_series_configuration_generator::result_type
@@ -53,6 +61,12 @@ fixed_time_series_configuration_generator::create(const unsigned int position) {
     creris::credit_risk::time_series_configuration_generator::populate(position, r);
     fixed_time_series_configuration_generator::populate(position, r);
     return r;
+}
+fixed_time_series_configuration_generator::result_type*
+fixed_time_series_configuration_generator::create_ptr(const unsigned int position) {
+    fixed_time_series_configuration* p = new fixed_time_series_configuration();
+    fixed_time_series_configuration_generator::populate(position, *p);
+    return p;
 }
 
 fixed_time_series_configuration_generator::result_type

@@ -28,7 +28,9 @@
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/string.hpp>
+#include "creris/credit_risk/serialization/fixed_time_series_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/time_series_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/variable_time_series_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/versioned_key_ser.hpp"
 
 #ifdef __linux__
@@ -47,6 +49,8 @@ template<typename Archive>
 void save(Archive& ar,
     const creris::credit_risk::time_series_configuration& v,
     const unsigned int /*version*/) {
+    ar.template register_type<creris::credit_risk::fixed_time_series_configuration>();
+    ar.template register_type<creris::credit_risk::variable_time_series_configuration>();
     ar << make_nvp("time_series_configuration_id", v.time_series_configuration_id_);
     ar << make_nvp("name", v.name_);
     ar << make_nvp("description", v.description_);
@@ -60,6 +64,8 @@ template<typename Archive>
 void load(Archive& ar,
     creris::credit_risk::time_series_configuration& v,
     const unsigned int /*version*/) {
+    ar.template register_type<creris::credit_risk::fixed_time_series_configuration>();
+    ar.template register_type<creris::credit_risk::variable_time_series_configuration>();
     ar >> make_nvp("time_series_configuration_id", v.time_series_configuration_id_);
     ar >> make_nvp("name", v.name_);
     ar >> make_nvp("description", v.description_);

@@ -125,10 +125,9 @@ public:
     }
 
 protected:
-    bool operator==(const time_series_configuration& rhs) const;
-    bool operator!=(const time_series_configuration& rhs) const {
-        return !this->operator==(rhs);
-    }
+    bool compare(const time_series_configuration& rhs) const;
+public:
+    virtual bool equals(const time_series_configuration& other) const = 0;
 
 protected:
     void swap(time_series_configuration& other) noexcept;
@@ -143,8 +142,11 @@ private:
     creris::credit_risk::versioned_key versioned_key_;
 };
 
-
 inline time_series_configuration::~time_series_configuration() noexcept { }
+
+inline bool operator==(const time_series_configuration& lhs, const time_series_configuration& rhs) {
+    return lhs.equals(rhs);
+}
 
 } }
 

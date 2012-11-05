@@ -65,7 +65,7 @@ void time_series_configuration::swap(time_series_configuration& other) noexcept 
     swap(versioned_key_, other.versioned_key_);
 }
 
-bool time_series_configuration::operator==(const time_series_configuration& rhs) const {
+bool time_series_configuration::compare(const time_series_configuration& rhs) const {
     return time_series_configuration_id_ == rhs.time_series_configuration_id_ &&
         name_ == rhs.name_ &&
         description_ == rhs.description_ &&

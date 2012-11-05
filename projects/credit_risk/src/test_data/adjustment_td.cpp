@@ -80,6 +80,12 @@ adjustment_generator::create(const unsigned int position) {
     adjustment_generator::populate(position, r);
     return r;
 }
+adjustment_generator::result_type*
+adjustment_generator::create_ptr(const unsigned int position) {
+    adjustment* p = new adjustment();
+    adjustment_generator::populate(position, *p);
+    return p;
+}
 
 adjustment_generator::result_type
 adjustment_generator::operator()() {

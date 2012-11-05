@@ -28,6 +28,7 @@
 #include <algorithm>
 #include <iosfwd>
 #include <string>
+#include <vector>
 #include "creris/credit_risk/domain/time_series_configuration.hpp"
 #include "creris/credit_risk/serialization/fixed_time_series_configuration_fwd_ser.hpp"
 
@@ -52,7 +53,7 @@ public:
         const std::string& generator_configuration,
         const creris::credit_risk::versioned_key& versioned_key,
         const unsigned int length,
-        const std::string& points_configuration);
+        const std::vector<std::string>& points_configuration);
 
 private:
     template<typename Archive>
@@ -73,18 +74,13 @@ public:
         length_ = v;
     }
 
-    /*
-     * @brief FIXME: std::vector<std::string>
-     */
-    /**@{*/
-    std::string points_configuration() const {
+    std::vector<std::string> points_configuration() const {
         return points_configuration_;
     }
 
-    void points_configuration(const std::string& v) {
+    void points_configuration(const std::vector<std::string>& v) {
         points_configuration_ = v;
     }
-    /**@}*/
 
 public:
     bool operator==(const fixed_time_series_configuration& rhs) const;
@@ -93,12 +89,15 @@ public:
     }
 
 public:
+    bool equals(const creris::credit_risk::time_series_configuration& other) const override;
+
+public:
     void swap(fixed_time_series_configuration& other) noexcept;
     fixed_time_series_configuration& operator=(fixed_time_series_configuration other);
 
 private:
     unsigned int length_;
-    std::string points_configuration_;
+    std::vector<std::string> points_configuration_;
 };
 
 } }

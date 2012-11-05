@@ -83,6 +83,9 @@ public:
     }
 
 public:
+    bool equals(const creris::credit_risk::generator_configuration& other) const override;
+
+public:
     void swap(formula_generator_configuration& other) noexcept;
     formula_generator_configuration& operator=(formula_generator_configuration other);
 

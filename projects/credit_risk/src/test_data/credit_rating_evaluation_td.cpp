@@ -60,6 +60,12 @@ credit_rating_evaluation_generator::create(const unsigned int position) {
     credit_rating_evaluation_generator::populate(position, r);
     return r;
 }
+credit_rating_evaluation_generator::result_type*
+credit_rating_evaluation_generator::create_ptr(const unsigned int position) {
+    credit_rating_evaluation* p = new credit_rating_evaluation();
+    credit_rating_evaluation_generator::populate(position, *p);
+    return p;
+}
 
 credit_rating_evaluation_generator::result_type
 credit_rating_evaluation_generator::operator()() {

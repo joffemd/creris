@@ -28,6 +28,7 @@
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/string.hpp>
+#include <boost/serialization/vector.hpp>
 #include "creris/credit_risk/serialization/fixed_time_series_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/time_series_configuration_ser.hpp"
 

@@ -54,6 +54,12 @@ formula_generator_configuration_generator::create(const unsigned int position) {
     formula_generator_configuration_generator::populate(position, r);
     return r;
 }
+formula_generator_configuration_generator::result_type*
+formula_generator_configuration_generator::create_ptr(const unsigned int position) {
+    formula_generator_configuration* p = new formula_generator_configuration();
+    formula_generator_configuration_generator::populate(position, *p);
+    return p;
+}
 
 formula_generator_configuration_generator::result_type
 formula_generator_configuration_generator::operator()() {

@@ -44,8 +44,14 @@ void identity_generator_configuration::swap(identity_generator_configuration& ot
 
 }
 
+bool identity_generator_configuration::equals(const creris::credit_risk::generator_configuration& other) const {
+    const identity_generator_configuration* const p(dynamic_cast<const identity_generator_configuration* const>(&other));
+    if (!p) return false;
+    return *this == *p;
+}
+
 bool identity_generator_configuration::operator==(const identity_generator_configuration& rhs) const {
-    return generator_configuration::operator==(rhs);
+    return generator_configuration::compare(rhs);
 }
 
 identity_generator_configuration& identity_generator_configuration::operator=(identity_generator_configuration other) {

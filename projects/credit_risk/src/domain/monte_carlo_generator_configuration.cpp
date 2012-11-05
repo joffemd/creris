@@ -63,8 +63,14 @@ void monte_carlo_generator_configuration::swap(monte_carlo_generator_configurati
     swap(distribution_type_, other.distribution_type_);
 }
 
+bool monte_carlo_generator_configuration::equals(const creris::credit_risk::generator_configuration& other) const {
+    const monte_carlo_generator_configuration* const p(dynamic_cast<const monte_carlo_generator_configuration* const>(&other));
+    if (!p) return false;
+    return *this == *p;
+}
+
 bool monte_carlo_generator_configuration::operator==(const monte_carlo_generator_configuration& rhs) const {
-    return generator_configuration::operator==(rhs) &&
+    return generator_configuration::compare(rhs) &&
         mean_ == rhs.mean_ &&
         standard_deviation_ == rhs.standard_deviation_ &&
         distribution_type_ == rhs.distribution_type_;

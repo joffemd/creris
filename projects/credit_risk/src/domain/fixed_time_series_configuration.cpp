@@ -22,6 +22,20 @@
 #include "creris/credit_risk/domain/fixed_time_series_configuration.hpp"
 #include "creris/credit_risk/io/time_series_configuration_io.hpp"
 
+namespace std {
+
+inline std::ostream& operator<<(std::ostream& s, const std::vector<std::string>& v) {
+    s << "[ ";
+    for (auto i(v.begin()); i != v.end(); ++i) {
+        if (i != v.begin()) s << ", ";
+        s << "\"" << *i << "\"";
+    }
+    s << "] ";
+    return s;
+}
+
+}
+
 namespace creris {
 namespace credit_risk {
 
@@ -37,7 +51,7 @@ fixed_time_series_configuration::fixed_time_series_configuration(
     const std::string& generator_configuration,
     const creris::credit_risk::versioned_key& versioned_key,
     const unsigned int length,
-    const std::string& points_configuration)
+    const std::vector<std::string>& points_configuration)
     : creris::credit_risk::time_series_configuration(time_series_configuration_id,
       name,
       description,
@@ -55,7 +69,7 @@ void fixed_time_series_configuration::to_stream(std::ostream& s) const {
     time_series_configuration::to_stream(s);
     s << ", "
       << "\"length\": " << length_ << ", "
-      << "\"points_configuration\": " << "\"" << points_configuration_ << "\""
+      << "\"points_configuration\": " << points_configuration_
       << " }";
 }
 
@@ -67,8 +81,14 @@ void fixed_time_series_configuration::swap(fixed_time_series_configuration& othe
     swap(points_configuration_, other.points_configuration_);
 }
 
+bool fixed_time_series_configuration::equals(const creris::credit_risk::time_series_configuration& other) const {
+    const fixed_time_series_configuration* const p(dynamic_cast<const fixed_time_series_configuration* const>(&other));
+    if (!p) return false;
+    return *this == *p;
+}
+
 bool fixed_time_series_configuration::operator==(const fixed_time_series_configuration& rhs) const {
-    return time_series_configuration::operator==(rhs) &&
+    return time_series_configuration::compare(rhs) &&
         length_ == rhs.length_ &&
         points_configuration_ == rhs.points_configuration_;
 }

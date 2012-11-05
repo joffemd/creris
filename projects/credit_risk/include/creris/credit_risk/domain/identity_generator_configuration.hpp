@@ -61,6 +61,9 @@ public:
     }
 
 public:
+    bool equals(const creris::credit_risk::generator_configuration& other) const override;
+
+public:
     void swap(identity_generator_configuration& other) noexcept;
     identity_generator_configuration& operator=(identity_generator_configuration other);
 

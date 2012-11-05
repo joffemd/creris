@@ -55,6 +55,12 @@ time_series_id_generator::create(const unsigned int position) {
     time_series_id_generator::populate(position, r);
     return r;
 }
+time_series_id_generator::result_type*
+time_series_id_generator::create_ptr(const unsigned int position) {
+    time_series_id* p = new time_series_id();
+    time_series_id_generator::populate(position, *p);
+    return p;
+}
 
 time_series_id_generator::result_type
 time_series_id_generator::operator()() {

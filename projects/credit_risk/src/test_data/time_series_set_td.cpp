@@ -68,6 +68,12 @@ time_series_set_generator::create(const unsigned int position) {
     time_series_set_generator::populate(position, r);
     return r;
 }
+time_series_set_generator::result_type*
+time_series_set_generator::create_ptr(const unsigned int position) {
+    time_series_set* p = new time_series_set();
+    time_series_set_generator::populate(position, *p);
+    return p;
+}
 
 time_series_set_generator::result_type
 time_series_set_generator::operator()() {

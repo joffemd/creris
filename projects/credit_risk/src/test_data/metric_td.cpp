@@ -67,6 +67,12 @@ metric_generator::create(const unsigned int position) {
     metric_generator::populate(position, r);
     return r;
 }
+metric_generator::result_type*
+metric_generator::create_ptr(const unsigned int position) {
+    metric* p = new metric();
+    metric_generator::populate(position, *p);
+    return p;
+}
 
 metric_generator::result_type
 metric_generator::operator()() {

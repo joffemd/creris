@@ -100,6 +100,12 @@ configuration_generator::create(const unsigned int position) {
     configuration_generator::populate(position, r);
     return r;
 }
+configuration_generator::result_type*
+configuration_generator::create_ptr(const unsigned int position) {
+    configuration* p = new configuration();
+    configuration_generator::populate(position, *p);
+    return p;
+}
 
 configuration_generator::result_type
 configuration_generator::operator()() {

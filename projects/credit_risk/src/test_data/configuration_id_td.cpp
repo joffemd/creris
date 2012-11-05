@@ -54,6 +54,12 @@ configuration_id_generator::create(const unsigned int position) {
     configuration_id_generator::populate(position, r);
     return r;
 }
+configuration_id_generator::result_type*
+configuration_id_generator::create_ptr(const unsigned int position) {
+    configuration_id* p = new configuration_id();
+    configuration_id_generator::populate(position, *p);
+    return p;
+}
 
 configuration_id_generator::result_type
 configuration_id_generator::operator()() {

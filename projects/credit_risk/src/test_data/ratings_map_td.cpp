@@ -61,6 +61,12 @@ ratings_map_generator::create(const unsigned int position) {
     ratings_map_generator::populate(position, r);
     return r;
 }
+ratings_map_generator::result_type*
+ratings_map_generator::create_ptr(const unsigned int position) {
+    ratings_map* p = new ratings_map();
+    ratings_map_generator::populate(position, *p);
+    return p;
+}
 
 ratings_map_generator::result_type
 ratings_map_generator::operator()() {

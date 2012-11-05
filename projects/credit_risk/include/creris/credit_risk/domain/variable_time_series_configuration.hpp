@@ -66,6 +66,9 @@ public:
     }
 
 public:
+    bool equals(const creris::credit_risk::time_series_configuration& other) const override;
+
+public:
     void swap(variable_time_series_configuration& other) noexcept;
     variable_time_series_configuration& operator=(variable_time_series_configuration other);
 
