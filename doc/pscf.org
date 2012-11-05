@@ -1,9 +1,5 @@
 #+title: Public Sector Credit Framework
 #+options: date:nil toc:nil author:nil num:nil
-#+link_up: ../index.html
-#+link_home: ../index.html
-#+style: <link rel="stylesheet" type="text/css" href="../site.css" />
-#+tags: deprecated official DT EB
 
 * Purpose
 
@@ -80,15 +76,11 @@ templates have placeholders in the template's body that will be
 replaced with expressions originating from the workbook. These
 placeholders are noted between dollar signs, like this:
 
-#+begin_example
-$government-entity$
-#+end_example
+: $government-entity$
 
 They're then used in the code, like in this example:
 
-#+begin_example
-fprintf(fr,"Government Entity\t%s\n", "\"$government-entity$\"");
-#+end_example
+: fprintf(fr,"Government Entity\t%s\n", "\"$government-entity$\"");
 
 Before this [[http://en.wikipedia.org/wiki/Sed][sed]]-like replacement, there's a complicated mapping
 mechanism that produces the file =map.txt= (that is later fed to the
@@ -110,7 +102,7 @@ processing]] of this document.
 Workbook variables refers to fields residing in the workbook, whether
 editable by the end user or not.
 
-An explanation is required to shed light on the decision of icluding
+An explanation is required to shed light on the decision of including
 these normally distributed random series as workbook variables. These
 values are not effectively created in the workbook (they're "random"),
 but the parameters that control the random series are. So, in effect,
@@ -121,130 +113,100 @@ in the workbook.
 
 Random series are sets of random numbers with cardinality equal to the
 number of years the model should cover. These numbers are generated to
-form a normal distribution around the mean, default 0. Dynamic, per simulation.
+form a normal distribution around the mean, default 0. Dynamic, per
+simulation.
 
-normrandom_lfp - LFP, labour force participation;
-
-normrandom_unem - UNEMP, unemployment;
-
-normrandom_prod - PROD, productivity;
-
-normrandom_infl - INFL, inflation;
-
-normrandom_int - INT, Metal prices. Don't really know where this name
-comes from, may have been overlooked in their implementation.
+- =normrandom_lfp= - LFP, labour force participation;
+- =normrandom_unem= - UNEMP, unemployment;
+- =normrandom_prod= - PROD, productivity;
+- =normrandom_infl= - INFL, inflation;
+- =normrandom_int= - INT, Metal prices. Don't really know where this
+  name comes from.
 
 *** Observables
 
-Comes from a data source - could be a feed, manually entered parameters, etc.
+Comes from a data source - could be a feed, manually entered
+parameters, etc.
 
-preschoolpop - population aged 0-4;
-
-schoolpop - population aged 5-19;
-
-workingagepop - population aged 15+;
-
-seniorpop - population aged 65+;
-
-age15to64pop - population aged 15-64. Derived from workingagepop -
-seniorpop;
-
-totpop - Total population. Derived from preschoolpop + schoolpop +
-workingagepop + seniorpop (which incidentally is not completely
-correct, as 65+ people are also 15+, so they're being counted twice);
-
-yr - year in the simulation, sequential value;
-
-newdebtweight - fixed. Hardcoded as 0.2;
+- =preschoolpop= - population aged 0-4;
+- =schoolpop= - population aged 5-19;
+- =workingagepop= - population aged 15+;
+- =seniorpop= - population aged 65+;
+- =age15to64pop= - population aged 15-64. Derived from workingagepop -
+  seniorpop;
+- =totpop= - Total population. Derived from -preschoolpop +
+  schoolpop + workingagepop + seniorpop (which may not be completely
+  correct, as 65+ people are also 15+, so they're being counted
+  twice);
+- =yr= - year in the simulation, sequential value;
+- =newdebtweight= - fixed. Hardcoded as 0.2;
 
 *** By formulas tied to the random distribution
 
 Most of these formulas have a combination of:
+
 - static data (or data that can be directly derived from static data
   only);
 - values from a random series, in which the series is noted;
 - "Magic Numbers" associated that don't have a concise meaning up to
   this point. Noted as MN.
 
-age15to64participation - tied to the values of LFP, has MNs;
+Variables:
 
-seniorparticipation - tied to the values of LFP, has MNs, uses year;
-
-laborforcepart - derived, age15to64participation / seniorparticipation;
-
-laborforce - derived, uses seniorparticipation and age15to64participation;
-unemployment - tied to the values of UNEMP, has MNs;
-
-employed - derived, laborforce * (1 - unemployment);
-
-productivitygrowth - tied to the values of PROD;
-
-GDPgrowth - derived from '( employed[y] / employed[y-1]  - 1 ) +
-productivitygrowth[y];
-
-realGDP - derived from previous realGDP and GDPgrowth;
-
-inflation - tied to the values of INFL. Has MNs. Uses previous year's
-inflation;
-
-priceIndex - tied to priceIndex of previous year and this year's
-inflation;
-
-GDP - tied to realGDP and priceIndex. Strangely, the formula of the
-cell is equal to realGDP, I can't find an explanation;
-
-healthinflation - tied to inflation. Strangely, cell contents appear
-as 0 but value spec adds 0.005 to inflation's value;
-
-healthcostindex - tied to previous year's healthcostindex and
-healthinflation;
-
-newissuerate - tied to the values of INT. Has MNs. Uses previous
-year's newissuerate and current year's inflation;
-
-avgcpnrate - uses newissuerate, newdebtweight and previous year's
-avgcpnrate for calculation;
-
-federalassist - uses previous year's federalassist and GDP, and
-current year's GDP for calculation;
-
-indinctax - uses previous year's indinctax and GDP, and
-current year's GDP for calculation;
-
-corpinctax - uses previous year's corpinctax and GDP, and
-current year's GDP for calculation;
-
-salestax - uses previous year's salestax and GDP, and
-current year's GDP for calculation;
-
-othrev - uses previous year's othrev and GDP, and
-current year's GDP for calculation;
-
-totrev - derived, federalassist + indinctax + corpinctax + salestax +
-othrev;
-
-health - health expenditure. Derived. Uses previous year's health,
-healthinflation and increase in senior population;
-
-education - education expenditure. Derived. Uses previous year's education,
-current year's inflation and increase in schoolpop. Stragely, it only
-accounts for increases in school population, decreases are
-purposefully not contemplated. Uses MNs;
-
-otherprogram - don't know what it stands for. Derived. Uses
-otherprogram from previous year and divides it by the product of this
-year's and last year's GDP;
-
-netinterest - Average Treasury Rate Times Prior Year
-Debt. Derived. Calculated as previous year's debt times avgcpnrate
-from this year;
-
-totexp - Total expenses. Derived. Calculated as health + education +
-otherprogram + netinterest;
-
-surplus - Derived. Calculated as totrev - totexp;
-
-debt - Derived. Previous year's debt minus current year's surplus;
+- =age15to64participation= - tied to the values of LFP, has MNs;
+- =seniorparticipation= - tied to the values of LFP, has MNs, uses year;
+- =laborforcepart= - derived, age15to64participation /
+  seniorparticipation;
+- =laborforce= - derived, uses seniorparticipation and
+  age15to64participation; unemployment - tied to the values of UNEMP,
+  has MNs;
+- =employed= - derived, laborforce * (1 - unemployment);
+- =productivitygrowth= - tied to the values of PROD;
+- =GDPgrowth= - derived from '( employed[y] / employed[y-1] - 1 ) +
+  productivitygrowth[y];
+- =realGDP= - derived from previous realGDP and GDPgrowth;
+- =inflation= - tied to the values of INFL. Has MNs. Uses previous
+  year's inflation;
+- =priceIndex= - tied to priceIndex of previous year and this year's
+  inflation;
+- =GDP= - tied to realGDP and priceIndex. Strangely, the formula of
+  the cell is equal to realGDP, I can't find an explanation;
+- =healthinflation= - tied to inflation. Strangely, cell contents
+  appear as 0 but value spec adds 0.005 to inflation's value;
+- =healthcostindex= - tied to previous year's healthcostindex and
+  healthinflation;
+- =newissuerate= - tied to the values of INT. Has MNs. Uses previous
+  year's newissuerate and current year's inflation;
+- =avgcpnrate= - uses newissuerate, newdebtweight and previous year's
+  avgcpnrate for calculation;
+- =federalassist= - uses previous year's federalassist and GDP, and
+  current year's GDP for calculation;
+- =indinctax= - uses previous year's indinctax and GDP, and current
+  year's GDP for calculation;
+- =corpinctax= - uses previous year's corpinctax and GDP, and current
+  year's GDP for calculation;
+- =salestax= - uses previous year's salestax and GDP, and current
+  year's GDP for calculation;
+- =othrev= - uses previous year's othrev and GDP, and current year's
+  GDP for calculation;
+- =totrev= - derived, federalassist + indinctax + corpinctax +
+  salestax + othrev;
+- =health= - health expenditure. Derived. Uses previous year's health,
+  healthinflation and increase in senior population;
+- =education= - education expenditure. Derived. Uses previous year's
+  education, current year's inflation and increase in schoolpop. It
+  only appears to account for increases in school population,
+  decreases are purposefully not contemplated. Uses MNs;
+- =otherprogram= - don't know what it stands for. Derived. Uses
+  otherprogram from previous year and divides it by the product of
+  this year's and last year's GDP;
+- =netinterest= - Average Treasury Rate Times Prior Year
+  Debt. Derived. Calculated as previous year's debt times avgcpnrate
+  from this year;
+- =totexp= - Total expenses. Derived. Calculated as health +
+  education + otherprogram + netinterest;
+- =surplus= - Derived. Calculated as totrev - totexp;
+- =debt= - Derived. Previous year's debt minus current year's surplus;
 
 ** Template processing
 
@@ -252,228 +214,180 @@ Variables in this section may or may not appear (in form or another)
 in the worksheet, but are used and filtered at the level of the C
 program generation.
 
-show-projection-details - enables output for details on analysis,
-later imported to the workbook as an extra sheet. Very large
-quantities of data if the number of simulations is high. Workbook
-field "Show Projection Details";
+- =show-projection-details= - enables output for details on analysis,
+  later imported to the workbook as an extra sheet. Very large
+  quantities of data if the number of simulations is high. Workbook
+  field "Show Projection Details";
+- =$adjustments$= - conditional chunks of code that change the values
+  of the series if some conditions are met. They are defined in the
+  "adjustments" worksheet and generated with arithmetic operations
+  between the indicators in the worksheet;
+- =$assignments$= - assignment of series' values to current y
+  year. All variables in the series tab in the workbook get their
+  value assigned for the current year being treated. In the template,
+  it creates an assignment code block per year;
+- =$currency-units-in$= - Currency units text label. Field "Currency"
+  in the workbook;
+- =$declarations$= - variable declaration. This contains *all* the
+  variables defined in the sections [[*Normally%20distributed%20random%20series][Normally distributed random series]],
+[[*Observables][ Observables]] and [[*By%20formulas%20tied%20to%20the%20random%20distribution][By formulas tied to the random distribution]], declared
+  in a C syntax. They're an array of doubles with size yr+1;
+- =$default-probability-code$= - expression to be executed as user
+  supplied code, must be valid C code. Should supply a value to the
+  array element defaultprob[y]. Field "Default Probability Code" in
+  the workbook;
+- =$government-entity$= - Government entity text label. Field
+  "Government Entity" in the workbook;
+- =$headers$= - headers for series columns. It's not completely clear
+  where this comes from, as it's part of the mapping process described
+  above. It *appears* to be populated during mapping, but the most I
+  was able to dig up was this:
 
-$adjustments$ - conditional chunks of code that change the values of
-the series if some conditions are met. They are defined in the
-"adjustments" worksheet and generated with arithmetic operations
-between the indicators in the worksheet;
+:void Template::process (const bool have_adjustments)
+:void Template::get_data (Sheet& model, Sheet& series, const bool have_adjustments, Sheet& adjustments, const bool have_ratingmap, Sheet& ratingmap)
+:void Sheet::get_col (const int source_col, char**& col, int &n_cols)
+:void add_name_to_list (const char* name, char*** list, int* length);
 
-$assignments$ - assignment of series' values to current y year. All
-variables in the series tab in the workbook get their value assigned
-for the current year being treated. In the template, it creates an
-assignment code block per year;
-
-$currency-units-in$ - Currency units text label. Field "Currency" in
-the workbook;
-
-$declarations$ - variable declaration. This contains *all* the
-variables defined in the sections [[*Normally%20distributed%20random%20series][Normally distributed random series]],
-[[*Observables][Observables]] and [[*By%20formulas%20tied%20to%20the%20random%20distribution][By formulas tied to the random distribution]], declared
-in a C syntax. They're an array of doubles with size yr+1;
-
-$default-probability-code$ - expression to be executed as user
-supplied code, must be valid C code. Should supply a value to the array element
-defaultprob[y]. Field "Default Probability Code" in the workbook;
-
-$government-entity$ - Government entity text label. Field "Government
-Entity" in the workbook;
-
-$headers$ - headers for series columns. It's not completely clear where this comes
-from, as it's part of the mapping process described above. It
-*appears* to be populated during mapping, but the most I was able to
-dig up was this:
-void Template::process (const bool have_adjustments)
-void Template::get_data (Sheet& model, Sheet& series, const bool have_adjustments, Sheet& adjustments, const bool have_ratingmap, Sheet& ratingmap)
-void Sheet::get_col (const int source_col, char**& col, int &n_cols)
-void add_name_to_list (const char* name, char*** list, int* length);
-
-$if-ratio2-valid$ - "code trick", comments the template line that
-prints Metrics 2 description if number of metrics for the template is
-less than 2;
-
-$if-ratio3-valid$ - "code trick", comments the template line that
-prints Metrics 3 description if number of metrics for the template is
-less than 3;
-
-$if-ratio4-valid$ - "code trick", comments the template line that
-prints Metrics 4 description if number of metrics for the template is
-less than 4;
-
-$if-ratio5-valid$ - "code trick", comments the template line that
-prints Metrics 5 description if number of metrics for the template is
-less than 5;
-
-$initial-year$ - Initial year for the simulation. Field "Initial Year"
-in the workbook;
-
-$metrics-1-description$ - Description of Metric 1. Mandatory. Field
-"Metric 1" "Description" in workbook;
-
-$metrics-2-description$ - Description of Metric 2. Mandatory only if
-Metric 2 is defined. Field "Metric 2" "Description" in workbook;
-
-$metrics-3-description$ - Description of Metric 3. Mandatory only if
-Metric 3 is defined. Field "Metric 3" "Description" in workbook;
-
-$metrics-4-description$ - Description of Metric 4. Mandatory only if
-Metric 4 is defined. Field "Metric 4" "Description" in workbook;
-
-$metrics-5-description$ - Description of Metric 5. Mandatory only if
-Metric 5 is defined. Field "Metric 5" "Description" in workbook;
-
-$model-description$ - Model description text label. Field "Model
-Description" in the workbook;
-
-$n-ratings$ - number of existing ratings. Given by the count of the
-variable $ratings$.
-
-$n-years$ - Number of years in the simulation. Field "Projection
-Years" in the workbook;
-
-$number-of-trials$ - number of trials a simulation will run. This
-seems to be the actual working value rather than the text label
-defined in $trials$. Field "Number of Trials" in workbook;
-
-$output$ - values for output containing all the indicators shown in
-the sections [[*Normally%20distributed%20random%20series][Normally distributed random series]], [[*Observables][Observables]] and [[*By%20formulas%20tied%20to%20the%20random%20distribution][By
-formulas tied to the random distribution]];
-
-$period-0-values$ - values for all series variables at position 0. All
-come from the "series" tab in the workbook;
-
-$print-random-values$ - print each of the random values for each
-random series used, with controlled floating precision of 5.4, if the
-year is any other than 0;
-
-$print-y0-random-values$ - print each of the random values for each
-random series used only if the year is 0;
-
-$print-ratios(1)$ - boolean expression evaluated to true or false,
-depending if the Metric 1's values are to be printed or not.
-
-$print-ratios(2)$ - boolean expression evaluated to true or false,
-depending if the Metric 2's values are to be printed or not.
-
-$print-ratios(3)$ - boolean expression evaluated to true or false,
-depending if the Metric 3's values are to be printed or not.
-
-$print-ratios(4)$ - boolean expression evaluated to true or false,
-depending if the Metric 4's values are to be printed or not.
-
-$print-ratios(5)$ - boolean expression evaluated to true or false,
-depending if the Metric 5's values are to be printed or not.
-
-$rating-grid$ - multi-dimensional array containing the C
-representation of the full rating map. This map is comprehensibly
-defined in the tab "ratingmap" of the workbook.
-
-$ratings$ - variable containing the set of ratings used. These are
-defined in the tab "ratingmap" of the workbook.
-
-$run-date-time$ - Date and time in which the simulation was
-run. Created outside the workbook as a timestamp at template-processing time;
-
-$thresh-relation$ - Operator or expression that defines the
-"direction" of the threshold at the time of the evaluation of its
-crossing. Can be a '<'or a '>' or some other expression that defines
-the relation between elements and gets evaluated at the crossing of
-$thresholdlevel$. It's defined at the worksheet in "Relation to
-Threshold Signifying Default".
-
-$threshold-expression-1[0]$ - Threshold expression for Ratio 1 at
-first evaluation. Subsequent values are calculated with previous
-values taken into account. Field "Metric 1" "Expression" in the
-workbook, though it seems altered. Mandatory;
-
-$threshold-expression-1[y]$ - Threshold expression for Ratio 1 at
-evaluations subsequent to the first. Values are calculated with
-previous values taken into account. Field "Metric 1" "Expression" in
-the workbook. Mandatory;
-
-$threshold-expression-2[0]$ - Threshold expression for Ratio 2 at
-first evaluation. Subsequent values are calculated with previous
-values taken into account. Field "Metric 2" "Expression" in the
-workbook, though it seems altered. Mandatory only if Metric 2 is
-defined;
-
-$threshold-expression-2[y]$ - Threshold expression for Ratio 2 at
-evaluations subsequent to the first. Values are calculated with
-previous values taken into account. Field "Metric 2" "Expression" in
-the workbook. Mandatory only if Metric 2 is defined;
-
-$threshold-expression-3[0]$ - Threshold expression for Ratio 3 at
-first evaluation. Subsequent values are calculated with previous
-values taken into account. Field "Metric 3" "Expression" in the
-workbook, though it seems altered. Mandatory only if Metric 3 is
-defined;
-
-$threshold-expression-3[y]$ - Threshold expression for Ratio 3 at
-evaluations subsequent to the first. Values are calculated with
-previous values taken into account. Field "Metric 3" "Expression" in
-the workbook. Mandatory only if Metric 3 is defined;
-
-$threshold-expression-4[0]$ - Threshold expression for Ratio 4 at
-first evaluation. Subsequent values are calculated with previous
-values taken into account. Field "Metric 4" "Expression" in the
-workbook, though it seems altered. Mandatory only if Metric 4 is
-defined;
-
-$threshold-expression-4[y]$ - Threshold expression for Ratio 4 at
-evaluations subsequent to the first. Values are calculated with
-previous values taken into account. Field "Metric 4" "Expression" in
-the workbook. Mandatory only if Metric 3 is defined;
-
-$threshold-expression-5[0]$ - Threshold expression for Ratio 5 at
-first evaluation. Subsequent values are calculated with previous
-values taken into account. Field "Metric 5" "Expression" in the
-workbook, though it seems altered. Mandatory only if Metric 5 is
-defined;
-
-$threshold-expression-5[y]$ - Threshold expression for Ratio 5 at
-evaluations subsequent to the first. Values are calculated with
-previous values taken into account. Field "Metric 5" "Expression" in
-the workbook. Mandatory only if Metric 3 is defined;
-
-$threshold-label$ - Text label for threshold naming. Default in
-workbook is "Default", as in "the country will default on its
-obligations". Workbook field "Threshold Label";
-
-$thresholdlevel$ - defined only in the template that doesn't use
-Distributed Probability Code. Indicates the threshold level that
-triggers a default when crossed. It only makes sense if taking the
-$thresh-relation$ variable into account. It's defined at the worksheet
-in "Threshold Level".
-
-$trials$ - Seems to be used only as a text label for the number of
-trials. Also seems to be replaced by $number-of-trials$ where it's
-actually used for quantification in the code. Field "Number of Trials"
-in workbook;
-
-$normrandom-assignments$ - assigns random generated values for the
-normal distribution series;
-
-$normrandom-declarations$ - Variable declarations for normal random
-distribution. Uses Boost. Presumably, tied to the type of series
-used;
-
-$cauchyrandom-assignments$ - assigns random generated values for the
-Cauchy distribution series;
-
-$cauchyrandom-declarations$ - Variable declarations for Cauchy random
-distribution. Uses Boost. Presumably, tied to the type of series
-used;
-
-$unirandom-assignments$ - assigns random generated values for the
-uniform distributed series. Couldn't get uniform distribution to work,
-syntax error;
-
-$unirandom-declarations$ - Variable declarations for uniform random
-distribution. Uses Boost. Presumably, tied to the type of series
-used. Couldn't get uniform distribution to work, syntax error;
+- =$if-ratio2-valid$= - "code trick", comments the template line that
+  prints Metrics 2 description if number of metrics for the template
+  is less than 2;
+- =$if-ratio3-valid$= - "code trick", comments the template line that
+  prints Metrics 3 description if number of metrics for the template
+  is less than 3;
+- =$if-ratio4-valid$= - "code trick", comments the template line that
+  prints Metrics 4 description if number of metrics for the template
+  is less than 4;
+- =$if-ratio5-valid$= - "code trick", comments the template line that
+  prints Metrics 5 description if number of metrics for the template
+  is less than 5;
+- =$initial-year$= - Initial year for the simulation. Field "Initial
+  Year" in the workbook;
+- =$metrics-1-description$= - Description of
+  Metric 1. Mandatory. Field "Metric 1" "Description" in workbook;
+- =$metrics-2-description$= - Description of Metric 2. Mandatory only
+  if Metric 2 is defined. Field "Metric 2" "Description" in workbook;
+- =$metrics-3-description$= - Description of Metric 3. Mandatory only
+  if Metric 3 is defined. Field "Metric 3" "Description" in workbook;
+- =$metrics-4-description$= - Description of Metric 4. Mandatory only
+  if Metric 4 is defined. Field "Metric 4" "Description" in workbook;
+- =$metrics-5-description$= - Description of Metric 5. Mandatory only
+  if Metric 5 is defined. Field "Metric 5" "Description" in workbook;
+- =$model-description$= - Model description text label. Field "Model
+  Description" in the workbook;
+- =$n-ratings$= - number of existing ratings. Given by the count of
+  the variable $ratings$.
+- =$n-years$= - Number of years in the simulation. Field "Projection
+  Years" in the workbook;
+- =$number-of-trials$= - number of trials a simulation will run. This
+  seems to be the actual working value rather than the text label
+  defined in $trials$. Field "Number of Trials" in workbook;
+- =$output$= - values for output containing all the indicators shown
+  in the sections [[*Normally%20distributed%20random%20series][Normally distributed random series]], [[*Observables][Observables]] and
+  [[*By%20formulas%20tied%20to%20the%20random%20distribution][By formulas tied to the random distribution]];
+- =$period-0-values$= - values for all series variables at
+  position 0. All come from the "series" tab in the workbook;
+- =$print-random-values$= - print each of the random values for each
+  random series used, with controlled floating precision of 5.4, if
+  the year is any other than 0;
+- =$print-y0-random-values$= - print each of the random values for
+  each random series used only if the year is 0;
+- =$print-ratios(1)$= - boolean expression evaluated to true or false,
+  depending if the Metric 1's values are to be printed or not.
+- =$print-ratios(2)$= - boolean expression evaluated to true or false,
+  depending if the Metric 2's values are to be printed or not.
+- =$print-ratios(3)$= - boolean expression evaluated to true or false,
+  depending if the Metric 3's values are to be printed or not.
+- =$print-ratios(4)$= - boolean expression evaluated to true or false,
+  depending if the Metric 4's values are to be printed or not.
+- =$print-ratios(5)$= - boolean expression evaluated to true or false,
+  depending if the Metric 5's values are to be printed or not.
+- =$rating-grid$= - multi-dimensional array containing the C
+  representation of the full rating map. This map is comprehensibly
+  defined in the tab "ratingmap" of the workbook.
+- =$ratings$= - variable containing the set of ratings used. These are
+  defined in the tab "ratingmap" of the workbook.
+- =$run-date-time$= - Date and time in which the simulation was
+  run. Created outside the workbook as a timestamp at
+  template-processing time;
+- =$thresh-relation$= - Operator or expression that defines the
+  "direction" of the threshold at the time of the evaluation of its
+  crossing. Can be a '<'or a '>' or some other expression that defines
+  the relation between elements and gets evaluated at the crossing of
+  $thresholdlevel$. It's defined at the worksheet in "Relation to
+  Threshold Signifying Default".
+- =$threshold-expression-1[0]$= - Threshold expression for Ratio 1 at
+  first evaluation. Subsequent values are calculated with previous
+  values taken into account. Field "Metric 1" "Expression" in the
+  workbook, though it seems altered. Mandatory;
+- =$threshold-expression-1[y]$= - Threshold expression for Ratio 1 at
+  evaluations subsequent to the first. Values are calculated with
+  previous values taken into account. Field "Metric 1" "Expression" in
+  the workbook. Mandatory;
+- =$threshold-expression-2[0]$= - Threshold expression for Ratio 2 at
+  first evaluation. Subsequent values are calculated with previous
+  values taken into account. Field "Metric 2" "Expression" in the
+  workbook, though it seems altered. Mandatory only if Metric 2 is
+  defined;
+- =$threshold-expression-2[y]$= - Threshold expression for Ratio 2 at
+  evaluations subsequent to the first. Values are calculated with
+  previous values taken into account. Field "Metric 2" "Expression" in
+  the workbook. Mandatory only if Metric 2 is defined;
+- =$threshold-expression-3[0]$= - Threshold expression for Ratio 3 at
+  first evaluation. Subsequent values are calculated with previous
+  values taken into account. Field "Metric 3" "Expression" in the
+  workbook, though it seems altered. Mandatory only if Metric 3 is
+  defined;
+- =$threshold-expression-3[y]$= - Threshold expression for Ratio 3 at
+  evaluations subsequent to the first. Values are calculated with
+  previous values taken into account. Field "Metric 3" "Expression" in
+  the workbook. Mandatory only if Metric 3 is defined;
+- =$threshold-expression-4[0]$= - Threshold expression for Ratio 4 at
+  first evaluation. Subsequent values are calculated with previous
+  values taken into account. Field "Metric 4" "Expression" in the
+  workbook, though it seems altered. Mandatory only if Metric 4 is
+  defined;
+- =$threshold-expression-4[y]$= - Threshold expression for Ratio 4 at
+  evaluations subsequent to the first. Values are calculated with
+  previous values taken into account. Field "Metric 4" "Expression" in
+  the workbook. Mandatory only if Metric 3 is defined;
+- =$threshold-expression-5[0]$= - Threshold expression for Ratio 5 at
+  first evaluation. Subsequent values are calculated with previous
+  values taken into account. Field "Metric 5" "Expression" in the
+  workbook, though it seems altered. Mandatory only if Metric 5 is
+  defined;
+- =$threshold-expression-5[y]$= - Threshold expression for Ratio 5 at
+  evaluations subsequent to the first. Values are calculated with
+  previous values taken into account. Field "Metric 5" "Expression" in
+  the workbook. Mandatory only if Metric 3 is defined;
+- =$threshold-label$= - Text label for threshold naming. Default in
+  workbook is "Default", as in "the country will default on its
+  obligations". Workbook field "Threshold Label";
+- =$thresholdlevel$= - defined only in the template that doesn't use
+  Distributed Probability Code. Indicates the threshold level that
+  triggers a default when crossed. It only makes sense if taking the
+  $thresh-relation$ variable into account. It's defined at the
+  worksheet in "Threshold Level".
+- =$trials$= - Seems to be used only as a text label for the number of
+  trials. Also seems to be replaced by $number-of-trials$ where it's
+  actually used for quantification in the code. Field "Number of
+  Trials" in workbook;
+- =$normrandom-assignments$= - assigns random generated values for the
+  normal distribution series;
+- =$normrandom-declarations$= - Variable declarations for normal
+  random distribution. Uses Boost. Presumably, tied to the type of
+  series used;
+- =$cauchyrandom-assignments$= - assigns random generated values for
+  the Cauchy distribution series;
+- =$cauchyrandom-declarations$= - Variable declarations for Cauchy
+  random distribution. Uses Boost. Presumably, tied to the type of
+  series used;
+- =$unirandom-assignments$= - assigns random generated values for the
+  uniform distributed series. Couldn't get uniform distribution to
+  work, syntax error;
+- =$unirandom-declarations$= - Variable declarations for uniform
+  random distribution. Uses Boost. Presumably, tied to the type of
+  series used. Couldn't get uniform distribution to work, syntax
+  error;
 
 ** Notes
 
@@ -486,28 +400,25 @@ Wikirating has two rating mechanisms both for sovereign rating and
 corporate rating. The first is a single vote per user in the
 community. The other is a public [[http://www.wikirating.org/wiki/Sovereign_Wikirating_Index#Formula][formula that can be seen on their site]]:
 
-0.5 * Public debt +
-0.2 * Account balance +
-0.1 * GDP growth rate +
-0.1 * Inflation rate +
-0.1 * Unemployment rate
+: 0.5 * Public debt +
+: 0.2 * Account balance +
+: 0.1 * GDP growth rate +
+: 0.1 * Inflation rate +
+: 0.1 * Unemployment rate
 
 This results in a number that which is further "calibrated", by
 multiplying it by scaling factor composed as follows:
 
-0.6 * Human Development Index
-0.2 * Corruption Perceptions Index
-0.2 * Political Instability Index
+: 0.6 * Human Development Index
+: 0.2 * Corruption Perceptions Index
+: 0.2 * Political Instability Index
 
 There is some fiddling with the inputs because they're acquired from
 "raw" from several sources, for what I could assess. This requires
 some adjustments that were not completely clear to me, but can be
-further investigated.
+further investigated. E.g., with "informal notation":
 
-E.g., with "informal notation":
-
-R_adj = (r - MIN(r)) / (MAX(r) - MIN(r)) * 100
-
+: R_adj = (r - MIN(r)) / (MAX(r) - MIN(r)) * 100
 
 Spreadsheet [[http://www.wikirating.org/documents/wr_swi_method%2Bdata_2011-09-26.xls][here]].
 
@@ -529,11 +440,12 @@ website]] (though these can all be v1.03 type of things):
   the values when compared to Eurostat.
 
 | 2011 Government Revenue |    PSCS | Eurostat | Factor |
+|-------------------------+---------+----------+--------|
 | France                  | 1890273 |  1014780 |   1.86 |
 | United Kingdom          |  681330 |   614517 |   1.10 |
 | Germany                 | 2022310 |  1148190 |   1.76 |
 
-NOTE: I have some Excel worksheets where I have the relevant
+*NOTE*: I have some Excel worksheets where I have the relevant
 calculations for these perceived problems, including Eurostat data
 (which is also available online). As I think it's not worth checking
 it into the git repository, I'll keep them for a while in my local PC
