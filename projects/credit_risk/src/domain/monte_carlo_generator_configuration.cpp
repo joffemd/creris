@@ -31,7 +31,7 @@ monte_carlo_generator_configuration::monte_carlo_generator_configuration()
       standard_deviation_(static_cast<double>(0)) { }
 
 monte_carlo_generator_configuration::monte_carlo_generator_configuration(
-    const std::string& generator_type,
+    const creris::credit_risk::generator_types& generator_type,
     const creris::credit_risk::versioned_key& versioned_key,
     const double mean,
     const double standard_deviation,

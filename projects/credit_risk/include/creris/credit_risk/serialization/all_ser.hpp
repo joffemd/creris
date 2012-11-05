@@ -26,6 +26,7 @@
 #include "creris/credit_risk/serialization/fixed_time_series_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/formula_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/generator_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/generator_types_ser.hpp"
 #include "creris/credit_risk/serialization/identity_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/metric_ser.hpp"
 #include "creris/credit_risk/serialization/monte_carlo_generator_configuration_ser.hpp"

@@ -27,7 +27,7 @@
 
 #include <algorithm>
 #include <iosfwd>
-#include <string>
+#include "creris/credit_risk/domain/generator_types.hpp"
 #include "creris/credit_risk/domain/versioned_key.hpp"
 #include "creris/credit_risk/serialization/generator_configuration_fwd_ser.hpp"
 
@@ -44,7 +44,7 @@ public:
 
 public:
     generator_configuration(
-        const std::string& generator_type,
+        const creris::credit_risk::generator_types& generator_type,
         const creris::credit_risk::versioned_key& versioned_key);
 
 private:
@@ -58,18 +58,13 @@ public:
     virtual void to_stream(std::ostream& s) const;
 
 public:
-    /*
-     * @brief FIXME: Value should be a generator_types, further analysis required
-     */
-    /**@{*/
-    std::string generator_type() const {
+    creris::credit_risk::generator_types generator_type() const {
         return generator_type_;
     }
 
-    void generator_type(const std::string& v) {
+    void generator_type(const creris::credit_risk::generator_types& v) {
         generator_type_ = v;
     }
-    /**@}*/
 
     creris::credit_risk::versioned_key versioned_key() const {
         return versioned_key_;
@@ -88,7 +83,7 @@ protected:
     void swap(generator_configuration& other) noexcept;
 
 private:
-    std::string generator_type_;
+    creris::credit_risk::generator_types generator_type_;
     creris::credit_risk::versioned_key versioned_key_;
 };
 

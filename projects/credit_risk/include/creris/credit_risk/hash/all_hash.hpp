@@ -26,6 +26,7 @@
 #include "creris/credit_risk/hash/fixed_time_series_configuration_hash.hpp"
 #include "creris/credit_risk/hash/formula_generator_configuration_hash.hpp"
 #include "creris/credit_risk/hash/generator_configuration_hash.hpp"
+#include "creris/credit_risk/hash/generator_types_hash.hpp"
 #include "creris/credit_risk/hash/identity_generator_configuration_hash.hpp"
 #include "creris/credit_risk/hash/metric_hash.hpp"
 #include "creris/credit_risk/hash/monte_carlo_generator_configuration_hash.hpp"

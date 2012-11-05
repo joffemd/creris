@@ -26,6 +26,7 @@
 #include "creris/credit_risk/domain/fixed_time_series_configuration.hpp"
 #include "creris/credit_risk/domain/formula_generator_configuration.hpp"
 #include "creris/credit_risk/domain/generator_configuration.hpp"
+#include "creris/credit_risk/domain/generator_types.hpp"
 #include "creris/credit_risk/domain/identity_generator_configuration.hpp"
 #include "creris/credit_risk/domain/metric.hpp"
 #include "creris/credit_risk/domain/monte_carlo_generator_configuration.hpp"

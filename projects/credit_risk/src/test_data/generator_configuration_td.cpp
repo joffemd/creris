@@ -18,19 +18,18 @@
  * MA 02110-1301, USA.
  *
  */
-#include <sstream>
 #include "creris/credit_risk/test_data/formula_generator_configuration_td.hpp"
 #include "creris/credit_risk/test_data/generator_configuration_td.hpp"
+#include "creris/credit_risk/test_data/generator_types_td.hpp"
 #include "creris/credit_risk/test_data/identity_generator_configuration_td.hpp"
 #include "creris/credit_risk/test_data/monte_carlo_generator_configuration_td.hpp"
 #include "creris/credit_risk/test_data/versioned_key_td.hpp"
 
 namespace {
 
-std::string create_std_string(const unsigned int position) {
-    std::ostringstream s;
-    s << "a_string_" << position;
-    return s.str();
+creris::credit_risk::generator_types
+create_creris_credit_risk_generator_types(const unsigned int position) {
+    return creris::credit_risk::generator_types_generator::create(position);
 }
 
 creris::credit_risk::versioned_key
@@ -46,7 +45,7 @@ namespace credit_risk {
 
 void generator_configuration_generator::
 populate(const unsigned int position, result_type& v) {
-    v.generator_type(create_std_string(position + 0));
+    v.generator_type(create_creris_credit_risk_generator_types(position + 0));
     v.versioned_key(create_creris_credit_risk_versioned_key(position + 1));
 }
 

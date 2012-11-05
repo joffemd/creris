@@ -20,13 +20,14 @@
  */
 #include <ostream>
 #include "creris/credit_risk/domain/generator_configuration.hpp"
+#include "creris/credit_risk/io/generator_types_io.hpp"
 #include "creris/credit_risk/io/versioned_key_io.hpp"
 
 namespace creris {
 namespace credit_risk {
 
 generator_configuration::generator_configuration(
-    const std::string& generator_type,
+    const creris::credit_risk::generator_types& generator_type,
     const creris::credit_risk::versioned_key& versioned_key)
     : generator_type_(generator_type),
       versioned_key_(versioned_key) { }
@@ -34,7 +35,7 @@ generator_configuration::generator_configuration(
 void generator_configuration::to_stream(std::ostream& s) const {
     s << " { "
       << "\"__type__\": " << "\"generator_configuration\"" << ", "
-      << "\"generator_type\": " << "\"" << generator_type_ << "\"" << ", "
+      << "\"generator_type\": " << generator_type_ << ", "
       << "\"versioned_key\": " << versioned_key_
       << " }";
 }

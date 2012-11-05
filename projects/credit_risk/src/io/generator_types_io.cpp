@@ -19,16 +19,34 @@
  *
  */
 #include <ostream>
-#include "creris/credit_risk/io/generator_configuration_io.hpp"
+#include <stdexcept>
 #include "creris/credit_risk/io/generator_types_io.hpp"
-#include "creris/credit_risk/io/versioned_key_io.hpp"
 
 namespace creris {
 namespace credit_risk {
 
-std::ostream& operator<<(std::ostream& s, const generator_configuration& v) {
-    v.to_stream(s);
-    return(s);
+std::ostream& operator<<(std::ostream& s, const generator_types& v) {
+    s << "{ " << "\"__type__\": " << "\"generator_types\", " << "\"value\": ";
+
+    std::string attr;
+    switch (v) {
+    case generator_types::invalid:
+        attr = "\"invalid\"";
+        break;
+    case generator_types::monte_carlo:
+        attr = "\"monte_carlo\"";
+        break;
+    case generator_types::formula:
+        attr = "\"formula\"";
+        break;
+    case generator_types::identity:
+        attr = "\"identity\"";
+        break;
+    default:
+        throw std::invalid_argument("Invalid value for generator_types");
+    }
+    s << attr << " }";
+    return s;
 }
 
 } }

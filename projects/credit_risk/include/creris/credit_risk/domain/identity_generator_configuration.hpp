@@ -41,7 +41,7 @@ public:
 
 public:
     identity_generator_configuration(
-        const std::string& generator_type,
+        const creris::credit_risk::generator_types& generator_type,
         const creris::credit_risk::versioned_key& versioned_key);
 
 private:

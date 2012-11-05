@@ -44,7 +44,7 @@ public:
 
 public:
     formula_generator_configuration(
-        const std::string& generator_type,
+        const creris::credit_risk::generator_types& generator_type,
         const creris::credit_risk::versioned_key& versioned_key,
         const std::string& formula,
         const double initial_value);

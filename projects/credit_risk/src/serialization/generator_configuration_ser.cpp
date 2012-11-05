@@ -27,9 +27,9 @@
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
-#include <boost/serialization/string.hpp>
 #include "creris/credit_risk/serialization/formula_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/generator_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/generator_types_ser.hpp"
 #include "creris/credit_risk/serialization/identity_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/monte_carlo_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/versioned_key_ser.hpp"

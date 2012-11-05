@@ -18,17 +18,23 @@
  * MA 02110-1301, USA.
  *
  */
-#include <ostream>
-#include "creris/credit_risk/io/generator_configuration_io.hpp"
-#include "creris/credit_risk/io/generator_types_io.hpp"
-#include "creris/credit_risk/io/versioned_key_io.hpp"
+#ifndef CRERIS_CREDIT_RISK_DOMAIN_GENERATOR_TYPES_HPP
+#define CRERIS_CREDIT_RISK_DOMAIN_GENERATOR_TYPES_HPP
+
+#if defined(_MSC_VER) && (_MSC_VER >= 1200)
+#pragma once
+#endif
 
 namespace creris {
 namespace credit_risk {
 
-std::ostream& operator<<(std::ostream& s, const generator_configuration& v) {
-    v.to_stream(s);
-    return(s);
-}
+enum class generator_types : unsigned int {
+    invalid = 0, ///< Represents an uninitialised enum
+    monte_carlo = 1,
+    formula = 2,
+    identity = 3
+};
 
 } }
+
+#endif

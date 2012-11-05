@@ -19,6 +19,7 @@
  *
  */
 #include "creris/credit_risk/hash/generator_configuration_hash.hpp"
+#include "creris/credit_risk/hash/generator_types_hash.hpp"
 #include "creris/credit_risk/hash/versioned_key_hash.hpp"
 
 namespace {
