@@ -18,7 +18,6 @@
  * MA 02110-1301, USA.
  *
  */
-#include "creris/credit_risk/hash/distribution_types_hash.hpp"
 #include "creris/credit_risk/hash/generator_configuration_hash.hpp"
 #include "creris/credit_risk/hash/monte_carlo_generator_configuration_hash.hpp"
 
@@ -36,15 +35,10 @@ inline void combine(std::size_t& seed, const HashableType& value)
 namespace creris {
 namespace credit_risk {
 
-std::size_t monte_carlo_generator_configuration_hasher::hash(const monte_carlo_generator_configuration& v) {
+std::size_t monte_carlo_generator_configuration_hasher::hash(const monte_carlo_generator_configuration&v) {
     std::size_t seed(0);
 
     combine(seed, dynamic_cast<const creris::credit_risk::generator_configuration&>(v));
-
-    combine(seed, v.mean());
-    combine(seed, v.standard_deviation());
-    combine(seed, v.distribution_type());
-
     return seed;
 }
 

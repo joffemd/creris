@@ -20,8 +20,7 @@
  */
 #include <sstream>
 #include "creris/credit_risk/test_data/metric_td.hpp"
-#include "creris/credit_risk/test_data/time_series_id_td.hpp"
-#include "creris/credit_risk/test_data/versioned_key_td.hpp"
+#include "creris/credit_risk/test_data/time_series_configuration_unversioned_key_td.hpp"
 
 namespace {
 
@@ -31,18 +30,13 @@ std::string create_std_string(const unsigned int position) {
     return s.str();
 }
 
-creris::credit_risk::time_series_id
-create_creris_credit_risk_time_series_id(const unsigned int position) {
-    return creris::credit_risk::time_series_id_generator::create(position);
+creris::credit_risk::time_series_configuration_unversioned_key
+create_creris_credit_risk_time_series_configuration_unversioned_key(const unsigned int position) {
+    return creris::credit_risk::time_series_configuration_unversioned_key_generator::create(position);
 }
 
 double create_double(const unsigned int position) {
     return static_cast<double>(position);
-}
-
-creris::credit_risk::versioned_key
-create_creris_credit_risk_versioned_key(const unsigned int position) {
-    return creris::credit_risk::versioned_key_generator::create(position);
 }
 
 }
@@ -55,10 +49,9 @@ metric_generator::metric_generator() : position_(0) { }
 void metric_generator::
 populate(const unsigned int position, result_type& v) {
     v.name(create_std_string(position + 0));
-    v.time_series_id(create_creris_credit_risk_time_series_id(position + 1));
+    v.time_series_key(create_creris_credit_risk_time_series_configuration_unversioned_key(position + 1));
     v.threshold_level(create_double(position + 2));
     v.relation_to_threshold(create_std_string(position + 3));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 4));
 }
 
 metric_generator::result_type

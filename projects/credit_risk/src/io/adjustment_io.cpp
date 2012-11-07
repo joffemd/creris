@@ -19,13 +19,28 @@
  *
  */
 #include <ostream>
+#include "creris/credit_risk/io/adjustment_constraint_io.hpp"
 #include "creris/credit_risk/io/adjustment_io.hpp"
-#include "creris/credit_risk/io/time_series_id_io.hpp"
-#include "creris/credit_risk/io/versioned_key_io.hpp"
+#include "creris/credit_risk/io/adjustment_predicate_io.hpp"
+#include "creris/credit_risk/io/time_series_unversioned_key_io.hpp"
 
 namespace std {
 
-inline std::ostream& operator<<(std::ostream& s, const std::vector<creris::credit_risk::time_series_id>& v) {
+inline std::ostream& operator<<(std::ostream& s, const std::vector<creris::credit_risk::adjustment_constraint>& v) {
+    s << "[ ";
+    for (auto i(v.begin()); i != v.end(); ++i) {
+        if (i != v.begin()) s << ", ";
+        s << *i;
+    }
+    s << "] ";
+    return s;
+}
+
+}
+
+namespace std {
+
+inline std::ostream& operator<<(std::ostream& s, const std::vector<creris::credit_risk::time_series_unversioned_key>& v) {
     s << "[ ";
     for (auto i(v.begin()); i != v.end(); ++i) {
         if (i != v.begin()) s << ", ";
@@ -44,15 +59,10 @@ std::ostream& operator<<(std::ostream& s, const adjustment& v) {
     s << " { "
       << "\"__type__\": " << "\"adjustment\"" << ", "
       << "\"name\": " << "\"" << v.name() << "\"" << ", "
-      << "\"expression\": " << "\"" << v.expression() << "\"" << ", "
-      << "\"relation_to_threshold\": " << "\"" << v.relation_to_threshold() << "\"" << ", "
-      << "\"threshold\": " << v.threshold() << ", "
+      << "\"predicate\": " << v.predicate() << ", "
       << "\"series_to_adjust\": " << v.series_to_adjust() << ", "
-      << "\"related_series\": " << v.related_series() << ", "
-      << "\"constraint_operator\": " << "\"" << v.constraint_operator() << "\"" << ", "
-      << "\"constrain_amount\": " << v.constrain_amount() << ", "
-      << "\"dependent_series\": " << v.dependent_series() << ", "
-      << "\"versioned_key\": " << v.versioned_key()
+      << "\"adjustment_constraints\": " << v.adjustment_constraints() << ", "
+      << "\"dependent_series\": " << v.dependent_series()
       << " }";
     return(s);
 }

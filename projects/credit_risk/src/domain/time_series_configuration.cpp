@@ -20,21 +20,45 @@
  */
 #include <ostream>
 #include "creris/credit_risk/domain/time_series_configuration.hpp"
-#include "creris/credit_risk/io/versioned_key_io.hpp"
+#include "creris/credit_risk/io/generator_configuration_io.hpp"
+#include "creris/credit_risk/io/time_series_configuration_versioned_key_io.hpp"
+
+namespace boost {
+
+inline std::ostream& operator<<(std::ostream& s, const boost::shared_ptr<creris::credit_risk::generator_configuration>& v) {
+    s << "{ " << "\"__type__\": " << "\"boost::shared_ptr\"" << ", "
+      << "\"memory\": " << "\"" << static_cast<void*>(v.get()) << "\"" << ", ";
+
+    if (v)
+        s << "\"data\": " << *v;
+    else
+        s << "\"data\": ""\"<empty>\"";
+    s<< " }";
+    return s;
+}
+
+}
+
+namespace boost {
+
+inline bool operator==(const boost::shared_ptr<creris::credit_risk::generator_configuration>& lhs,
+const boost::shared_ptr<creris::credit_risk::generator_configuration>& rhs) {
+    return lhs && rhs && (*lhs == *rhs);
+}
+
+}
 
 namespace creris {
 namespace credit_risk {
 
 time_series_configuration::time_series_configuration(
-    const std::string& time_series_configuration_id,
     const std::string& name,
     const std::string& description,
     const std::string& time_axis_label,
     const std::string& value_axis_label,
-    const std::string& generator_configuration,
-    const creris::credit_risk::versioned_key& versioned_key)
-    : time_series_configuration_id_(time_series_configuration_id),
-      name_(name),
+    const boost::shared_ptr<creris::credit_risk::generator_configuration>& generator_configuration,
+    const creris::credit_risk::time_series_configuration_versioned_key& versioned_key)
+    : name_(name),
       description_(description),
       time_axis_label_(time_axis_label),
       value_axis_label_(value_axis_label),
@@ -44,19 +68,17 @@ time_series_configuration::time_series_configuration(
 void time_series_configuration::to_stream(std::ostream& s) const {
     s << " { "
       << "\"__type__\": " << "\"time_series_configuration\"" << ", "
-      << "\"time_series_configuration_id\": " << "\"" << time_series_configuration_id_ << "\"" << ", "
       << "\"name\": " << "\"" << name_ << "\"" << ", "
       << "\"description\": " << "\"" << description_ << "\"" << ", "
       << "\"time_axis_label\": " << "\"" << time_axis_label_ << "\"" << ", "
       << "\"value_axis_label\": " << "\"" << value_axis_label_ << "\"" << ", "
-      << "\"generator_configuration\": " << "\"" << generator_configuration_ << "\"" << ", "
+      << "\"generator_configuration\": " << generator_configuration_ << ", "
       << "\"versioned_key\": " << versioned_key_
       << " }";
 }
 
 void time_series_configuration::swap(time_series_configuration& other) noexcept {
     using std::swap;
-    swap(time_series_configuration_id_, other.time_series_configuration_id_);
     swap(name_, other.name_);
     swap(description_, other.description_);
     swap(time_axis_label_, other.time_axis_label_);
@@ -66,8 +88,7 @@ void time_series_configuration::swap(time_series_configuration& other) noexcept 
 }
 
 bool time_series_configuration::compare(const time_series_configuration& rhs) const {
-    return time_series_configuration_id_ == rhs.time_series_configuration_id_ &&
-        name_ == rhs.name_ &&
+    return name_ == rhs.name_ &&
         description_ == rhs.description_ &&
         time_axis_label_ == rhs.time_axis_label_ &&
         value_axis_label_ == rhs.value_axis_label_ &&

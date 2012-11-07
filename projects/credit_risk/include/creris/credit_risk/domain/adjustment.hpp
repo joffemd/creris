@@ -28,34 +28,34 @@
 #include <algorithm>
 #include <string>
 #include <vector>
-#include "creris/credit_risk/domain/time_series_id.hpp"
-#include "creris/credit_risk/domain/versioned_key.hpp"
+#include "creris/credit_risk/domain/adjustment_constraint.hpp"
+#include "creris/credit_risk/domain/adjustment_predicate.hpp"
+#include "creris/credit_risk/domain/time_series_unversioned_key.hpp"
 #include "creris/credit_risk/serialization/adjustment_fwd_ser.hpp"
 
 namespace creris {
 namespace credit_risk {
 
+/*
+ * @brief Formulas and conditions to be applied to time series values after calculations.
+ *
+ * For example, this could be used to adjust fiscal series, allowing the
+ * limiting of annual surpluses or deficits.
+ */
 class adjustment final {
 public:
+    adjustment() = default;
     adjustment(const adjustment&) = default;
     adjustment(adjustment&&) = default;
     ~adjustment() = default;
 
 public:
-    adjustment();
-
-public:
     adjustment(
         const std::string& name,
-        const std::string& expression,
-        const std::string& relation_to_threshold,
-        const double threshold,
-        const creris::credit_risk::time_series_id& series_to_adjust,
-        const std::vector<creris::credit_risk::time_series_id>& related_series,
-        const std::string& constraint_operator,
-        const double constrain_amount,
-        const std::vector<creris::credit_risk::time_series_id>& dependent_series,
-        const creris::credit_risk::versioned_key& versioned_key);
+        const creris::credit_risk::adjustment_predicate& predicate,
+        const creris::credit_risk::time_series_unversioned_key& series_to_adjust,
+        const std::vector<creris::credit_risk::adjustment_constraint>& adjustment_constraints,
+        const std::vector<creris::credit_risk::time_series_unversioned_key>& dependent_series);
 
 private:
     template<typename Archive>
@@ -65,6 +65,10 @@ private:
     friend void boost::serialization::load(Archive& ar, adjustment& v, unsigned int version);
 
 public:
+    /*
+     * @brief A text description of the adjustment.
+     */
+    /**@{*/
     std::string name() const {
         return name_;
     }
@@ -72,78 +76,63 @@ public:
     void name(const std::string& v) {
         name_ = v;
     }
+    /**@}*/
 
-    std::string expression() const {
-        return expression_;
+    /*
+     * @brief Condition to evaluate that determines whether the adjustment is applied.
+     */
+    /**@{*/
+    creris::credit_risk::adjustment_predicate predicate() const {
+        return predicate_;
     }
 
-    void expression(const std::string& v) {
-        expression_ = v;
+    void predicate(const creris::credit_risk::adjustment_predicate& v) {
+        predicate_ = v;
     }
+    /**@}*/
 
-    std::string relation_to_threshold() const {
-        return relation_to_threshold_;
-    }
-
-    void relation_to_threshold(const std::string& v) {
-        relation_to_threshold_ = v;
-    }
-
-    double threshold() const {
-        return threshold_;
-    }
-
-    void threshold(const double v) {
-        threshold_ = v;
-    }
-
-    creris::credit_risk::time_series_id series_to_adjust() const {
+    /*
+     * @brief Series to adjust so that the predicate matches the threshold.
+     */
+    /**@{*/
+    creris::credit_risk::time_series_unversioned_key series_to_adjust() const {
         return series_to_adjust_;
     }
 
-    void series_to_adjust(const creris::credit_risk::time_series_id& v) {
+    void series_to_adjust(const creris::credit_risk::time_series_unversioned_key& v) {
         series_to_adjust_ = v;
     }
+    /**@}*/
 
-    std::vector<creris::credit_risk::time_series_id> related_series() const {
-        return related_series_;
+    /*
+     * @brief An additional list of series to change in order to be consistent with the adjusted value.
+     *
+     * All series in the list will be adjusted pro rata without constraint.
+     */
+    /**@{*/
+    std::vector<creris::credit_risk::adjustment_constraint> adjustment_constraints() const {
+        return adjustment_constraints_;
     }
 
-    void related_series(const std::vector<creris::credit_risk::time_series_id>& v) {
-        related_series_ = v;
+    void adjustment_constraints(const std::vector<creris::credit_risk::adjustment_constraint>& v) {
+        adjustment_constraints_ = v;
     }
+    /**@}*/
 
-    std::string constraint_operator() const {
-        return constraint_operator_;
-    }
-
-    void constraint_operator(const std::string& v) {
-        constraint_operator_ = v;
-    }
-
-    double constrain_amount() const {
-        return constrain_amount_;
-    }
-
-    void constrain_amount(const double v) {
-        constrain_amount_ = v;
-    }
-
-    std::vector<creris::credit_risk::time_series_id> dependent_series() const {
+    /*
+     * @brief Other series whose values are dependent on series being adjusted.
+     *
+     * Series listed in this column will be recalculated after the adjustments have been applied.
+     */
+    /**@{*/
+    std::vector<creris::credit_risk::time_series_unversioned_key> dependent_series() const {
         return dependent_series_;
     }
 
-    void dependent_series(const std::vector<creris::credit_risk::time_series_id>& v) {
+    void dependent_series(const std::vector<creris::credit_risk::time_series_unversioned_key>& v) {
         dependent_series_ = v;
     }
-
-    creris::credit_risk::versioned_key versioned_key() const {
-        return versioned_key_;
-    }
-
-    void versioned_key(const creris::credit_risk::versioned_key& v) {
-        versioned_key_ = v;
-    }
+    /**@}*/
 
 public:
     bool operator==(const adjustment& rhs) const;
@@ -157,15 +146,10 @@ public:
 
 private:
     std::string name_;
-    std::string expression_;
-    std::string relation_to_threshold_;
-    double threshold_;
-    creris::credit_risk::time_series_id series_to_adjust_;
-    std::vector<creris::credit_risk::time_series_id> related_series_;
-    std::string constraint_operator_;
-    double constrain_amount_;
-    std::vector<creris::credit_risk::time_series_id> dependent_series_;
-    creris::credit_risk::versioned_key versioned_key_;
+    creris::credit_risk::adjustment_predicate predicate_;
+    creris::credit_risk::time_series_unversioned_key series_to_adjust_;
+    std::vector<creris::credit_risk::adjustment_constraint> adjustment_constraints_;
+    std::vector<creris::credit_risk::time_series_unversioned_key> dependent_series_;
 };
 
 } }

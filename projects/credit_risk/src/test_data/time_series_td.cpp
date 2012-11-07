@@ -19,16 +19,12 @@
  *
  */
 #include <sstream>
-#include "creris/credit_risk/test_data/time_series_id_td.hpp"
+#include "creris/credit_risk/test_data/time_point_td.hpp"
+#include "creris/credit_risk/test_data/time_series_configuration_versioned_key_td.hpp"
 #include "creris/credit_risk/test_data/time_series_td.hpp"
-#include "creris/credit_risk/test_data/versioned_key_td.hpp"
+#include "creris/credit_risk/test_data/time_series_versioned_key_td.hpp"
 
 namespace {
-
-creris::credit_risk::time_series_id
-create_creris_credit_risk_time_series_id(const unsigned int position) {
-    return creris::credit_risk::time_series_id_generator::create(position);
-}
 
 std::string create_std_string(const unsigned int position) {
     std::ostringstream s;
@@ -36,9 +32,27 @@ std::string create_std_string(const unsigned int position) {
     return s.str();
 }
 
-creris::credit_risk::versioned_key
-create_creris_credit_risk_versioned_key(const unsigned int position) {
-    return creris::credit_risk::versioned_key_generator::create(position);
+creris::credit_risk::time_series_configuration_versioned_key
+create_creris_credit_risk_time_series_configuration_versioned_key(const unsigned int position) {
+    return creris::credit_risk::time_series_configuration_versioned_key_generator::create(position);
+}
+
+creris::credit_risk::time_point
+create_creris_credit_risk_time_point(const unsigned int position) {
+    return creris::credit_risk::time_point_generator::create(position);
+}
+
+std::vector<creris::credit_risk::time_point> create_std_vector_creris_credit_risk_time_point(unsigned int position) {
+    std::vector<creris::credit_risk::time_point> r;
+    for (unsigned int i(0); i < 10; ++i) {
+        r.push_back(create_creris_credit_risk_time_point(position + i));
+    }
+    return r;
+}
+
+creris::credit_risk::time_series_versioned_key
+create_creris_credit_risk_time_series_versioned_key(const unsigned int position) {
+    return creris::credit_risk::time_series_versioned_key_generator::create(position);
 }
 
 }
@@ -50,10 +64,10 @@ time_series_generator::time_series_generator() : position_(0) { }
 
 void time_series_generator::
 populate(const unsigned int position, result_type& v) {
-    v.id(create_creris_credit_risk_time_series_id(position + 0));
-    v.name(create_std_string(position + 1));
-    v.data(create_std_string(position + 2));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 3));
+    v.name(create_std_string(position + 0));
+    v.time_series_configuration(create_creris_credit_risk_time_series_configuration_versioned_key(position + 1));
+    v.points(create_std_vector_creris_credit_risk_time_point(position + 2));
+    v.versioned_key(create_creris_credit_risk_time_series_versioned_key(position + 3));
 }
 
 time_series_generator::result_type

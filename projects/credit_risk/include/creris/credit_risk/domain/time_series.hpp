@@ -27,8 +27,10 @@
 
 #include <algorithm>
 #include <string>
-#include "creris/credit_risk/domain/time_series_id.hpp"
-#include "creris/credit_risk/domain/versioned_key.hpp"
+#include <vector>
+#include "creris/credit_risk/domain/time_point.hpp"
+#include "creris/credit_risk/domain/time_series_configuration_versioned_key.hpp"
+#include "creris/credit_risk/domain/time_series_versioned_key.hpp"
 #include "creris/credit_risk/serialization/time_series_fwd_ser.hpp"
 
 namespace creris {
@@ -43,10 +45,10 @@ public:
 
 public:
     time_series(
-        const creris::credit_risk::time_series_id& id,
         const std::string& name,
-        const std::string& data,
-        const creris::credit_risk::versioned_key& versioned_key);
+        const creris::credit_risk::time_series_configuration_versioned_key& time_series_configuration,
+        const std::vector<creris::credit_risk::time_point>& points,
+        const creris::credit_risk::time_series_versioned_key& versioned_key);
 
 private:
     template<typename Archive>
@@ -56,14 +58,10 @@ private:
     friend void boost::serialization::load(Archive& ar, time_series& v, unsigned int version);
 
 public:
-    creris::credit_risk::time_series_id id() const {
-        return id_;
-    }
-
-    void id(const creris::credit_risk::time_series_id& v) {
-        id_ = v;
-    }
-
+    /*
+     * @brief Name for this time series
+     */
+    /**@{*/
     std::string name() const {
         return name_;
     }
@@ -71,25 +69,39 @@ public:
     void name(const std::string& v) {
         name_ = v;
     }
+    /**@}*/
+
+    /*
+     * @brief Configuration to which this type of time series belongs to.
+     */
+    /**@{*/
+    creris::credit_risk::time_series_configuration_versioned_key time_series_configuration() const {
+        return time_series_configuration_;
+    }
+
+    void time_series_configuration(const creris::credit_risk::time_series_configuration_versioned_key& v) {
+        time_series_configuration_ = v;
+    }
+    /**@}*/
 
     /*
      * @brief FIXME: boost::dense_series<double>, still not supported by Dogen at this point
      */
     /**@{*/
-    std::string data() const {
-        return data_;
+    std::vector<creris::credit_risk::time_point> points() const {
+        return points_;
     }
 
-    void data(const std::string& v) {
-        data_ = v;
+    void points(const std::vector<creris::credit_risk::time_point>& v) {
+        points_ = v;
     }
     /**@}*/
 
-    creris::credit_risk::versioned_key versioned_key() const {
+    creris::credit_risk::time_series_versioned_key versioned_key() const {
         return versioned_key_;
     }
 
-    void versioned_key(const creris::credit_risk::versioned_key& v) {
+    void versioned_key(const creris::credit_risk::time_series_versioned_key& v) {
         versioned_key_ = v;
     }
 
@@ -104,10 +116,10 @@ public:
     time_series& operator=(time_series other);
 
 private:
-    creris::credit_risk::time_series_id id_;
     std::string name_;
-    std::string data_;
-    creris::credit_risk::versioned_key versioned_key_;
+    creris::credit_risk::time_series_configuration_versioned_key time_series_configuration_;
+    std::vector<creris::credit_risk::time_point> points_;
+    creris::credit_risk::time_series_versioned_key versioned_key_;
 };
 
 } }

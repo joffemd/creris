@@ -29,8 +29,8 @@
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/vector.hpp>
 #include "creris/credit_risk/serialization/ratings_map_ser.hpp"
-#include "creris/credit_risk/serialization/time_series_id_ser.hpp"
-#include "creris/credit_risk/serialization/versioned_key_ser.hpp"
+#include "creris/credit_risk/serialization/ratings_map_versioned_key_ser.hpp"
+#include "creris/credit_risk/serialization/time_series_ser.hpp"
 
 #ifdef __linux__
 #include "eos/portable_iarchive.hpp"
@@ -57,8 +57,6 @@ void load(Archive& ar,
 }
 
 } }
-
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::ratings_map)
 
 namespace boost {
 namespace serialization {

@@ -41,8 +41,8 @@ public:
 
 public:
     identity_generator_configuration(
-        const creris::credit_risk::generator_types& generator_type,
-        const creris::credit_risk::versioned_key& versioned_key);
+        const std::string& name,
+        const std::string& description);
 
 private:
     template<typename Archive>

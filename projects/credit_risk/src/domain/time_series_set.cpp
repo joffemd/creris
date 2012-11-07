@@ -23,21 +23,16 @@
 namespace creris {
 namespace credit_risk {
 
-time_series_set::time_series_set(
-    const std::unordered_map<std::string, creris::credit_risk::time_series_id>& series,
-    const creris::credit_risk::versioned_key& versioned_key)
-    : series_(series),
-      versioned_key_(versioned_key) { }
+time_series_set::time_series_set(const std::unordered_map<creris::credit_risk::time_series_configuration_unversioned_key, creris::credit_risk::time_series>& series)
+    : series_(series) { }
 
 void time_series_set::swap(time_series_set& other) noexcept {
     using std::swap;
     swap(series_, other.series_);
-    swap(versioned_key_, other.versioned_key_);
 }
 
 bool time_series_set::operator==(const time_series_set& rhs) const {
-    return series_ == rhs.series_ &&
-        versioned_key_ == rhs.versioned_key_;
+    return series_ == rhs.series_;
 }
 
 time_series_set& time_series_set::operator=(time_series_set other) {

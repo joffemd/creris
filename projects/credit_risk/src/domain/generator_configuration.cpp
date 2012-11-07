@@ -20,35 +20,33 @@
  */
 #include <ostream>
 #include "creris/credit_risk/domain/generator_configuration.hpp"
-#include "creris/credit_risk/io/generator_types_io.hpp"
-#include "creris/credit_risk/io/versioned_key_io.hpp"
 
 namespace creris {
 namespace credit_risk {
 
 generator_configuration::generator_configuration(
-    const creris::credit_risk::generator_types& generator_type,
-    const creris::credit_risk::versioned_key& versioned_key)
-    : generator_type_(generator_type),
-      versioned_key_(versioned_key) { }
+    const std::string& name,
+    const std::string& description)
+    : name_(name),
+      description_(description) { }
 
 void generator_configuration::to_stream(std::ostream& s) const {
     s << " { "
       << "\"__type__\": " << "\"generator_configuration\"" << ", "
-      << "\"generator_type\": " << generator_type_ << ", "
-      << "\"versioned_key\": " << versioned_key_
+      << "\"name\": " << "\"" << name_ << "\"" << ", "
+      << "\"description\": " << "\"" << description_ << "\""
       << " }";
 }
 
 void generator_configuration::swap(generator_configuration& other) noexcept {
     using std::swap;
-    swap(generator_type_, other.generator_type_);
-    swap(versioned_key_, other.versioned_key_);
+    swap(name_, other.name_);
+    swap(description_, other.description_);
 }
 
 bool generator_configuration::compare(const generator_configuration& rhs) const {
-    return generator_type_ == rhs.generator_type_ &&
-        versioned_key_ == rhs.versioned_key_;
+    return name_ == rhs.name_ &&
+        description_ == rhs.description_;
 }
 
 } }

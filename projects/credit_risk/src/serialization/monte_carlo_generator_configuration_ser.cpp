@@ -27,9 +27,11 @@
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
-#include "creris/credit_risk/serialization/distribution_types_ser.hpp"
+#include "creris/credit_risk/serialization/cauchy_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/monte_carlo_generator_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/normal_generator_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/uniform_generator_configuration_ser.hpp"
 
 #ifdef __linux__
 #include "eos/portable_iarchive.hpp"
@@ -48,10 +50,6 @@ void save(Archive& ar,
     const creris::credit_risk::monte_carlo_generator_configuration& v,
     const unsigned int /*version*/) {
     ar << make_nvp("generator_configuration", base_object<creris::credit_risk::generator_configuration>(v));
-
-    ar << make_nvp("mean", v.mean_);
-    ar << make_nvp("standard_deviation", v.standard_deviation_);
-    ar << make_nvp("distribution_type", v.distribution_type_);
 }
 
 template<typename Archive>
@@ -59,15 +57,9 @@ void load(Archive& ar,
     creris::credit_risk::monte_carlo_generator_configuration& v,
     const unsigned int /*version*/) {
     ar >> make_nvp("generator_configuration", base_object<creris::credit_risk::generator_configuration>(v));
-
-    ar >> make_nvp("mean", v.mean_);
-    ar >> make_nvp("standard_deviation", v.standard_deviation_);
-    ar >> make_nvp("distribution_type", v.distribution_type_);
 }
 
 } }
-
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::monte_carlo_generator_configuration)
 
 namespace boost {
 namespace serialization {

@@ -25,13 +25,10 @@
 #pragma once
 #endif
 
-#include <boost/serialization/export.hpp>
 #include <boost/serialization/split_free.hpp>
 #include "creris/credit_risk/domain/ratings_map.hpp"
 
 BOOST_SERIALIZATION_SPLIT_FREE(creris::credit_risk::ratings_map)
-BOOST_CLASS_EXPORT_KEY(creris::credit_risk::ratings_map)
-
 namespace boost {
 namespace serialization {
 

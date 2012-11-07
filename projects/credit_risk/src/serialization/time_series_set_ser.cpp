@@ -27,10 +27,9 @@
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
-#include <boost/serialization/string.hpp>
-#include "creris/credit_risk/serialization/time_series_id_ser.hpp"
+#include "creris/credit_risk/serialization/time_series_configuration_unversioned_key_ser.hpp"
+#include "creris/credit_risk/serialization/time_series_ser.hpp"
 #include "creris/credit_risk/serialization/time_series_set_ser.hpp"
-#include "creris/credit_risk/serialization/versioned_key_ser.hpp"
 #include "creris/utility/serialization/unordered_map.hpp"
 
 #ifdef __linux__
@@ -46,7 +45,6 @@ void save(Archive& ar,
     const creris::credit_risk::time_series_set& v,
     const unsigned int /*version*/) {
     ar << make_nvp("series", v.series_);
-    ar << make_nvp("versioned_key", v.versioned_key_);
 }
 
 template<typename Archive>
@@ -54,12 +52,9 @@ void load(Archive& ar,
     creris::credit_risk::time_series_set& v,
     const unsigned int /*version*/) {
     ar >> make_nvp("series", v.series_);
-    ar >> make_nvp("versioned_key", v.versioned_key_);
 }
 
 } }
-
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::time_series_set)
 
 namespace boost {
 namespace serialization {

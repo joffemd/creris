@@ -25,7 +25,6 @@
 #pragma once
 #endif
 
-#include <boost/serialization/export.hpp>
 #include <boost/serialization/split_free.hpp>
 #include <boost/type_traits/is_virtual_base_of.hpp>
 #include "creris/credit_risk/domain/identity_generator_configuration.hpp"
@@ -41,8 +40,6 @@ is_virtual_base_of<
 }
 
 BOOST_SERIALIZATION_SPLIT_FREE(creris::credit_risk::identity_generator_configuration)
-BOOST_CLASS_EXPORT_KEY(creris::credit_risk::identity_generator_configuration)
-
 namespace boost {
 namespace serialization {
 

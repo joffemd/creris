@@ -65,8 +65,6 @@ void load(Archive& ar,
 
 } }
 
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::formula_generator_configuration)
-
 namespace boost {
 namespace serialization {
 

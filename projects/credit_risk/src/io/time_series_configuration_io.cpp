@@ -19,8 +19,9 @@
  *
  */
 #include <ostream>
+#include "creris/credit_risk/io/generator_configuration_io.hpp"
 #include "creris/credit_risk/io/time_series_configuration_io.hpp"
-#include "creris/credit_risk/io/versioned_key_io.hpp"
+#include "creris/credit_risk/io/time_series_configuration_versioned_key_io.hpp"
 
 namespace creris {
 namespace credit_risk {

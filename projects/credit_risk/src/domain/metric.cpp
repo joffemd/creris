@@ -28,31 +28,27 @@ metric::metric()
 
 metric::metric(
     const std::string& name,
-    const creris::credit_risk::time_series_id& time_series_id,
+    const creris::credit_risk::time_series_configuration_unversioned_key& time_series_key,
     const double threshold_level,
-    const std::string& relation_to_threshold,
-    const creris::credit_risk::versioned_key& versioned_key)
+    const std::string& relation_to_threshold)
     : name_(name),
-      time_series_id_(time_series_id),
+      time_series_key_(time_series_key),
       threshold_level_(threshold_level),
-      relation_to_threshold_(relation_to_threshold),
-      versioned_key_(versioned_key) { }
+      relation_to_threshold_(relation_to_threshold) { }
 
 void metric::swap(metric& other) noexcept {
     using std::swap;
     swap(name_, other.name_);
-    swap(time_series_id_, other.time_series_id_);
+    swap(time_series_key_, other.time_series_key_);
     swap(threshold_level_, other.threshold_level_);
     swap(relation_to_threshold_, other.relation_to_threshold_);
-    swap(versioned_key_, other.versioned_key_);
 }
 
 bool metric::operator==(const metric& rhs) const {
     return name_ == rhs.name_ &&
-        time_series_id_ == rhs.time_series_id_ &&
+        time_series_key_ == rhs.time_series_key_ &&
         threshold_level_ == rhs.threshold_level_ &&
-        relation_to_threshold_ == rhs.relation_to_threshold_ &&
-        versioned_key_ == rhs.versioned_key_;
+        relation_to_threshold_ == rhs.relation_to_threshold_;
 }
 
 metric& metric::operator=(metric other) {

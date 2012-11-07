@@ -19,27 +19,27 @@
  *
  */
 #include "creris/credit_risk/test_data/ratings_map_td.hpp"
-#include "creris/credit_risk/test_data/time_series_id_td.hpp"
-#include "creris/credit_risk/test_data/versioned_key_td.hpp"
+#include "creris/credit_risk/test_data/ratings_map_versioned_key_td.hpp"
+#include "creris/credit_risk/test_data/time_series_td.hpp"
 
 namespace {
 
-creris::credit_risk::time_series_id
-create_creris_credit_risk_time_series_id(const unsigned int position) {
-    return creris::credit_risk::time_series_id_generator::create(position);
+creris::credit_risk::time_series
+create_creris_credit_risk_time_series(const unsigned int position) {
+    return creris::credit_risk::time_series_generator::create(position);
 }
 
-std::vector<creris::credit_risk::time_series_id> create_std_vector_creris_credit_risk_time_series_id(unsigned int position) {
-    std::vector<creris::credit_risk::time_series_id> r;
+std::vector<creris::credit_risk::time_series> create_std_vector_creris_credit_risk_time_series(unsigned int position) {
+    std::vector<creris::credit_risk::time_series> r;
     for (unsigned int i(0); i < 10; ++i) {
-        r.push_back(create_creris_credit_risk_time_series_id(position + i));
+        r.push_back(create_creris_credit_risk_time_series(position + i));
     }
     return r;
 }
 
-creris::credit_risk::versioned_key
-create_creris_credit_risk_versioned_key(const unsigned int position) {
-    return creris::credit_risk::versioned_key_generator::create(position);
+creris::credit_risk::ratings_map_versioned_key
+create_creris_credit_risk_ratings_map_versioned_key(const unsigned int position) {
+    return creris::credit_risk::ratings_map_versioned_key_generator::create(position);
 }
 
 }
@@ -51,8 +51,8 @@ ratings_map_generator::ratings_map_generator() : position_(0) { }
 
 void ratings_map_generator::
 populate(const unsigned int position, result_type& v) {
-    v.series(create_std_vector_creris_credit_risk_time_series_id(position + 0));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 1));
+    v.series(create_std_vector_creris_credit_risk_time_series(position + 0));
+    v.versioned_key(create_creris_credit_risk_ratings_map_versioned_key(position + 1));
 }
 
 ratings_map_generator::result_type

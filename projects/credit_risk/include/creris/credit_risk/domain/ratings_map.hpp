@@ -27,13 +27,16 @@
 
 #include <algorithm>
 #include <vector>
-#include "creris/credit_risk/domain/time_series_id.hpp"
-#include "creris/credit_risk/domain/versioned_key.hpp"
+#include "creris/credit_risk/domain/ratings_map_versioned_key.hpp"
+#include "creris/credit_risk/domain/time_series.hpp"
 #include "creris/credit_risk/serialization/ratings_map_fwd_ser.hpp"
 
 namespace creris {
 namespace credit_risk {
 
+/*
+ * @brief Lookup table between annual default probabilites and ratings.
+ */
 class ratings_map final {
 public:
     ratings_map() = default;
@@ -43,8 +46,8 @@ public:
 
 public:
     ratings_map(
-        const std::vector<creris::credit_risk::time_series_id>& series,
-        const creris::credit_risk::versioned_key& versioned_key);
+        const std::vector<creris::credit_risk::time_series>& series,
+        const creris::credit_risk::ratings_map_versioned_key& versioned_key);
 
 private:
     template<typename Archive>
@@ -54,19 +57,19 @@ private:
     friend void boost::serialization::load(Archive& ar, ratings_map& v, unsigned int version);
 
 public:
-    std::vector<creris::credit_risk::time_series_id> series() const {
+    std::vector<creris::credit_risk::time_series> series() const {
         return series_;
     }
 
-    void series(const std::vector<creris::credit_risk::time_series_id>& v) {
+    void series(const std::vector<creris::credit_risk::time_series>& v) {
         series_ = v;
     }
 
-    creris::credit_risk::versioned_key versioned_key() const {
+    creris::credit_risk::ratings_map_versioned_key versioned_key() const {
         return versioned_key_;
     }
 
-    void versioned_key(const creris::credit_risk::versioned_key& v) {
+    void versioned_key(const creris::credit_risk::ratings_map_versioned_key& v) {
         versioned_key_ = v;
     }
 
@@ -81,8 +84,8 @@ public:
     ratings_map& operator=(ratings_map other);
 
 private:
-    std::vector<creris::credit_risk::time_series_id> series_;
-    creris::credit_risk::versioned_key versioned_key_;
+    std::vector<creris::credit_risk::time_series> series_;
+    creris::credit_risk::ratings_map_versioned_key versioned_key_;
 };
 
 } }

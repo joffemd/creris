@@ -26,15 +26,18 @@
 #endif
 
 #include <algorithm>
-#include <string>
 #include <unordered_map>
-#include "creris/credit_risk/domain/time_series_id.hpp"
-#include "creris/credit_risk/domain/versioned_key.hpp"
+#include "creris/credit_risk/domain/time_series.hpp"
+#include "creris/credit_risk/domain/time_series_configuration_unversioned_key.hpp"
+#include "creris/credit_risk/hash/time_series_configuration_unversioned_key_hash.hpp"
 #include "creris/credit_risk/serialization/time_series_set_fwd_ser.hpp"
 
 namespace creris {
 namespace credit_risk {
 
+/*
+ * @brief Provides a time series lookup by time series configuration.
+ */
 class time_series_set final {
 public:
     time_series_set() = default;
@@ -43,9 +46,7 @@ public:
     ~time_series_set() = default;
 
 public:
-    time_series_set(
-        const std::unordered_map<std::string, creris::credit_risk::time_series_id>& series,
-        const creris::credit_risk::versioned_key& versioned_key);
+    explicit time_series_set(const std::unordered_map<creris::credit_risk::time_series_configuration_unversioned_key, creris::credit_risk::time_series>& series);
 
 private:
     template<typename Archive>
@@ -55,21 +56,18 @@ private:
     friend void boost::serialization::load(Archive& ar, time_series_set& v, unsigned int version);
 
 public:
-    std::unordered_map<std::string, creris::credit_risk::time_series_id> series() const {
+    /*
+     * @brief Map of time series configuration keys to time series.
+     */
+    /**@{*/
+    std::unordered_map<creris::credit_risk::time_series_configuration_unversioned_key, creris::credit_risk::time_series> series() const {
         return series_;
     }
 
-    void series(const std::unordered_map<std::string, creris::credit_risk::time_series_id>& v) {
+    void series(const std::unordered_map<creris::credit_risk::time_series_configuration_unversioned_key, creris::credit_risk::time_series>& v) {
         series_ = v;
     }
-
-    creris::credit_risk::versioned_key versioned_key() const {
-        return versioned_key_;
-    }
-
-    void versioned_key(const creris::credit_risk::versioned_key& v) {
-        versioned_key_ = v;
-    }
+    /**@}*/
 
 public:
     bool operator==(const time_series_set& rhs) const;
@@ -82,8 +80,7 @@ public:
     time_series_set& operator=(time_series_set other);
 
 private:
-    std::unordered_map<std::string, creris::credit_risk::time_series_id> series_;
-    creris::credit_risk::versioned_key versioned_key_;
+    std::unordered_map<creris::credit_risk::time_series_configuration_unversioned_key, creris::credit_risk::time_series> series_;
 };
 
 } }

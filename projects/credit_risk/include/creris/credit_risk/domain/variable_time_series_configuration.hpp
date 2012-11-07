@@ -33,6 +33,9 @@
 namespace creris {
 namespace credit_risk {
 
+/*
+ * @brief Configuration for a time series without a defined number of points.
+ */
 class variable_time_series_configuration final : public creris::credit_risk::time_series_configuration {
 public:
     variable_time_series_configuration() = default;
@@ -41,13 +44,12 @@ public:
 
 public:
     variable_time_series_configuration(
-        const std::string& time_series_configuration_id,
         const std::string& name,
         const std::string& description,
         const std::string& time_axis_label,
         const std::string& value_axis_label,
-        const std::string& generator_configuration,
-        const creris::credit_risk::versioned_key& versioned_key);
+        const boost::shared_ptr<creris::credit_risk::generator_configuration>& generator_configuration,
+        const creris::credit_risk::time_series_configuration_versioned_key& versioned_key);
 
 private:
     template<typename Archive>

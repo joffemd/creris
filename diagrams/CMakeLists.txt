@@ -16,30 +16,35 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA.
-
-add_custom_target(generate_credit_risk
-    COMMAND ${CMAKE_BINARY_DIR}/../dogen/stage/bin/dogen_driver
-     -t ${CMAKE_SOURCE_DIR}/diagrams/credit_risk.dia
-     -x ${CMAKE_SOURCE_DIR}/projects/
-     --cpp-enable-facet domain
-     --cpp-enable-facet io
-     --cpp-enable-facet hash
-     --cpp-enable-facet serialization
-     --cpp-enable-facet test_data
-     -v -d -p creris
-    )
-
-add_custom_target(generate_protocol
-    COMMAND ${CMAKE_BINARY_DIR}/../dogen/stage/bin/dogen_driver
-     -t ${CMAKE_SOURCE_DIR}/diagrams/protocol.dia
-     -x ${CMAKE_SOURCE_DIR}/projects/
-     --cpp-enable-facet domain
-     --cpp-enable-facet io
-     --cpp-enable-facet hash
-     --cpp-enable-facet serialization
-     --cpp-enable-facet test_data
-     -v -d -p creris
-    )
-
 add_custom_target(codegen)
-add_dependencies(codegen generate_credit_risk generate_protocol)
+
+# get latest dogen
+set(dogen_dir "${CMAKE_BINARY_DIR}/../dogen/stage/bin/")
+execute_process(
+    COMMAND ls -t ${dogen_dir}
+    COMMAND grep dogen_driver-
+    COMMAND sort -r
+    COMMAND head -n1
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    OUTPUT_VARIABLE dogen_binary
+    RESULT_VARIABLE ret_var
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+message(STATUS "Using dogen: ${dogen_binary}")
+
+set(diagrams credit_risk wire batcher cache processor)
+foreach(diagram ${diagrams})
+    set(target generate_${diagram})
+    add_custom_target(${target}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMAND ${dogen_dir}/${dogen_binary}
+        -t ${CMAKE_SOURCE_DIR}/diagrams/${diagram}.dia
+        -x ${CMAKE_SOURCE_DIR}/projects/
+        --cpp-enable-facet domain
+        --cpp-enable-facet io
+        --cpp-enable-facet hash
+        --cpp-enable-facet serialization
+        --cpp-enable-facet test_data
+        -v -d -p creris)
+    add_dependencies(codegen target)
+endforeach()

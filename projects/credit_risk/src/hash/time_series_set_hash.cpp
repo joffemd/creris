@@ -18,9 +18,9 @@
  * MA 02110-1301, USA.
  *
  */
-#include "creris/credit_risk/hash/time_series_id_hash.hpp"
+#include "creris/credit_risk/hash/time_series_configuration_unversioned_key_hash.hpp"
+#include "creris/credit_risk/hash/time_series_hash.hpp"
 #include "creris/credit_risk/hash/time_series_set_hash.hpp"
-#include "creris/credit_risk/hash/versioned_key_hash.hpp"
 
 namespace {
 
@@ -31,7 +31,7 @@ inline void combine(std::size_t& seed, const HashableType& value)
     seed ^= hasher(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 }
 
-inline std::size_t hash_std_unordered_map_std_string_creris_credit_risk_time_series_id(const std::unordered_map<std::string, creris::credit_risk::time_series_id>& v){
+inline std::size_t hash_std_unordered_map_creris_credit_risk_time_series_configuration_unversioned_key_creris_credit_risk_time_series(const std::unordered_map<creris::credit_risk::time_series_configuration_unversioned_key, creris::credit_risk::time_series>& v){
     std::size_t seed(0);
     for (const auto i : v) {
         combine(seed, i.first);
@@ -45,12 +45,10 @@ inline std::size_t hash_std_unordered_map_std_string_creris_credit_risk_time_ser
 namespace creris {
 namespace credit_risk {
 
-std::size_t time_series_set_hasher::hash(const time_series_set& v) {
+std::size_t time_series_set_hasher::hash(const time_series_set&v) {
     std::size_t seed(0);
 
-    combine(seed, hash_std_unordered_map_std_string_creris_credit_risk_time_series_id(v.series()));
-    combine(seed, v.versioned_key());
-
+    combine(seed, hash_std_unordered_map_creris_credit_risk_time_series_configuration_unversioned_key_creris_credit_risk_time_series(v.series()));
     return seed;
 }
 

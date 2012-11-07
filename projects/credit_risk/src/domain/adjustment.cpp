@@ -23,57 +23,33 @@
 namespace creris {
 namespace credit_risk {
 
-adjustment::adjustment()
-    : threshold_(static_cast<double>(0)),
-      constrain_amount_(static_cast<double>(0)) { }
-
 adjustment::adjustment(
     const std::string& name,
-    const std::string& expression,
-    const std::string& relation_to_threshold,
-    const double threshold,
-    const creris::credit_risk::time_series_id& series_to_adjust,
-    const std::vector<creris::credit_risk::time_series_id>& related_series,
-    const std::string& constraint_operator,
-    const double constrain_amount,
-    const std::vector<creris::credit_risk::time_series_id>& dependent_series,
-    const creris::credit_risk::versioned_key& versioned_key)
+    const creris::credit_risk::adjustment_predicate& predicate,
+    const creris::credit_risk::time_series_unversioned_key& series_to_adjust,
+    const std::vector<creris::credit_risk::adjustment_constraint>& adjustment_constraints,
+    const std::vector<creris::credit_risk::time_series_unversioned_key>& dependent_series)
     : name_(name),
-      expression_(expression),
-      relation_to_threshold_(relation_to_threshold),
-      threshold_(threshold),
+      predicate_(predicate),
       series_to_adjust_(series_to_adjust),
-      related_series_(related_series),
-      constraint_operator_(constraint_operator),
-      constrain_amount_(constrain_amount),
-      dependent_series_(dependent_series),
-      versioned_key_(versioned_key) { }
+      adjustment_constraints_(adjustment_constraints),
+      dependent_series_(dependent_series) { }
 
 void adjustment::swap(adjustment& other) noexcept {
     using std::swap;
     swap(name_, other.name_);
-    swap(expression_, other.expression_);
-    swap(relation_to_threshold_, other.relation_to_threshold_);
-    swap(threshold_, other.threshold_);
+    swap(predicate_, other.predicate_);
     swap(series_to_adjust_, other.series_to_adjust_);
-    swap(related_series_, other.related_series_);
-    swap(constraint_operator_, other.constraint_operator_);
-    swap(constrain_amount_, other.constrain_amount_);
+    swap(adjustment_constraints_, other.adjustment_constraints_);
     swap(dependent_series_, other.dependent_series_);
-    swap(versioned_key_, other.versioned_key_);
 }
 
 bool adjustment::operator==(const adjustment& rhs) const {
     return name_ == rhs.name_ &&
-        expression_ == rhs.expression_ &&
-        relation_to_threshold_ == rhs.relation_to_threshold_ &&
-        threshold_ == rhs.threshold_ &&
+        predicate_ == rhs.predicate_ &&
         series_to_adjust_ == rhs.series_to_adjust_ &&
-        related_series_ == rhs.related_series_ &&
-        constraint_operator_ == rhs.constraint_operator_ &&
-        constrain_amount_ == rhs.constrain_amount_ &&
-        dependent_series_ == rhs.dependent_series_ &&
-        versioned_key_ == rhs.versioned_key_;
+        adjustment_constraints_ == rhs.adjustment_constraints_ &&
+        dependent_series_ == rhs.dependent_series_;
 }
 
 adjustment& adjustment::operator=(adjustment other) {

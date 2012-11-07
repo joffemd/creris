@@ -25,23 +25,12 @@
 #pragma once
 #endif
 
-#include <boost/serialization/export.hpp>
+#include <boost/serialization/assume_abstract.hpp>
 #include <boost/serialization/split_free.hpp>
-#include <boost/type_traits/is_virtual_base_of.hpp>
 #include "creris/credit_risk/domain/monte_carlo_generator_configuration.hpp"
 
-namespace boost {
-
-template<>struct
-is_virtual_base_of<
-    creris::credit_risk::generator_configuration,
-    creris::credit_risk::monte_carlo_generator_configuration
-> : public mpl::true_ {};
-
-}
-
 BOOST_SERIALIZATION_SPLIT_FREE(creris::credit_risk::monte_carlo_generator_configuration)
-BOOST_CLASS_EXPORT_KEY(creris::credit_risk::monte_carlo_generator_configuration)
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(creris::credit_risk::monte_carlo_generator_configuration)
 
 namespace boost {
 namespace serialization {

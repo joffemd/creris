@@ -18,52 +18,30 @@
  * MA 02110-1301, USA.
  *
  */
-#include "creris/credit_risk/test_data/distribution_types_td.hpp"
+#include "creris/credit_risk/test_data/cauchy_generator_configuration_td.hpp"
 #include "creris/credit_risk/test_data/generator_configuration_td.hpp"
 #include "creris/credit_risk/test_data/monte_carlo_generator_configuration_td.hpp"
+#include "creris/credit_risk/test_data/normal_generator_configuration_td.hpp"
+#include "creris/credit_risk/test_data/uniform_generator_configuration_td.hpp"
 
-namespace {
 
-double create_double(const unsigned int position) {
-    return static_cast<double>(position);
-}
-
-creris::credit_risk::distribution_types
-create_creris_credit_risk_distribution_types(const unsigned int position) {
-    return creris::credit_risk::distribution_types_generator::create(position);
-}
-
-}
 
 namespace creris {
 namespace credit_risk {
 
-monte_carlo_generator_configuration_generator::monte_carlo_generator_configuration_generator() : position_(0) { }
 
 void monte_carlo_generator_configuration_generator::
-populate(const unsigned int position, result_type& v) {
-    v.mean(create_double(position + 0));
-    v.standard_deviation(create_double(position + 1));
-    v.distribution_type(create_creris_credit_risk_distribution_types(position + 2));
+populate(const unsigned int /*position*/, result_type& /*v*/) {
 }
 
-monte_carlo_generator_configuration_generator::result_type
-monte_carlo_generator_configuration_generator::create(const unsigned int position) {
-    monte_carlo_generator_configuration r;
-    creris::credit_risk::generator_configuration_generator::populate(position, r);
-    monte_carlo_generator_configuration_generator::populate(position, r);
-    return r;
-}
 monte_carlo_generator_configuration_generator::result_type*
 monte_carlo_generator_configuration_generator::create_ptr(const unsigned int position) {
-    monte_carlo_generator_configuration* p = new monte_carlo_generator_configuration();
-    monte_carlo_generator_configuration_generator::populate(position, *p);
-    return p;
+    if ((position % 2) == 0)
+        return creris::credit_risk::normal_generator_configuration_generator::create_ptr(position);
+    if ((position % 2) == 1)
+        return creris::credit_risk::uniform_generator_configuration_generator::create_ptr(position);
+    return creris::credit_risk::cauchy_generator_configuration_generator::create_ptr(position);
 }
 
-monte_carlo_generator_configuration_generator::result_type
-monte_carlo_generator_configuration_generator::operator()() {
-    return create(position_++);
-}
 
 } }

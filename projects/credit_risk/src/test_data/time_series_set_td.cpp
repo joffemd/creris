@@ -18,35 +18,28 @@
  * MA 02110-1301, USA.
  *
  */
-#include <sstream>
-#include "creris/credit_risk/test_data/time_series_id_td.hpp"
+#include "creris/credit_risk/test_data/time_series_configuration_unversioned_key_td.hpp"
 #include "creris/credit_risk/test_data/time_series_set_td.hpp"
-#include "creris/credit_risk/test_data/versioned_key_td.hpp"
+#include "creris/credit_risk/test_data/time_series_td.hpp"
 
 namespace {
 
-std::string create_std_string(const unsigned int position) {
-    std::ostringstream s;
-    s << "a_string_" << position;
-    return s.str();
+creris::credit_risk::time_series_configuration_unversioned_key
+create_creris_credit_risk_time_series_configuration_unversioned_key(const unsigned int position) {
+    return creris::credit_risk::time_series_configuration_unversioned_key_generator::create(position);
 }
 
-creris::credit_risk::time_series_id
-create_creris_credit_risk_time_series_id(const unsigned int position) {
-    return creris::credit_risk::time_series_id_generator::create(position);
+creris::credit_risk::time_series
+create_creris_credit_risk_time_series(const unsigned int position) {
+    return creris::credit_risk::time_series_generator::create(position);
 }
 
-std::unordered_map<std::string, creris::credit_risk::time_series_id> create_std_unordered_map_std_string_creris_credit_risk_time_series_id(unsigned int position) {
-    std::unordered_map<std::string, creris::credit_risk::time_series_id> r;
+std::unordered_map<creris::credit_risk::time_series_configuration_unversioned_key, creris::credit_risk::time_series> create_std_unordered_map_creris_credit_risk_time_series_configuration_unversioned_key_creris_credit_risk_time_series(unsigned int position) {
+    std::unordered_map<creris::credit_risk::time_series_configuration_unversioned_key, creris::credit_risk::time_series> r;
     for (unsigned int i(0); i < 10; ++i) {
-        r.insert(std::make_pair(create_std_string(position + i), create_creris_credit_risk_time_series_id(position + i)));
+        r.insert(std::make_pair(create_creris_credit_risk_time_series_configuration_unversioned_key(position + i), create_creris_credit_risk_time_series(position + i)));
     }
     return r;
-}
-
-creris::credit_risk::versioned_key
-create_creris_credit_risk_versioned_key(const unsigned int position) {
-    return creris::credit_risk::versioned_key_generator::create(position);
 }
 
 }
@@ -58,8 +51,7 @@ time_series_set_generator::time_series_set_generator() : position_(0) { }
 
 void time_series_set_generator::
 populate(const unsigned int position, result_type& v) {
-    v.series(create_std_unordered_map_std_string_creris_credit_risk_time_series_id(position + 0));
-    v.versioned_key(create_creris_credit_risk_versioned_key(position + 1));
+    v.series(create_std_unordered_map_creris_credit_risk_time_series_configuration_unversioned_key_creris_credit_risk_time_series(position + 0));
 }
 
 time_series_set_generator::result_type

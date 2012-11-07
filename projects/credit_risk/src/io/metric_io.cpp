@@ -20,8 +20,7 @@
  */
 #include <ostream>
 #include "creris/credit_risk/io/metric_io.hpp"
-#include "creris/credit_risk/io/time_series_id_io.hpp"
-#include "creris/credit_risk/io/versioned_key_io.hpp"
+#include "creris/credit_risk/io/time_series_configuration_unversioned_key_io.hpp"
 
 namespace creris {
 namespace credit_risk {
@@ -30,10 +29,9 @@ std::ostream& operator<<(std::ostream& s, const metric& v) {
     s << " { "
       << "\"__type__\": " << "\"metric\"" << ", "
       << "\"name\": " << "\"" << v.name() << "\"" << ", "
-      << "\"time_series_id\": " << v.time_series_id() << ", "
+      << "\"time_series_key\": " << v.time_series_key() << ", "
       << "\"threshold_level\": " << v.threshold_level() << ", "
-      << "\"relation_to_threshold\": " << "\"" << v.relation_to_threshold() << "\"" << ", "
-      << "\"versioned_key\": " << v.versioned_key()
+      << "\"relation_to_threshold\": " << "\"" << v.relation_to_threshold() << "\""
       << " }";
     return(s);
 }

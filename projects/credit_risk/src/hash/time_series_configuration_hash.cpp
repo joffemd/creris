@@ -18,8 +18,9 @@
  * MA 02110-1301, USA.
  *
  */
+#include "creris/credit_risk/hash/generator_configuration_hash.hpp"
 #include "creris/credit_risk/hash/time_series_configuration_hash.hpp"
-#include "creris/credit_risk/hash/versioned_key_hash.hpp"
+#include "creris/credit_risk/hash/time_series_configuration_versioned_key_hash.hpp"
 
 namespace {
 
@@ -30,20 +31,25 @@ inline void combine(std::size_t& seed, const HashableType& value)
     seed ^= hasher(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 }
 
+inline std::size_t hash_boost_shared_ptr_creris_credit_risk_generator_configuration(const boost::shared_ptr<creris::credit_risk::generator_configuration>& v){
+    std::size_t seed(0);
+    combine(seed, *v);
+    return seed;
+}
+
 }
 
 namespace creris {
 namespace credit_risk {
 
-std::size_t time_series_configuration_hasher::hash(const time_series_configuration& v) {
+std::size_t time_series_configuration_hasher::hash(const time_series_configuration&v) {
     std::size_t seed(0);
 
-    combine(seed, v.time_series_configuration_id());
     combine(seed, v.name());
     combine(seed, v.description());
     combine(seed, v.time_axis_label());
     combine(seed, v.value_axis_label());
-    combine(seed, v.generator_configuration());
+    combine(seed, hash_boost_shared_ptr_creris_credit_risk_generator_configuration(v.generator_configuration()));
     combine(seed, v.versioned_key());
 
     return seed;

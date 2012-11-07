@@ -26,15 +26,13 @@ namespace creris {
 namespace credit_risk {
 
 variable_time_series_configuration::variable_time_series_configuration(
-    const std::string& time_series_configuration_id,
     const std::string& name,
     const std::string& description,
     const std::string& time_axis_label,
     const std::string& value_axis_label,
-    const std::string& generator_configuration,
-    const creris::credit_risk::versioned_key& versioned_key)
-    : creris::credit_risk::time_series_configuration(time_series_configuration_id,
-      name,
+    const boost::shared_ptr<creris::credit_risk::generator_configuration>& generator_configuration,
+    const creris::credit_risk::time_series_configuration_versioned_key& versioned_key)
+    : creris::credit_risk::time_series_configuration(name,
       description,
       time_axis_label,
       value_axis_label,

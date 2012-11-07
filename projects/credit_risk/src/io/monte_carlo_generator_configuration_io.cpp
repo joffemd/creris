@@ -19,7 +19,6 @@
  *
  */
 #include <ostream>
-#include "creris/credit_risk/io/distribution_types_io.hpp"
 #include "creris/credit_risk/io/generator_configuration_io.hpp"
 #include "creris/credit_risk/io/monte_carlo_generator_configuration_io.hpp"
 

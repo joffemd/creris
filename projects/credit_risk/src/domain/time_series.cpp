@@ -24,27 +24,27 @@ namespace creris {
 namespace credit_risk {
 
 time_series::time_series(
-    const creris::credit_risk::time_series_id& id,
     const std::string& name,
-    const std::string& data,
-    const creris::credit_risk::versioned_key& versioned_key)
-    : id_(id),
-      name_(name),
-      data_(data),
+    const creris::credit_risk::time_series_configuration_versioned_key& time_series_configuration,
+    const std::vector<creris::credit_risk::time_point>& points,
+    const creris::credit_risk::time_series_versioned_key& versioned_key)
+    : name_(name),
+      time_series_configuration_(time_series_configuration),
+      points_(points),
       versioned_key_(versioned_key) { }
 
 void time_series::swap(time_series& other) noexcept {
     using std::swap;
-    swap(id_, other.id_);
     swap(name_, other.name_);
-    swap(data_, other.data_);
+    swap(time_series_configuration_, other.time_series_configuration_);
+    swap(points_, other.points_);
     swap(versioned_key_, other.versioned_key_);
 }
 
 bool time_series::operator==(const time_series& rhs) const {
-    return id_ == rhs.id_ &&
-        name_ == rhs.name_ &&
-        data_ == rhs.data_ &&
+    return name_ == rhs.name_ &&
+        time_series_configuration_ == rhs.time_series_configuration_ &&
+        points_ == rhs.points_ &&
         versioned_key_ == rhs.versioned_key_;
 }
 

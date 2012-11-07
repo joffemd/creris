@@ -27,9 +27,9 @@
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
-#include <boost/serialization/string.hpp>
 #include <boost/serialization/vector.hpp>
 #include "creris/credit_risk/serialization/fixed_time_series_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/point_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/time_series_configuration_ser.hpp"
 
 #ifdef __linux__
@@ -65,8 +65,6 @@ void load(Archive& ar,
 }
 
 } }
-
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::fixed_time_series_configuration)
 
 namespace boost {
 namespace serialization {

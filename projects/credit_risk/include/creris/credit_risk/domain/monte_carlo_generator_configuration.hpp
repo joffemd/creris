@@ -27,28 +27,27 @@
 
 #include <algorithm>
 #include <iosfwd>
-#include "creris/credit_risk/domain/distribution_types.hpp"
 #include "creris/credit_risk/domain/generator_configuration.hpp"
 #include "creris/credit_risk/serialization/monte_carlo_generator_configuration_fwd_ser.hpp"
 
 namespace creris {
 namespace credit_risk {
 
-class monte_carlo_generator_configuration final : public creris::credit_risk::generator_configuration {
+/*
+ * @brief Configuration for the monte-carlo based generator.
+ */
+class monte_carlo_generator_configuration : public creris::credit_risk::generator_configuration {
 public:
+    monte_carlo_generator_configuration() = default;
     monte_carlo_generator_configuration(const monte_carlo_generator_configuration&) = default;
     monte_carlo_generator_configuration(monte_carlo_generator_configuration&&) = default;
 
-public:
-    monte_carlo_generator_configuration();
+    virtual ~monte_carlo_generator_configuration() noexcept = 0;
 
 public:
     monte_carlo_generator_configuration(
-        const creris::credit_risk::generator_types& generator_type,
-        const creris::credit_risk::versioned_key& versioned_key,
-        const double mean,
-        const double standard_deviation,
-        const creris::credit_risk::distribution_types& distribution_type);
+        const std::string& name,
+        const std::string& description);
 
 private:
     template<typename Archive>
@@ -58,63 +57,26 @@ private:
     friend void boost::serialization::load(Archive& ar, monte_carlo_generator_configuration& v, unsigned int version);
 
 public:
-    void to_stream(std::ostream& s) const override;
+    virtual void to_stream(std::ostream& s) const;
 
+protected:
+    bool compare(const monte_carlo_generator_configuration& rhs) const;
 public:
-    double mean() const {
-        return mean_;
-    }
+    virtual bool equals(const creris::credit_risk::generator_configuration& other) const = 0;
 
-    void mean(const double v) {
-        mean_ = v;
-    }
-
-    double standard_deviation() const {
-        return standard_deviation_;
-    }
-
-    void standard_deviation(const double v) {
-        standard_deviation_ = v;
-    }
-
-    creris::credit_risk::distribution_types distribution_type() const {
-        return distribution_type_;
-    }
-
-    void distribution_type(const creris::credit_risk::distribution_types& v) {
-        distribution_type_ = v;
-    }
-
-public:
-    bool operator==(const monte_carlo_generator_configuration& rhs) const;
-    bool operator!=(const monte_carlo_generator_configuration& rhs) const {
-        return !this->operator==(rhs);
-    }
-
-public:
-    bool equals(const creris::credit_risk::generator_configuration& other) const override;
-
-public:
+protected:
     void swap(monte_carlo_generator_configuration& other) noexcept;
-    monte_carlo_generator_configuration& operator=(monte_carlo_generator_configuration other);
 
-private:
-    double mean_;
-    double standard_deviation_;
-    creris::credit_risk::distribution_types distribution_type_;
 };
+
+inline monte_carlo_generator_configuration::~monte_carlo_generator_configuration() noexcept { }
+
+inline bool operator==(const monte_carlo_generator_configuration& lhs, const monte_carlo_generator_configuration& rhs) {
+    return lhs.equals(rhs);
+}
 
 } }
 
-namespace std {
 
-template<>
-inline void swap(
-    creris::credit_risk::monte_carlo_generator_configuration& lhs,
-    creris::credit_risk::monte_carlo_generator_configuration& rhs) {
-    lhs.swap(rhs);
-}
-
-}
 
 #endif

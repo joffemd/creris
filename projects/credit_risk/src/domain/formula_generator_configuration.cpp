@@ -29,12 +29,12 @@ formula_generator_configuration::formula_generator_configuration()
     : initial_value_(static_cast<double>(0)) { }
 
 formula_generator_configuration::formula_generator_configuration(
-    const creris::credit_risk::generator_types& generator_type,
-    const creris::credit_risk::versioned_key& versioned_key,
+    const std::string& name,
+    const std::string& description,
     const std::string& formula,
     const double initial_value)
-    : creris::credit_risk::generator_configuration(generator_type,
-      versioned_key),
+    : creris::credit_risk::generator_configuration(name,
+      description),
       formula_(formula),
       initial_value_(initial_value) { }
 

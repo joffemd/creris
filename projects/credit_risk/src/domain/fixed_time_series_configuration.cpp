@@ -20,15 +20,16 @@
  */
 #include <ostream>
 #include "creris/credit_risk/domain/fixed_time_series_configuration.hpp"
+#include "creris/credit_risk/io/point_configuration_io.hpp"
 #include "creris/credit_risk/io/time_series_configuration_io.hpp"
 
 namespace std {
 
-inline std::ostream& operator<<(std::ostream& s, const std::vector<std::string>& v) {
+inline std::ostream& operator<<(std::ostream& s, const std::vector<creris::credit_risk::point_configuration>& v) {
     s << "[ ";
     for (auto i(v.begin()); i != v.end(); ++i) {
         if (i != v.begin()) s << ", ";
-        s << "\"" << *i << "\"";
+        s << *i;
     }
     s << "] ";
     return s;
@@ -43,17 +44,15 @@ fixed_time_series_configuration::fixed_time_series_configuration()
     : length_(static_cast<unsigned int>(0)) { }
 
 fixed_time_series_configuration::fixed_time_series_configuration(
-    const std::string& time_series_configuration_id,
     const std::string& name,
     const std::string& description,
     const std::string& time_axis_label,
     const std::string& value_axis_label,
-    const std::string& generator_configuration,
-    const creris::credit_risk::versioned_key& versioned_key,
+    const boost::shared_ptr<creris::credit_risk::generator_configuration>& generator_configuration,
+    const creris::credit_risk::time_series_configuration_versioned_key& versioned_key,
     const unsigned int length,
-    const std::vector<std::string>& points_configuration)
-    : creris::credit_risk::time_series_configuration(time_series_configuration_id,
-      name,
+    const std::vector<creris::credit_risk::point_configuration>& points_configuration)
+    : creris::credit_risk::time_series_configuration(name,
       description,
       time_axis_label,
       value_axis_label,

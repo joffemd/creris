@@ -27,14 +27,17 @@
 
 #include <algorithm>
 #include <iosfwd>
-#include <string>
 #include <vector>
+#include "creris/credit_risk/domain/point_configuration.hpp"
 #include "creris/credit_risk/domain/time_series_configuration.hpp"
 #include "creris/credit_risk/serialization/fixed_time_series_configuration_fwd_ser.hpp"
 
 namespace creris {
 namespace credit_risk {
 
+/*
+ * @brief Configuration for a time series with a defined number of points.
+ */
 class fixed_time_series_configuration final : public creris::credit_risk::time_series_configuration {
 public:
     fixed_time_series_configuration(const fixed_time_series_configuration&) = default;
@@ -45,15 +48,14 @@ public:
 
 public:
     fixed_time_series_configuration(
-        const std::string& time_series_configuration_id,
         const std::string& name,
         const std::string& description,
         const std::string& time_axis_label,
         const std::string& value_axis_label,
-        const std::string& generator_configuration,
-        const creris::credit_risk::versioned_key& versioned_key,
+        const boost::shared_ptr<creris::credit_risk::generator_configuration>& generator_configuration,
+        const creris::credit_risk::time_series_configuration_versioned_key& versioned_key,
         const unsigned int length,
-        const std::vector<std::string>& points_configuration);
+        const std::vector<creris::credit_risk::point_configuration>& points_configuration);
 
 private:
     template<typename Archive>
@@ -66,6 +68,10 @@ public:
     void to_stream(std::ostream& s) const override;
 
 public:
+    /*
+     * @brief Number of points in time series.
+     */
+    /**@{*/
     unsigned int length() const {
         return length_;
     }
@@ -73,14 +79,20 @@ public:
     void length(const unsigned int v) {
         length_ = v;
     }
+    /**@}*/
 
-    std::vector<std::string> points_configuration() const {
+    /*
+     * @brief Configuration for all points in the series.
+     */
+    /**@{*/
+    std::vector<creris::credit_risk::point_configuration> points_configuration() const {
         return points_configuration_;
     }
 
-    void points_configuration(const std::vector<std::string>& v) {
+    void points_configuration(const std::vector<creris::credit_risk::point_configuration>& v) {
         points_configuration_ = v;
     }
+    /**@}*/
 
 public:
     bool operator==(const fixed_time_series_configuration& rhs) const;
@@ -97,7 +109,7 @@ public:
 
 private:
     unsigned int length_;
-    std::vector<std::string> points_configuration_;
+    std::vector<creris::credit_risk::point_configuration> points_configuration_;
 };
 
 } }

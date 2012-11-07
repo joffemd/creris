@@ -26,14 +26,21 @@
 #endif
 
 #include <algorithm>
+#include <boost/shared_ptr.hpp>
 #include <iosfwd>
 #include <string>
-#include "creris/credit_risk/domain/versioned_key.hpp"
+#include "creris/credit_risk/domain/generator_configuration.hpp"
+#include "creris/credit_risk/domain/time_series_configuration_versioned_key.hpp"
 #include "creris/credit_risk/serialization/time_series_configuration_fwd_ser.hpp"
 
 namespace creris {
 namespace credit_risk {
 
+/*
+ * @brief Defines the structure of a time series.
+ *
+ * This can be thought of as a time series type or class.
+ */
 class time_series_configuration {
 public:
     time_series_configuration() = default;
@@ -44,13 +51,12 @@ public:
 
 public:
     time_series_configuration(
-        const std::string& time_series_configuration_id,
         const std::string& name,
         const std::string& description,
         const std::string& time_axis_label,
         const std::string& value_axis_label,
-        const std::string& generator_configuration,
-        const creris::credit_risk::versioned_key& versioned_key);
+        const boost::shared_ptr<creris::credit_risk::generator_configuration>& generator_configuration,
+        const creris::credit_risk::time_series_configuration_versioned_key& versioned_key);
 
 private:
     template<typename Archive>
@@ -63,14 +69,10 @@ public:
     virtual void to_stream(std::ostream& s) const;
 
 public:
-    std::string time_series_configuration_id() const {
-        return time_series_configuration_id_;
-    }
-
-    void time_series_configuration_id(const std::string& v) {
-        time_series_configuration_id_ = v;
-    }
-
+    /*
+     * @brief Name for the time series configuration.
+     */
+    /**@{*/
     std::string name() const {
         return name_;
     }
@@ -78,7 +80,12 @@ public:
     void name(const std::string& v) {
         name_ = v;
     }
+    /**@}*/
 
+    /*
+     * @brief Description of the underlying data that this series class models.
+     */
+    /**@{*/
     std::string description() const {
         return description_;
     }
@@ -86,7 +93,12 @@ public:
     void description(const std::string& v) {
         description_ = v;
     }
+    /**@}*/
 
+    /*
+     * @brief Label for the time axis.
+     */
+    /**@{*/
     std::string time_axis_label() const {
         return time_axis_label_;
     }
@@ -94,7 +106,12 @@ public:
     void time_axis_label(const std::string& v) {
         time_axis_label_ = v;
     }
+    /**@}*/
 
+    /*
+     * @brief Label for the value axis.
+     */
+    /**@{*/
     std::string value_axis_label() const {
         return value_axis_label_;
     }
@@ -102,25 +119,26 @@ public:
     void value_axis_label(const std::string& v) {
         value_axis_label_ = v;
     }
+    /**@}*/
 
     /*
-     * @brief FIXME: this should be of type generator_configuration, we can't instantiate abstract classes
+     * @brief Source of the points for the time series.
      */
     /**@{*/
-    std::string generator_configuration() const {
+    boost::shared_ptr<creris::credit_risk::generator_configuration> generator_configuration() const {
         return generator_configuration_;
     }
 
-    void generator_configuration(const std::string& v) {
+    void generator_configuration(const boost::shared_ptr<creris::credit_risk::generator_configuration>& v) {
         generator_configuration_ = v;
     }
     /**@}*/
 
-    creris::credit_risk::versioned_key versioned_key() const {
+    creris::credit_risk::time_series_configuration_versioned_key versioned_key() const {
         return versioned_key_;
     }
 
-    void versioned_key(const creris::credit_risk::versioned_key& v) {
+    void versioned_key(const creris::credit_risk::time_series_configuration_versioned_key& v) {
         versioned_key_ = v;
     }
 
@@ -133,13 +151,12 @@ protected:
     void swap(time_series_configuration& other) noexcept;
 
 private:
-    std::string time_series_configuration_id_;
     std::string name_;
     std::string description_;
     std::string time_axis_label_;
     std::string value_axis_label_;
-    std::string generator_configuration_;
-    creris::credit_risk::versioned_key versioned_key_;
+    boost::shared_ptr<creris::credit_risk::generator_configuration> generator_configuration_;
+    creris::credit_risk::time_series_configuration_versioned_key versioned_key_;
 };
 
 inline time_series_configuration::~time_series_configuration() noexcept { }

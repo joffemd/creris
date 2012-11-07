@@ -27,13 +27,15 @@
 
 #include <algorithm>
 #include <string>
-#include "creris/credit_risk/domain/time_series_id.hpp"
-#include "creris/credit_risk/domain/versioned_key.hpp"
+#include "creris/credit_risk/domain/time_series_configuration_unversioned_key.hpp"
 #include "creris/credit_risk/serialization/metric_fwd_ser.hpp"
 
 namespace creris {
 namespace credit_risk {
 
+/*
+ * @brief Set of predicates used to determine when a default occurs.
+ */
 class metric final {
 public:
     metric(const metric&) = default;
@@ -46,10 +48,9 @@ public:
 public:
     metric(
         const std::string& name,
-        const creris::credit_risk::time_series_id& time_series_id,
+        const creris::credit_risk::time_series_configuration_unversioned_key& time_series_key,
         const double threshold_level,
-        const std::string& relation_to_threshold,
-        const creris::credit_risk::versioned_key& versioned_key);
+        const std::string& relation_to_threshold);
 
 private:
     template<typename Archive>
@@ -67,12 +68,12 @@ public:
         name_ = v;
     }
 
-    creris::credit_risk::time_series_id time_series_id() const {
-        return time_series_id_;
+    creris::credit_risk::time_series_configuration_unversioned_key time_series_key() const {
+        return time_series_key_;
     }
 
-    void time_series_id(const creris::credit_risk::time_series_id& v) {
-        time_series_id_ = v;
+    void time_series_key(const creris::credit_risk::time_series_configuration_unversioned_key& v) {
+        time_series_key_ = v;
     }
 
     double threshold_level() const {
@@ -91,14 +92,6 @@ public:
         relation_to_threshold_ = v;
     }
 
-    creris::credit_risk::versioned_key versioned_key() const {
-        return versioned_key_;
-    }
-
-    void versioned_key(const creris::credit_risk::versioned_key& v) {
-        versioned_key_ = v;
-    }
-
 public:
     bool operator==(const metric& rhs) const;
     bool operator!=(const metric& rhs) const {
@@ -111,10 +104,9 @@ public:
 
 private:
     std::string name_;
-    creris::credit_risk::time_series_id time_series_id_;
+    creris::credit_risk::time_series_configuration_unversioned_key time_series_key_;
     double threshold_level_;
     std::string relation_to_threshold_;
-    creris::credit_risk::versioned_key versioned_key_;
 };
 
 } }

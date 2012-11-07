@@ -19,8 +19,7 @@
  *
  */
 #include "creris/credit_risk/hash/metric_hash.hpp"
-#include "creris/credit_risk/hash/time_series_id_hash.hpp"
-#include "creris/credit_risk/hash/versioned_key_hash.hpp"
+#include "creris/credit_risk/hash/time_series_configuration_unversioned_key_hash.hpp"
 
 namespace {
 
@@ -36,14 +35,13 @@ inline void combine(std::size_t& seed, const HashableType& value)
 namespace creris {
 namespace credit_risk {
 
-std::size_t metric_hasher::hash(const metric& v) {
+std::size_t metric_hasher::hash(const metric&v) {
     std::size_t seed(0);
 
     combine(seed, v.name());
-    combine(seed, v.time_series_id());
+    combine(seed, v.time_series_key());
     combine(seed, v.threshold_level());
     combine(seed, v.relation_to_threshold());
-    combine(seed, v.versioned_key());
 
     return seed;
 }

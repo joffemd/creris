@@ -28,9 +28,11 @@
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/string.hpp>
-#include "creris/credit_risk/serialization/time_series_id_ser.hpp"
+#include <boost/serialization/vector.hpp>
+#include "creris/credit_risk/serialization/time_point_ser.hpp"
+#include "creris/credit_risk/serialization/time_series_configuration_versioned_key_ser.hpp"
 #include "creris/credit_risk/serialization/time_series_ser.hpp"
-#include "creris/credit_risk/serialization/versioned_key_ser.hpp"
+#include "creris/credit_risk/serialization/time_series_versioned_key_ser.hpp"
 
 #ifdef __linux__
 #include "eos/portable_iarchive.hpp"
@@ -44,9 +46,9 @@ template<typename Archive>
 void save(Archive& ar,
     const creris::credit_risk::time_series& v,
     const unsigned int /*version*/) {
-    ar << make_nvp("id", v.id_);
     ar << make_nvp("name", v.name_);
-    ar << make_nvp("data", v.data_);
+    ar << make_nvp("time_series_configuration", v.time_series_configuration_);
+    ar << make_nvp("points", v.points_);
     ar << make_nvp("versioned_key", v.versioned_key_);
 }
 
@@ -54,15 +56,13 @@ template<typename Archive>
 void load(Archive& ar,
     creris::credit_risk::time_series& v,
     const unsigned int /*version*/) {
-    ar >> make_nvp("id", v.id_);
     ar >> make_nvp("name", v.name_);
-    ar >> make_nvp("data", v.data_);
+    ar >> make_nvp("time_series_configuration", v.time_series_configuration_);
+    ar >> make_nvp("points", v.points_);
     ar >> make_nvp("versioned_key", v.versioned_key_);
 }
 
 } }
-
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::time_series)
 
 namespace boost {
 namespace serialization {

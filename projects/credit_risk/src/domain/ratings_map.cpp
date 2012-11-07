@@ -24,8 +24,8 @@ namespace creris {
 namespace credit_risk {
 
 ratings_map::ratings_map(
-    const std::vector<creris::credit_risk::time_series_id>& series,
-    const creris::credit_risk::versioned_key& versioned_key)
+    const std::vector<creris::credit_risk::time_series>& series,
+    const creris::credit_risk::ratings_map_versioned_key& versioned_key)
     : series_(series),
       versioned_key_(versioned_key) { }
 

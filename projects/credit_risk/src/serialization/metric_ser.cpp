@@ -29,8 +29,7 @@
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/string.hpp>
 #include "creris/credit_risk/serialization/metric_ser.hpp"
-#include "creris/credit_risk/serialization/time_series_id_ser.hpp"
-#include "creris/credit_risk/serialization/versioned_key_ser.hpp"
+#include "creris/credit_risk/serialization/time_series_configuration_unversioned_key_ser.hpp"
 
 #ifdef __linux__
 #include "eos/portable_iarchive.hpp"
@@ -45,10 +44,9 @@ void save(Archive& ar,
     const creris::credit_risk::metric& v,
     const unsigned int /*version*/) {
     ar << make_nvp("name", v.name_);
-    ar << make_nvp("time_series_id", v.time_series_id_);
+    ar << make_nvp("time_series_key", v.time_series_key_);
     ar << make_nvp("threshold_level", v.threshold_level_);
     ar << make_nvp("relation_to_threshold", v.relation_to_threshold_);
-    ar << make_nvp("versioned_key", v.versioned_key_);
 }
 
 template<typename Archive>
@@ -56,15 +54,12 @@ void load(Archive& ar,
     creris::credit_risk::metric& v,
     const unsigned int /*version*/) {
     ar >> make_nvp("name", v.name_);
-    ar >> make_nvp("time_series_id", v.time_series_id_);
+    ar >> make_nvp("time_series_key", v.time_series_key_);
     ar >> make_nvp("threshold_level", v.threshold_level_);
     ar >> make_nvp("relation_to_threshold", v.relation_to_threshold_);
-    ar >> make_nvp("versioned_key", v.versioned_key_);
 }
 
 } }
-
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::metric)
 
 namespace boost {
 namespace serialization {

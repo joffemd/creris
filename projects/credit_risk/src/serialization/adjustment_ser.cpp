@@ -29,9 +29,10 @@
 #include <boost/serialization/nvp.hpp>
 #include <boost/serialization/string.hpp>
 #include <boost/serialization/vector.hpp>
+#include "creris/credit_risk/serialization/adjustment_constraint_ser.hpp"
+#include "creris/credit_risk/serialization/adjustment_predicate_ser.hpp"
 #include "creris/credit_risk/serialization/adjustment_ser.hpp"
-#include "creris/credit_risk/serialization/time_series_id_ser.hpp"
-#include "creris/credit_risk/serialization/versioned_key_ser.hpp"
+#include "creris/credit_risk/serialization/time_series_unversioned_key_ser.hpp"
 
 #ifdef __linux__
 #include "eos/portable_iarchive.hpp"
@@ -46,15 +47,10 @@ void save(Archive& ar,
     const creris::credit_risk::adjustment& v,
     const unsigned int /*version*/) {
     ar << make_nvp("name", v.name_);
-    ar << make_nvp("expression", v.expression_);
-    ar << make_nvp("relation_to_threshold", v.relation_to_threshold_);
-    ar << make_nvp("threshold", v.threshold_);
+    ar << make_nvp("predicate", v.predicate_);
     ar << make_nvp("series_to_adjust", v.series_to_adjust_);
-    ar << make_nvp("related_series", v.related_series_);
-    ar << make_nvp("constraint_operator", v.constraint_operator_);
-    ar << make_nvp("constrain_amount", v.constrain_amount_);
+    ar << make_nvp("adjustment_constraints", v.adjustment_constraints_);
     ar << make_nvp("dependent_series", v.dependent_series_);
-    ar << make_nvp("versioned_key", v.versioned_key_);
 }
 
 template<typename Archive>
@@ -62,20 +58,13 @@ void load(Archive& ar,
     creris::credit_risk::adjustment& v,
     const unsigned int /*version*/) {
     ar >> make_nvp("name", v.name_);
-    ar >> make_nvp("expression", v.expression_);
-    ar >> make_nvp("relation_to_threshold", v.relation_to_threshold_);
-    ar >> make_nvp("threshold", v.threshold_);
+    ar >> make_nvp("predicate", v.predicate_);
     ar >> make_nvp("series_to_adjust", v.series_to_adjust_);
-    ar >> make_nvp("related_series", v.related_series_);
-    ar >> make_nvp("constraint_operator", v.constraint_operator_);
-    ar >> make_nvp("constrain_amount", v.constrain_amount_);
+    ar >> make_nvp("adjustment_constraints", v.adjustment_constraints_);
     ar >> make_nvp("dependent_series", v.dependent_series_);
-    ar >> make_nvp("versioned_key", v.versioned_key_);
 }
 
 } }
-
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::adjustment)
 
 namespace boost {
 namespace serialization {

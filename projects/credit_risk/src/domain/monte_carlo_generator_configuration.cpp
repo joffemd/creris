@@ -20,66 +20,32 @@
  */
 #include <ostream>
 #include "creris/credit_risk/domain/monte_carlo_generator_configuration.hpp"
-#include "creris/credit_risk/io/distribution_types_io.hpp"
 #include "creris/credit_risk/io/generator_configuration_io.hpp"
 
 namespace creris {
 namespace credit_risk {
 
-monte_carlo_generator_configuration::monte_carlo_generator_configuration()
-    : mean_(static_cast<double>(0)),
-      standard_deviation_(static_cast<double>(0)) { }
-
 monte_carlo_generator_configuration::monte_carlo_generator_configuration(
-    const creris::credit_risk::generator_types& generator_type,
-    const creris::credit_risk::versioned_key& versioned_key,
-    const double mean,
-    const double standard_deviation,
-    const creris::credit_risk::distribution_types& distribution_type)
-    : creris::credit_risk::generator_configuration(generator_type,
-      versioned_key),
-      mean_(mean),
-      standard_deviation_(standard_deviation),
-      distribution_type_(distribution_type) { }
+    const std::string& name,
+    const std::string& description)
+    : creris::credit_risk::generator_configuration(name,
+      description) { }
 
 void monte_carlo_generator_configuration::to_stream(std::ostream& s) const {
     s << " { "
       << "\"__type__\": " << "\"monte_carlo_generator_configuration\"" << ", "
       << "\"__parent_0__\": ";
     generator_configuration::to_stream(s);
-    s << ", "
-      << "\"mean\": " << mean_ << ", "
-      << "\"standard_deviation\": " << standard_deviation_ << ", "
-      << "\"distribution_type\": " << distribution_type_
-      << " }";
+    s << " }";
 }
 
 void monte_carlo_generator_configuration::swap(monte_carlo_generator_configuration& other) noexcept {
     generator_configuration::swap(other);
 
-    using std::swap;
-    swap(mean_, other.mean_);
-    swap(standard_deviation_, other.standard_deviation_);
-    swap(distribution_type_, other.distribution_type_);
 }
 
-bool monte_carlo_generator_configuration::equals(const creris::credit_risk::generator_configuration& other) const {
-    const monte_carlo_generator_configuration* const p(dynamic_cast<const monte_carlo_generator_configuration* const>(&other));
-    if (!p) return false;
-    return *this == *p;
-}
-
-bool monte_carlo_generator_configuration::operator==(const monte_carlo_generator_configuration& rhs) const {
-    return generator_configuration::compare(rhs) &&
-        mean_ == rhs.mean_ &&
-        standard_deviation_ == rhs.standard_deviation_ &&
-        distribution_type_ == rhs.distribution_type_;
-}
-
-monte_carlo_generator_configuration& monte_carlo_generator_configuration::operator=(monte_carlo_generator_configuration other) {
-    using std::swap;
-    swap(*this, other);
-    return *this;
+bool monte_carlo_generator_configuration::compare(const monte_carlo_generator_configuration& rhs) const {
+    return generator_configuration::compare(rhs);
 }
 
 } }

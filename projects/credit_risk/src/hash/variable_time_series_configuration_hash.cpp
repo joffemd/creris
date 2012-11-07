@@ -35,7 +35,7 @@ inline void combine(std::size_t& seed, const HashableType& value)
 namespace creris {
 namespace credit_risk {
 
-std::size_t variable_time_series_configuration_hasher::hash(const variable_time_series_configuration& v) {
+std::size_t variable_time_series_configuration_hasher::hash(const variable_time_series_configuration&v) {
     std::size_t seed(0);
 
     combine(seed, dynamic_cast<const creris::credit_risk::time_series_configuration&>(v));

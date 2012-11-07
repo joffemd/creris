@@ -19,6 +19,7 @@
  *
  */
 #include "creris/credit_risk/hash/fixed_time_series_configuration_hash.hpp"
+#include "creris/credit_risk/hash/point_configuration_hash.hpp"
 #include "creris/credit_risk/hash/time_series_configuration_hash.hpp"
 
 namespace {
@@ -30,7 +31,7 @@ inline void combine(std::size_t& seed, const HashableType& value)
     seed ^= hasher(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 }
 
-inline std::size_t hash_std_vector_std_string(const std::vector<std::string>& v){
+inline std::size_t hash_std_vector_creris_credit_risk_point_configuration(const std::vector<creris::credit_risk::point_configuration>& v){
     std::size_t seed(0);
     for (const auto i : v) {
         combine(seed, i);
@@ -43,13 +44,13 @@ inline std::size_t hash_std_vector_std_string(const std::vector<std::string>& v)
 namespace creris {
 namespace credit_risk {
 
-std::size_t fixed_time_series_configuration_hasher::hash(const fixed_time_series_configuration& v) {
+std::size_t fixed_time_series_configuration_hasher::hash(const fixed_time_series_configuration&v) {
     std::size_t seed(0);
 
     combine(seed, dynamic_cast<const creris::credit_risk::time_series_configuration&>(v));
 
     combine(seed, v.length());
-    combine(seed, hash_std_vector_std_string(v.points_configuration()));
+    combine(seed, hash_std_vector_creris_credit_risk_point_configuration(v.points_configuration()));
 
     return seed;
 }

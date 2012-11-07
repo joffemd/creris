@@ -27,12 +27,13 @@
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/nvp.hpp>
+#include <boost/serialization/string.hpp>
+#include "creris/credit_risk/serialization/cauchy_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/formula_generator_configuration_ser.hpp"
 #include "creris/credit_risk/serialization/generator_configuration_ser.hpp"
-#include "creris/credit_risk/serialization/generator_types_ser.hpp"
 #include "creris/credit_risk/serialization/identity_generator_configuration_ser.hpp"
-#include "creris/credit_risk/serialization/monte_carlo_generator_configuration_ser.hpp"
-#include "creris/credit_risk/serialization/versioned_key_ser.hpp"
+#include "creris/credit_risk/serialization/normal_generator_configuration_ser.hpp"
+#include "creris/credit_risk/serialization/uniform_generator_configuration_ser.hpp"
 
 #ifdef __linux__
 #include "eos/portable_iarchive.hpp"
@@ -50,22 +51,16 @@ template<typename Archive>
 void save(Archive& ar,
     const creris::credit_risk::generator_configuration& v,
     const unsigned int /*version*/) {
-    ar.template register_type<creris::credit_risk::identity_generator_configuration>();
-    ar.template register_type<creris::credit_risk::formula_generator_configuration>();
-    ar.template register_type<creris::credit_risk::monte_carlo_generator_configuration>();
-    ar << make_nvp("generator_type", v.generator_type_);
-    ar << make_nvp("versioned_key", v.versioned_key_);
+    ar << make_nvp("name", v.name_);
+    ar << make_nvp("description", v.description_);
 }
 
 template<typename Archive>
 void load(Archive& ar,
     creris::credit_risk::generator_configuration& v,
     const unsigned int /*version*/) {
-    ar.template register_type<creris::credit_risk::identity_generator_configuration>();
-    ar.template register_type<creris::credit_risk::formula_generator_configuration>();
-    ar.template register_type<creris::credit_risk::monte_carlo_generator_configuration>();
-    ar >> make_nvp("generator_type", v.generator_type_);
-    ar >> make_nvp("versioned_key", v.versioned_key_);
+    ar >> make_nvp("name", v.name_);
+    ar >> make_nvp("description", v.description_);
 }
 
 } }

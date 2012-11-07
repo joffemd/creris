@@ -18,9 +18,10 @@
  * MA 02110-1301, USA.
  *
  */
+#include "creris/credit_risk/hash/adjustment_constraint_hash.hpp"
 #include "creris/credit_risk/hash/adjustment_hash.hpp"
-#include "creris/credit_risk/hash/time_series_id_hash.hpp"
-#include "creris/credit_risk/hash/versioned_key_hash.hpp"
+#include "creris/credit_risk/hash/adjustment_predicate_hash.hpp"
+#include "creris/credit_risk/hash/time_series_unversioned_key_hash.hpp"
 
 namespace {
 
@@ -31,7 +32,15 @@ inline void combine(std::size_t& seed, const HashableType& value)
     seed ^= hasher(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 }
 
-inline std::size_t hash_std_vector_creris_credit_risk_time_series_id(const std::vector<creris::credit_risk::time_series_id>& v){
+inline std::size_t hash_std_vector_creris_credit_risk_adjustment_constraint(const std::vector<creris::credit_risk::adjustment_constraint>& v){
+    std::size_t seed(0);
+    for (const auto i : v) {
+        combine(seed, i);
+    }
+    return seed;
+}
+
+inline std::size_t hash_std_vector_creris_credit_risk_time_series_unversioned_key(const std::vector<creris::credit_risk::time_series_unversioned_key>& v){
     std::size_t seed(0);
     for (const auto i : v) {
         combine(seed, i);
@@ -44,19 +53,14 @@ inline std::size_t hash_std_vector_creris_credit_risk_time_series_id(const std::
 namespace creris {
 namespace credit_risk {
 
-std::size_t adjustment_hasher::hash(const adjustment& v) {
+std::size_t adjustment_hasher::hash(const adjustment&v) {
     std::size_t seed(0);
 
     combine(seed, v.name());
-    combine(seed, v.expression());
-    combine(seed, v.relation_to_threshold());
-    combine(seed, v.threshold());
+    combine(seed, v.predicate());
     combine(seed, v.series_to_adjust());
-    combine(seed, hash_std_vector_creris_credit_risk_time_series_id(v.related_series()));
-    combine(seed, v.constraint_operator());
-    combine(seed, v.constrain_amount());
-    combine(seed, hash_std_vector_creris_credit_risk_time_series_id(v.dependent_series()));
-    combine(seed, v.versioned_key());
+    combine(seed, hash_std_vector_creris_credit_risk_adjustment_constraint(v.adjustment_constraints()));
+    combine(seed, hash_std_vector_creris_credit_risk_time_series_unversioned_key(v.dependent_series()));
 
     return seed;
 }

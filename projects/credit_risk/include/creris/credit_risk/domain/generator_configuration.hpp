@@ -27,13 +27,18 @@
 
 #include <algorithm>
 #include <iosfwd>
-#include "creris/credit_risk/domain/generator_types.hpp"
-#include "creris/credit_risk/domain/versioned_key.hpp"
+#include <string>
 #include "creris/credit_risk/serialization/generator_configuration_fwd_ser.hpp"
 
 namespace creris {
 namespace credit_risk {
 
+/*
+ * @brief Configuration for an individual generator.
+ *
+ * A generator is used to produce time series data. This class models all the
+ * parameters required to instatiate the generator.
+ */
 class generator_configuration {
 public:
     generator_configuration() = default;
@@ -44,8 +49,8 @@ public:
 
 public:
     generator_configuration(
-        const creris::credit_risk::generator_types& generator_type,
-        const creris::credit_risk::versioned_key& versioned_key);
+        const std::string& name,
+        const std::string& description);
 
 private:
     template<typename Archive>
@@ -58,21 +63,31 @@ public:
     virtual void to_stream(std::ostream& s) const;
 
 public:
-    creris::credit_risk::generator_types generator_type() const {
-        return generator_type_;
+    /*
+     * @brief Name of the generator we are configuring.
+     */
+    /**@{*/
+    std::string name() const {
+        return name_;
     }
 
-    void generator_type(const creris::credit_risk::generator_types& v) {
-        generator_type_ = v;
+    void name(const std::string& v) {
+        name_ = v;
+    }
+    /**@}*/
+
+    /*
+     * @brief Explanation of the purpose of the generator.
+     */
+    /**@{*/
+    std::string description() const {
+        return description_;
     }
 
-    creris::credit_risk::versioned_key versioned_key() const {
-        return versioned_key_;
+    void description(const std::string& v) {
+        description_ = v;
     }
-
-    void versioned_key(const creris::credit_risk::versioned_key& v) {
-        versioned_key_ = v;
-    }
+    /**@}*/
 
 protected:
     bool compare(const generator_configuration& rhs) const;
@@ -83,8 +98,8 @@ protected:
     void swap(generator_configuration& other) noexcept;
 
 private:
-    creris::credit_risk::generator_types generator_type_;
-    creris::credit_risk::versioned_key versioned_key_;
+    std::string name_;
+    std::string description_;
 };
 
 inline generator_configuration::~generator_configuration() noexcept { }

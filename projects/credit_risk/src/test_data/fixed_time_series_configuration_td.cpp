@@ -18,8 +18,8 @@
  * MA 02110-1301, USA.
  *
  */
-#include <sstream>
 #include "creris/credit_risk/test_data/fixed_time_series_configuration_td.hpp"
+#include "creris/credit_risk/test_data/point_configuration_td.hpp"
 #include "creris/credit_risk/test_data/time_series_configuration_td.hpp"
 
 namespace {
@@ -28,16 +28,15 @@ unsigned int create_unsigned_int(const unsigned int position) {
     return static_cast<unsigned int>(position);
 }
 
-std::string create_std_string(const unsigned int position) {
-    std::ostringstream s;
-    s << "a_string_" << position;
-    return s.str();
+creris::credit_risk::point_configuration
+create_creris_credit_risk_point_configuration(const unsigned int position) {
+    return creris::credit_risk::point_configuration_generator::create(position);
 }
 
-std::vector<std::string> create_std_vector_std_string(unsigned int position) {
-    std::vector<std::string> r;
+std::vector<creris::credit_risk::point_configuration> create_std_vector_creris_credit_risk_point_configuration(unsigned int position) {
+    std::vector<creris::credit_risk::point_configuration> r;
     for (unsigned int i(0); i < 10; ++i) {
-        r.push_back(create_std_string(position + i));
+        r.push_back(create_creris_credit_risk_point_configuration(position + i));
     }
     return r;
 }
@@ -52,7 +51,7 @@ fixed_time_series_configuration_generator::fixed_time_series_configuration_gener
 void fixed_time_series_configuration_generator::
 populate(const unsigned int position, result_type& v) {
     v.length(create_unsigned_int(position + 0));
-    v.points_configuration(create_std_vector_std_string(position + 1));
+    v.points_configuration(create_std_vector_creris_credit_risk_point_configuration(position + 1));
 }
 
 fixed_time_series_configuration_generator::result_type

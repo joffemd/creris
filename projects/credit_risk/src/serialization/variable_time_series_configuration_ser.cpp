@@ -58,8 +58,6 @@ void load(Archive& ar,
 
 } }
 
-BOOST_CLASS_EXPORT_IMPLEMENT(creris::credit_risk::variable_time_series_configuration)
-
 namespace boost {
 namespace serialization {
 

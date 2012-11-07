@@ -20,6 +20,7 @@
  */
 #include <ostream>
 #include "creris/credit_risk/io/fixed_time_series_configuration_io.hpp"
+#include "creris/credit_risk/io/point_configuration_io.hpp"
 #include "creris/credit_risk/io/time_series_configuration_io.hpp"
 
 namespace creris {

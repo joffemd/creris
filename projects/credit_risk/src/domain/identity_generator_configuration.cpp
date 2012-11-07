@@ -26,10 +26,10 @@ namespace creris {
 namespace credit_risk {
 
 identity_generator_configuration::identity_generator_configuration(
-    const creris::credit_risk::generator_types& generator_type,
-    const creris::credit_risk::versioned_key& versioned_key)
-    : creris::credit_risk::generator_configuration(generator_type,
-      versioned_key) { }
+    const std::string& name,
+    const std::string& description)
+    : creris::credit_risk::generator_configuration(name,
+      description) { }
 
 void identity_generator_configuration::to_stream(std::ostream& s) const {
     s << " { "

@@ -19,8 +19,6 @@
  *
  */
 #include "creris/credit_risk/hash/generator_configuration_hash.hpp"
-#include "creris/credit_risk/hash/generator_types_hash.hpp"
-#include "creris/credit_risk/hash/versioned_key_hash.hpp"
 
 namespace {
 
@@ -36,11 +34,11 @@ inline void combine(std::size_t& seed, const HashableType& value)
 namespace creris {
 namespace credit_risk {
 
-std::size_t generator_configuration_hasher::hash(const generator_configuration& v) {
+std::size_t generator_configuration_hasher::hash(const generator_configuration&v) {
     std::size_t seed(0);
 
-    combine(seed, v.generator_type());
-    combine(seed, v.versioned_key());
+    combine(seed, v.name());
+    combine(seed, v.description());
 
     return seed;
 }
