@@ -222,16 +222,16 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O1">
       <dia:attribute name="obj_pos">
-        <dia:point val="6.0225,12.0575"/>
+        <dia:point val="1.1475,12.245"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="5.9975,12.0325;26.9525,15.6825"/>
+        <dia:rectangle val="1.1225,12.22;27.0825,15.87"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="6.0225,12.0575"/>
+        <dia:point val="1.1475,12.245"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="20.905000000000001"/>
+        <dia:real val="25.91"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="3.6000000000000001"/>
@@ -329,7 +329,7 @@
             <dia:string>#rating_evaluation_results#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#rating_evaluation_results#</dia:string>
+            <dia:string>#credit_risk::rating_evaluation_results#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>

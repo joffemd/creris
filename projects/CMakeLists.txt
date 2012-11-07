@@ -142,7 +142,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/projects/daemon/include
     ${CMAKE_SOURCE_DIR}/projects/driver/include
     ${CMAKE_SOURCE_DIR}/projects/utility/include
-    ${CMAKE_SOURCE_DIR}/projects/protocol/include
+    ${CMAKE_SOURCE_DIR}/projects/batcher/include
     ${CMAKE_SOURCE_DIR}/projects/credit_risk/include
     )
 
@@ -155,5 +155,5 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/daemon/src)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/driver/src)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/utility/spec)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/utility/src)
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/protocol/src)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/batcher/src)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/credit_risk/src)

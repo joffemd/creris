@@ -32,19 +32,31 @@ execute_process(
 
 message(STATUS "Using dogen: ${dogen_binary}")
 
-set(diagrams credit_risk wire batcher cache processor)
-foreach(diagram ${diagrams})
-    set(target generate_${diagram})
-    add_custom_target(${target}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND ${dogen_dir}/${dogen_binary}
-        -t ${CMAKE_SOURCE_DIR}/diagrams/${diagram}.dia
-        -x ${CMAKE_SOURCE_DIR}/projects/
-        --cpp-enable-facet domain
-        --cpp-enable-facet io
-        --cpp-enable-facet hash
-        --cpp-enable-facet serialization
-        --cpp-enable-facet test_data
-        -v -d -p creris)
-    add_dependencies(codegen target)
-endforeach()
+set(target credit_risk)
+add_custom_target(generate_${target}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMAND ${dogen_dir}/${dogen_binary}
+    --target ${CMAKE_SOURCE_DIR}/diagrams/${target}.dia
+    --cpp-project-dir ${CMAKE_SOURCE_DIR}/projects/
+    --cpp-enable-facet domain
+    --cpp-enable-facet io
+    --cpp-enable-facet hash
+    --cpp-enable-facet serialization
+    --cpp-enable-facet test_data
+    -v -d -p creris)
+add_dependencies(codegen generate_${target})
+
+set(target batcher)
+add_custom_target(generate_${target}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMAND ${dogen_dir}/${dogen_binary}
+    --target ${CMAKE_SOURCE_DIR}/diagrams/${target}.dia
+    --cpp-project-dir ${CMAKE_SOURCE_DIR}/projects/
+    --reference ${CMAKE_SOURCE_DIR}/diagrams/credit_risk.dia
+    --cpp-enable-facet domain
+    --cpp-enable-facet io
+    --cpp-enable-facet hash
+    --cpp-enable-facet serialization
+    --cpp-enable-facet test_data
+    -v -d -p creris)
+add_dependencies(codegen generate_${target})
