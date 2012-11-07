@@ -144,6 +144,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/projects/utility/include
     ${CMAKE_SOURCE_DIR}/projects/batcher/include
     ${CMAKE_SOURCE_DIR}/projects/processor/include
+    ${CMAKE_SOURCE_DIR}/projects/cache/include
     ${CMAKE_SOURCE_DIR}/projects/credit_risk/include
     )
 
@@ -158,4 +159,5 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/utility/spec)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/utility/src)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/batcher/src)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/processor/src)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/cache/src)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/credit_risk/src)

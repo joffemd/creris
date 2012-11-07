@@ -145,13 +145,13 @@
         <dia:point val="-47.4927,5.7074"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-47.5427,5.6574;-21.5327,8.5574"/>
+        <dia:rectangle val="-47.5427,5.6574;-21.1477,8.5574"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="-47.4927,5.7074"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="25.91"/>
+        <dia:real val="26.294999999999998"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="2.7999999999999998"/>
@@ -249,7 +249,7 @@
             <dia:string>#key#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std:vector&lt;credit_risk::model_configuration_unversioned_key&gt;#</dia:string>
+            <dia:string>#std::vector&lt;credit_risk::model_configuration_unversioned_key&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
